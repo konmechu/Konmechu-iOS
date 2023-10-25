@@ -23,13 +23,27 @@
                                     <constraint firstAttribute="height" constant="1" id="gAx-ON-J0J"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ki3-U5-qXh">
+                                <rect key="frame" x="151.66666666666666" y="742" width="90" height="90"/>
+                                <color key="backgroundColor" red="0.35686274509999999" green="0.65490196079999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="WYf-tG-PCg"/>
+                                    <constraint firstAttribute="width" constant="90" id="x4o-NJ-LPC"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="스마트랜즈">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="95E-rK-l9y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Faw-2T-fJX" firstAttribute="top" secondItem="Ki3-U5-qXh" secondAttribute="bottom" constant="-30" id="6vI-Wj-0Qo"/>
                             <constraint firstItem="95E-rK-l9y" firstAttribute="bottom" secondItem="Faw-2T-fJX" secondAttribute="bottom" id="L8N-Jk-cwO"/>
                             <constraint firstItem="Faw-2T-fJX" firstAttribute="leading" secondItem="hBO-Dh-T6Y" secondAttribute="leading" id="RpD-iO-3m9"/>
                             <constraint firstItem="Faw-2T-fJX" firstAttribute="centerX" secondItem="hBO-Dh-T6Y" secondAttribute="centerX" id="k7P-Nc-VuH"/>
+                            <constraint firstItem="Ki3-U5-qXh" firstAttribute="centerX" secondItem="hBO-Dh-T6Y" secondAttribute="centerX" id="q8k-mj-RMF"/>
                             <constraint firstAttribute="trailing" secondItem="Faw-2T-fJX" secondAttribute="trailing" id="wsD-7K-1IF"/>
                         </constraints>
                     </view>
@@ -42,7 +56,7 @@
         <!--영양 통계-->
         <scene sceneID="MGF-8Z-FEp">
             <objects>
-                <viewController id="MIc-tK-B7R" sceneMemberID="viewController">
+                <viewController id="MIc-tK-B7R" customClass="NutritionStatisticsViewController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tjh-8D-kH2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,19 +68,39 @@
                                     <constraint firstAttribute="height" constant="1" id="QRj-X0-OMm"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcZ-Nl-mAa">
+                                <rect key="frame" x="151.66666666666666" y="742" width="90" height="90"/>
+                                <color key="backgroundColor" red="0.35686274509803922" green="0.65490196078431373" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="fIc-lk-cbP"/>
+                                    <constraint firstAttribute="height" constant="90" id="iKn-nv-jM0"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="스마트랜즈">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="smartlensBtnDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="B9k-dq-xQU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wX4-b8-ZKt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HdV-7o-Q7P" firstAttribute="centerX" secondItem="Tjh-8D-kH2" secondAttribute="centerX" id="4GU-Wu-y11"/>
+                            <constraint firstItem="hcZ-Nl-mAa" firstAttribute="centerX" secondItem="Tjh-8D-kH2" secondAttribute="centerX" id="774-lh-MKA"/>
                             <constraint firstItem="HdV-7o-Q7P" firstAttribute="leading" secondItem="Tjh-8D-kH2" secondAttribute="leading" id="8HL-or-vLD"/>
                             <constraint firstAttribute="bottomMargin" secondItem="HdV-7o-Q7P" secondAttribute="bottom" id="MhW-PK-UPr"/>
                             <constraint firstAttribute="trailing" secondItem="HdV-7o-Q7P" secondAttribute="trailing" id="V0Z-XC-jA8"/>
+                            <constraint firstItem="HdV-7o-Q7P" firstAttribute="top" secondItem="hcZ-Nl-mAa" secondAttribute="bottom" constant="-30" id="oNa-SP-TGZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="영양 통계" image="calendar" catalog="system" selectedImage="calendar" id="8qY-Xh-Fe0">
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="smartlensBtn" destination="hcZ-Nl-mAa" id="AEq-wL-a2H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnf-nW-h25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
