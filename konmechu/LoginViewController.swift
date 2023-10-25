@@ -1,0 +1,18 @@
+//
+//  LoginViewController.swift
+//  konmechu
+//
+//  Created by 정재연 on 10/25/23.
+//
+
+import UIKit
+
+class LoginViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+
+
+}
