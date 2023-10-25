@@ -8,13 +8,14 @@
 import Foundation
 import UIKit
 
-class TapBarController: UITabBarController {
+class TabBarController: UITabBarController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMiddleButton()
     }
+    
     
     func setupMiddleButton() {
         let menuButton = UIButton(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
@@ -26,6 +27,7 @@ class TapBarController: UITabBarController {
                 menuButton.backgroundColor = #colorLiteral(red: 0.3568627451, green: 0.6549019608, blue: 1, alpha: 1)
                 menuButton.layer.cornerRadius = menuButtonFrame.height/2
                 view.addSubview(menuButton)
+                view.bringSubviewToFront(menuButton)
 
                 menuButton.setImage(UIImage(named: "camera"), for: .normal)
                 menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
@@ -34,7 +36,7 @@ class TapBarController: UITabBarController {
     }
     
     @objc private func menuButtonAction(sender: UIButton) {
-        //Need to be implement
+       performSegue(withIdentifier: "SmartlensSG", sender: nil)
     }
 
 }

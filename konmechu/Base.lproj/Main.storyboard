@@ -168,12 +168,12 @@
             </objects>
             <point key="canvasLocation" x="-2305" y="-26"/>
         </scene>
-        <!--Tap Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="5cv-7V-cPs">
             <objects>
-                <tabBarController id="SQQ-jt-lUP" customClass="TapBarController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="SQQ-jt-lUP" customClass="TabBarController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="eCg-QX-bNW"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7MB-T3-9Mj" customClass="TapBar" customModule="konmechu" customModuleProvider="target">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7MB-T3-9Mj" customClass="TabBar" customModule="konmechu" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -183,6 +183,7 @@
                     <connections>
                         <segue destination="MIc-tK-B7R" kind="relationship" relationship="viewControllers" id="avN-tl-pl1"/>
                         <segue destination="dFl-YU-gz1" kind="relationship" relationship="viewControllers" id="Y15-ma-nSw"/>
+                        <segue destination="fR3-eP-y82" kind="presentation" identifier="SmartlensSG" modalPresentationStyle="fullScreen" id="8yO-47-o0b"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o2n-Oe-A1s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -196,13 +197,45 @@
                     <view key="view" contentMode="scaleToFill" id="9fM-es-9UJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9I-KL-Qlh">
+                                <rect key="frame" x="154" y="727" width="85" height="85"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="NtZ-nW-plb"/>
+                                    <constraint firstAttribute="width" constant="85" id="tbO-8L-5Qa"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="captureImageBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="F8W-sz-mqb"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIU-6J-Kyx">
+                                <rect key="frame" x="10" y="60" width="373" height="617"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Goj-4I-bNg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.22352941176470587" green="0.44313725490196076" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Goj-4I-bNg" firstAttribute="bottom" secondItem="z9I-KL-Qlh" secondAttribute="bottom" constant="40" id="4Ma-U4-GtZ"/>
+                            <constraint firstItem="aIU-6J-Kyx" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="8cz-BN-aGy"/>
+                            <constraint firstItem="z9I-KL-Qlh" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="GVB-6g-5es"/>
+                            <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="aIU-6J-Kyx" secondAttribute="trailing" constant="10" id="d6V-TT-A0s"/>
+                            <constraint firstItem="aIU-6J-Kyx" firstAttribute="top" secondItem="Goj-4I-bNg" secondAttribute="top" constant="60" id="i7F-0g-5C3"/>
+                            <constraint firstItem="aIU-6J-Kyx" firstAttribute="leading" secondItem="Goj-4I-bNg" secondAttribute="leading" constant="10" id="jp2-9n-5ip"/>
+                            <constraint firstItem="z9I-KL-Qlh" firstAttribute="top" secondItem="aIU-6J-Kyx" secondAttribute="bottom" constant="50" id="oEE-pT-QuZ"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="captureImageBtn" destination="z9I-KL-Qlh" id="q6j-6T-jfY"/>
+                        <outlet property="previewView" destination="aIU-6J-Kyx" id="YOX-9a-9Cu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59g-bq-k2w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2306" y="913"/>
+            <point key="canvasLocation" x="-2306" y="734"/>
         </scene>
     </scenes>
     <resources>

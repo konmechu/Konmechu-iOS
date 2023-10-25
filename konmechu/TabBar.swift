@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TapBar: UITabBar {
+class TabBar: UITabBar {
     
     private var shapeLayer: CALayer?
     
@@ -51,6 +51,7 @@ class TapBar: UITabBar {
            path.close()
            return path.cgPath
        }
+
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
             guard !clipsToBounds && !isHidden && alpha > 0 else { return nil }
@@ -66,9 +67,11 @@ class TapBar: UITabBar {
 }
 
 extension UITabBar {
-    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        var sizeThatFits = super.sizeThatFits(size)
-        sizeThatFits.height = 74
-        return sizeThatFits
-    }
+    
+    //TabBar 높이 커스텀 --> 시뮬레이터 상에서 직접 앱을 터치에 실행 시키는 경우 탭바의 위치가 낮아져 tabbar item을 가리는 문제가 있음.
+//    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+//        var sizeThatFits = super.sizeThatFits(size)
+//        sizeThatFits.height = 74
+//        return sizeThatFits
+//    }
 }
