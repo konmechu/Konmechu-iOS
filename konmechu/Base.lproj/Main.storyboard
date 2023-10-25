@@ -149,10 +149,18 @@
                             <constraint firstItem="Lsy-Zn-6ky" firstAttribute="centerY" secondItem="THu-pT-Xa2" secondAttribute="centerY" id="y3s-O2-H6P"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailLoginBtn" destination="jGr-Js-8O6" id="LHn-Bz-6Vp"/>
+                        <outlet property="googleLoginBtn" destination="J3U-VQ-o8U" id="g3c-BC-mBr"/>
+                        <outlet property="helpBtn" destination="Lsy-Zn-6ky" id="Iss-Xl-mT2"/>
+                        <outlet property="kakaoLoginBtn" destination="DuI-e2-b20" id="tnr-tF-TMs"/>
+                        <outlet property="logoImgView" destination="yTc-XF-vPr" id="fYD-gt-ISY"/>
+                        <outlet property="registerBtn" destination="ZKZ-hA-8jj" id="76f-kh-hth"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4z-kt-Dy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2016.030534351145" y="-26.056338028169016"/>
+            <point key="canvasLocation" x="-2305" y="-26"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5cv-7V-cPs">
