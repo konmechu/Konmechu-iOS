@@ -9,9 +9,7 @@ import UIKit
 
 class NutritionStatisticsViewController: UIViewController {
     
-    
-    @IBOutlet weak var smartlensBtn: UIButton!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,14 +19,10 @@ class NutritionStatisticsViewController: UIViewController {
     //MARK: - initial UI setting func
     
     func setUILayer() {
-        smartlensBtn.layer.cornerRadius = smartlensBtn.bounds.width / 2
+
     }
     
     //MARK: - btn acction func
     
-    
-    @IBAction func smartlensBtnDidTap(_ sender: Any) {
-        
-    }
     
 }

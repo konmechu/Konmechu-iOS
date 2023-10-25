@@ -10,7 +10,6 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     
-    @IBOutlet weak var smartlensBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +22,9 @@ class ProfileViewController: UIViewController {
     //MARK: - initial UI setting func
     
     func setUILayer() {
-        smartlensBtn.layer.cornerRadius = smartlensBtn.bounds.width / 2
+       
     }
     
     //MARK: - btn acction func
     
-    
-    @IBAction func smartlensBtnDidTap(_ sender: Any) {
-        
-    }
-
 }
