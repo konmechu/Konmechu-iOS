@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="-2305" y="-26"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tap Bar Controller-->
         <scene sceneID="5cv-7V-cPs">
             <objects>
-                <tabBarController id="SQQ-jt-lUP" sceneMemberID="viewController">
+                <tabBarController id="SQQ-jt-lUP" customClass="TapBarController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="eCg-QX-bNW"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7MB-T3-9Mj" customClass="TapBar" customModule="konmechu" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
