@@ -18,6 +18,7 @@
 		0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */; };
 		0A3257A72AE8F6550055CE6F /* TapBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A62AE8F6550055CE6F /* TapBarController.swift */; };
 		0A3257AA2AE8F8EE0055CE6F /* TapBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A82AE8F8180055CE6F /* TapBar.swift */; };
+		0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A3257A62AE8F6550055CE6F /* TapBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBarController.swift; sourceTree = "<group>"; };
 		0A3257A82AE8F8180055CE6F /* TapBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapBar.swift; sourceTree = "<group>"; };
+		0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartlensViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */,
 				0A3257A62AE8F6550055CE6F /* TapBarController.swift */,
 				0A3257A82AE8F8180055CE6F /* TapBar.swift */,
+				0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */,
 			);
 			path = konmechu;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				0A3257AA2AE8F8EE0055CE6F /* TapBar.swift in Sources */,
 				0A3257A72AE8F6550055CE6F /* TapBarController.swift in Sources */,
 				0A3257A12AE8E0A10055CE6F /* LoginViewController.swift in Sources */,
+				0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */,
 				0A3257912AE8DED80055CE6F /* ViewController.swift in Sources */,
 				0A32578D2AE8DED80055CE6F /* AppDelegate.swift in Sources */,
 				0A32578F2AE8DED80055CE6F /* SceneDelegate.swift in Sources */,

@@ -189,6 +189,21 @@
             </objects>
             <point key="canvasLocation" x="-902" y="-26"/>
         </scene>
+        <!--Smartlens View Controller-->
+        <scene sceneID="G9M-rH-UrW">
+            <objects>
+                <viewController id="fR3-eP-y82" customClass="SmartlensViewController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9fM-es-9UJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Goj-4I-bNg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="59g-bq-k2w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2306" y="913"/>
+        </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
