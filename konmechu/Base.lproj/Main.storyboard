@@ -8,37 +8,69 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--회원 정보-->
         <scene sceneID="x4q-29-sKJ">
             <objects>
                 <viewController id="dFl-YU-gz1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hBO-Dh-T6Y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Faw-2T-fJX">
+                                <rect key="frame" x="0.0" y="802" width="393" height="1"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="gAx-ON-J0J"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="95E-rK-l9y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="95E-rK-l9y" firstAttribute="bottom" secondItem="Faw-2T-fJX" secondAttribute="bottom" id="L8N-Jk-cwO"/>
+                            <constraint firstItem="Faw-2T-fJX" firstAttribute="leading" secondItem="hBO-Dh-T6Y" secondAttribute="leading" id="RpD-iO-3m9"/>
+                            <constraint firstItem="Faw-2T-fJX" firstAttribute="centerX" secondItem="hBO-Dh-T6Y" secondAttribute="centerX" id="k7P-Nc-VuH"/>
+                            <constraint firstAttribute="trailing" secondItem="Faw-2T-fJX" secondAttribute="trailing" id="wsD-7K-1IF"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="u7N-oJ-wTA"/>
+                    <tabBarItem key="tabBarItem" title="회원 정보" image="person" catalog="system" selectedImage="person" id="u7N-oJ-wTA"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1BB-1k-apD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="198" y="273"/>
+            <point key="canvasLocation" x="196" y="325"/>
         </scene>
-        <!--Item 1-->
+        <!--영양 통계-->
         <scene sceneID="MGF-8Z-FEp">
             <objects>
                 <viewController id="MIc-tK-B7R" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tjh-8D-kH2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdV-7o-Q7P">
+                                <rect key="frame" x="0.0" y="802" width="393" height="1"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="QRj-X0-OMm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="wX4-b8-ZKt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HdV-7o-Q7P" firstAttribute="centerX" secondItem="Tjh-8D-kH2" secondAttribute="centerX" id="4GU-Wu-y11"/>
+                            <constraint firstItem="HdV-7o-Q7P" firstAttribute="leading" secondItem="Tjh-8D-kH2" secondAttribute="leading" id="8HL-or-vLD"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HdV-7o-Q7P" secondAttribute="bottom" id="MhW-PK-UPr"/>
+                            <constraint firstAttribute="trailing" secondItem="HdV-7o-Q7P" secondAttribute="trailing" id="V0Z-XC-jA8"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="8qY-Xh-Fe0"/>
+                    <tabBarItem key="tabBarItem" title="영양 통계" image="calendar" catalog="system" selectedImage="calendar" id="8qY-Xh-Fe0">
+                        <color key="badgeColor" systemColor="labelColor"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnf-nW-h25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197" y="-334"/>
+            <point key="canvasLocation" x="196.18320610687022" y="-334.50704225352115"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="j0u-vC-Pg7">
@@ -174,7 +206,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7MB-T3-9Mj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="MIc-tK-B7R" kind="relationship" relationship="viewControllers" id="avN-tl-pl1"/>
@@ -187,6 +221,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
