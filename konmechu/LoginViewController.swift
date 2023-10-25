@@ -43,7 +43,15 @@ class LoginViewController: UIViewController {
         emailLoginBtn.layer.shadowOffset = CGSize(width: 5, height: 5)
     }
     
-    //MARK: - button action func 
+    //MARK: - button action func
+    
+    //test
+    @IBAction func emailLoginBtnDidTap(_ sender: Any) {
+        performSegue(withIdentifier: "LoginSuccessSG", sender: nil)
+    }
+    
+    
+    //MARK: - Seague func
 
     
 
