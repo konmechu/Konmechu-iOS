@@ -11,7 +11,7 @@
         <!--회원 정보-->
         <scene sceneID="x4q-29-sKJ">
             <objects>
-                <viewController id="dFl-YU-gz1" sceneMemberID="viewController">
+                <viewController id="dFl-YU-gz1" customClass="ProfileViewController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hBO-Dh-T6Y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,6 +34,9 @@
                                 <state key="normal" title="스마트랜즈">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="smartlensBtnDidTap:" destination="dFl-YU-gz1" eventType="touchUpInside" id="grl-38-NzD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="95E-rK-l9y"/>
@@ -48,6 +51,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="회원 정보" image="person" catalog="system" selectedImage="person" id="u7N-oJ-wTA"/>
+                    <connections>
+                        <outlet property="smartlensBtn" destination="Ki3-U5-qXh" id="Evh-pV-DSO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1BB-1k-apD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

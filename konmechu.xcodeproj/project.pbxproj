@@ -15,6 +15,7 @@
 		0A3257992AE8DED90055CE6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3257972AE8DED90055CE6F /* LaunchScreen.storyboard */; };
 		0A3257A12AE8E0A10055CE6F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A02AE8E0A10055CE6F /* LoginViewController.swift */; };
 		0A3257A32AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A22AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift */; };
+		0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		0A32579A2AE8DED90055CE6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A3257A02AE8E0A10055CE6F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A3257A22AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionStatisticsViewController.swift; sourceTree = "<group>"; };
+		0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				0A32579A2AE8DED90055CE6F /* Info.plist */,
 				0A3257A02AE8E0A10055CE6F /* LoginViewController.swift */,
 				0A3257A22AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift */,
+				0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */,
 			);
 			path = konmechu;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */,
 				0A3257A12AE8E0A10055CE6F /* LoginViewController.swift in Sources */,
 				0A3257912AE8DED80055CE6F /* ViewController.swift in Sources */,
 				0A32578D2AE8DED80055CE6F /* AppDelegate.swift in Sources */,
