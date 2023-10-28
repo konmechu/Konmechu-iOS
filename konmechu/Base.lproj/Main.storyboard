@@ -162,7 +162,7 @@
                         <outlet property="kakaoLoginBtn" destination="DuI-e2-b20" id="tnr-tF-TMs"/>
                         <outlet property="logoImgView" destination="yTc-XF-vPr" id="fYD-gt-ISY"/>
                         <outlet property="registerBtn" destination="ZKZ-hA-8jj" id="76f-kh-hth"/>
-                        <segue destination="SQQ-jt-lUP" kind="presentation" identifier="LoginSuccessSG" animates="NO" modalPresentationStyle="fullScreen" id="obM-Vq-gZl"/>
+                        <segue destination="SQQ-jt-lUP" kind="presentation" identifier="LoginSuccessSG" modalPresentationStyle="fullScreen" id="obM-Vq-gZl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r4z-kt-Dy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -286,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dum-6W-ODI">
-                                <rect key="frame" x="146.66666666666666" y="752" width="100" height="50"/>
+                                <rect key="frame" x="146.66666666666666" y="732" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="IgK-7i-v8o"/>
                                     <constraint firstAttribute="height" constant="50" id="TWJ-Fa-q7i"/>
@@ -298,7 +298,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZJ-2m-qhC">
-                                <rect key="frame" x="271.66666666666669" y="752" width="100" height="50"/>
+                                <rect key="frame" x="271.66666666666669" y="732" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="PAt-Gt-x14"/>
                                     <constraint firstAttribute="width" constant="100" id="sgX-C1-6Th"/>
@@ -310,7 +310,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-HP-LA3">
-                                <rect key="frame" x="21.666666666666671" y="752" width="100" height="50"/>
+                                <rect key="frame" x="21.666666666666671" y="732" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eQK-YK-OZd"/>
                                     <constraint firstAttribute="width" constant="100" id="eXp-iu-HiW"/>
@@ -332,6 +332,9 @@
                                 <state key="normal" title="확인">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="confirmBtnDidTap:" destination="ygq-m4-Vce" eventType="touchUpInside" id="KRw-sK-CkY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-Aq-6j2">
                                 <rect key="frame" x="310" y="20" width="63" height="34"/>
@@ -345,7 +348,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언제 먹은 식사 인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U70-Xi-7Rb">
-                                <rect key="frame" x="128" y="694" width="137" height="18"/>
+                                <rect key="frame" x="128" y="674" width="137" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="137" id="7HR-if-9F0"/>
                                     <constraint firstAttribute="height" constant="18" id="CZS-Yt-JR7"/>
@@ -355,7 +358,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmZ-0R-uL2">
-                                <rect key="frame" x="10" y="85" width="373" height="529"/>
+                                <rect key="frame" x="10" y="85" width="373" height="509"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXA-dn-QtA"/>
@@ -375,7 +378,7 @@
                             <constraint firstItem="xmZ-0R-uL2" firstAttribute="top" secondItem="dWu-KZ-q7V" secondAttribute="bottom" constant="30" id="jUG-Ai-D7J"/>
                             <constraint firstItem="dum-6W-ODI" firstAttribute="leading" secondItem="8Bh-HP-LA3" secondAttribute="trailing" constant="25" id="nyK-eX-Frs"/>
                             <constraint firstItem="qZJ-2m-qhC" firstAttribute="leading" secondItem="dum-6W-ODI" secondAttribute="trailing" constant="25" id="t8I-o9-KsJ"/>
-                            <constraint firstItem="fXA-dn-QtA" firstAttribute="bottom" secondItem="dum-6W-ODI" secondAttribute="bottom" constant="40" id="uKs-eS-YDt"/>
+                            <constraint firstItem="fXA-dn-QtA" firstAttribute="bottom" secondItem="dum-6W-ODI" secondAttribute="bottom" constant="60" id="uKs-eS-YDt"/>
                             <constraint firstItem="U70-Xi-7Rb" firstAttribute="top" secondItem="xmZ-0R-uL2" secondAttribute="bottom" constant="80" id="zlN-sU-uqy"/>
                         </constraints>
                     </view>
@@ -406,7 +409,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
