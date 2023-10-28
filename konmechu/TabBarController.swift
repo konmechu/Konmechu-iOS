@@ -24,12 +24,12 @@ class TabBarController: UITabBarController {
                 menuButtonFrame.origin.x = view.bounds.width/2 - menuButtonFrame.size.width/2
                 menuButton.frame = menuButtonFrame
 
-                menuButton.backgroundColor = #colorLiteral(red: 0.3568627451, green: 0.6549019608, blue: 1, alpha: 1)
+                menuButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 menuButton.layer.cornerRadius = menuButtonFrame.height/2
                 view.addSubview(menuButton)
                 view.bringSubviewToFront(menuButton)
 
-                menuButton.setImage(UIImage(named: "camera"), for: .normal)
+//                menuButton.setImage(UIImage(named: "camera"), for: .normal)
                 menuButton.addTarget(self, action: #selector(menuButtonAction(sender:)), for: .touchUpInside)
 
                 view.layoutIfNeeded()
