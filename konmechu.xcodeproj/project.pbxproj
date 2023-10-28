@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A32578D2AE8DED80055CE6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32578C2AE8DED80055CE6F /* AppDelegate.swift */; };
 		0A32578F2AE8DED80055CE6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32578E2AE8DED80055CE6F /* SceneDelegate.swift */; };
-		0A3257912AE8DED80055CE6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257902AE8DED80055CE6F /* ViewController.swift */; };
 		0A3257942AE8DED80055CE6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3257922AE8DED80055CE6F /* Main.storyboard */; };
 		0A3257962AE8DED90055CE6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A3257952AE8DED90055CE6F /* Assets.xcassets */; };
 		0A3257992AE8DED90055CE6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A3257972AE8DED90055CE6F /* LaunchScreen.storyboard */; };
@@ -18,6 +17,7 @@
 		0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */; };
 		0A3257A72AE8F6550055CE6F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A62AE8F6550055CE6F /* TabBarController.swift */; };
 		0A3257AA2AE8F8EE0055CE6F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A82AE8F8180055CE6F /* TabBar.swift */; };
+		0A370AB72AECDC5600D6DA66 /* CaptureImgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */; };
 		0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,7 +25,6 @@
 		0A3257892AE8DED80055CE6F /* konmechu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = konmechu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A32578C2AE8DED80055CE6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A32578E2AE8DED80055CE6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0A3257902AE8DED80055CE6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A3257932AE8DED80055CE6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A3257952AE8DED90055CE6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A3257982AE8DED90055CE6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +34,7 @@
 		0A3257A42AE8F1CB0055CE6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		0A3257A62AE8F6550055CE6F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0A3257A82AE8F8180055CE6F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImgViewController.swift; sourceTree = "<group>"; };
 		0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartlensViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +70,6 @@
 			children = (
 				0A32578C2AE8DED80055CE6F /* AppDelegate.swift */,
 				0A32578E2AE8DED80055CE6F /* SceneDelegate.swift */,
-				0A3257902AE8DED80055CE6F /* ViewController.swift */,
 				0A3257922AE8DED80055CE6F /* Main.storyboard */,
 				0A3257952AE8DED90055CE6F /* Assets.xcassets */,
 				0A3257972AE8DED90055CE6F /* LaunchScreen.storyboard */,
@@ -81,6 +80,7 @@
 				0A3257A62AE8F6550055CE6F /* TabBarController.swift */,
 				0A3257A82AE8F8180055CE6F /* TabBar.swift */,
 				0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */,
+				0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */,
 			);
 			path = konmechu;
 			sourceTree = "<group>";
@@ -161,10 +161,10 @@
 				0A3257A72AE8F6550055CE6F /* TabBarController.swift in Sources */,
 				0A3257A12AE8E0A10055CE6F /* LoginViewController.swift in Sources */,
 				0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */,
-				0A3257912AE8DED80055CE6F /* ViewController.swift in Sources */,
 				0A32578D2AE8DED80055CE6F /* AppDelegate.swift in Sources */,
 				0A32578F2AE8DED80055CE6F /* SceneDelegate.swift in Sources */,
 				0A3257A32AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift in Sources */,
+				0A370AB72AECDC5600D6DA66 /* CaptureImgViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

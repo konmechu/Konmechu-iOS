@@ -29,6 +29,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     @IBOutlet weak var captureImageBtn: UIButton!
     
     //let capturedImageView = CapturedImageView()
+    var imgToSend :UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -206,15 +207,20 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         //CIImage를 UIImage로 변환
         let uiImage = UIImage(ciImage: ciImage)
         
-        //이미지 표시 (UI영역)
-//        DispatchQueue.main.async {
-//            self.capturedImageView.image = uiImage
-//            self.isTakePicture = false
-//        }
+        imgToSend = uiImage
         
-        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-        
-        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
+            self.isTakePicture = false
+        }
+    }
+    
+    //MARK: - Segue Prepare function
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CaptureImgSG" {
+            let destinationVC = segue.destination as! CaptureImgViewController
+            destinationVC.capturedImg = imgToSend
+        }
     }
 
 }
