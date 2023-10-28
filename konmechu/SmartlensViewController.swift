@@ -28,6 +28,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageBtn: UIButton!
     
+    
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
     
@@ -177,15 +178,21 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
 
     }
     
-    //MARK: - Actions
+    //MARK: - Button Actions
     
     @IBAction func captureImageBtnDidTap(_ sender: Any) {
         isTakePicture = true
     }
     
-    @objc func captureImage(_ sender: UIButton?) {
-        isTakePicture = true
+    
+    @IBAction func backBtnDidTap(_ sender: Any) {
+        dismiss(animated: true)
     }
+    
+    
+    @IBAction func infoBtnDidTap(_ sender: Any) {
+    }
+    
     
     @objc func switchCamera(_ sender: UIButton?) {
         switchCameraInput()
