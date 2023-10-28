@@ -211,6 +211,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
 //            self.capturedImageView.image = uiImage
 //            self.isTakePicture = false
 //        }
+        
+        performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        
+        
     }
 
 }

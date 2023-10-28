@@ -231,11 +231,95 @@
                     <connections>
                         <outlet property="captureImageBtn" destination="z9I-KL-Qlh" id="q6j-6T-jfY"/>
                         <outlet property="previewView" destination="aIU-6J-Kyx" id="YOX-9a-9Cu"/>
+                        <segue destination="ygq-m4-Vce" kind="show" identifier="CaptureImgSG" id="qa8-oG-w17"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59g-bq-k2w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2306" y="734"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BhR-Qm-281">
+            <objects>
+                <viewController id="ygq-m4-Vce" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ya5-dc-XzW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dum-6W-ODI">
+                                <rect key="frame" x="181.66666666666666" y="772" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="점심"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZJ-2m-qhC">
+                                <rect key="frame" x="271.66666666666669" y="772" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="저녁"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-HP-LA3">
+                                <rect key="frame" x="91.666666666666671" y="772" width="30" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="아침"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWu-KZ-q7V">
+                                <rect key="frame" x="20" y="20" width="54" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="RT9-4Y-OY6"/>
+                                    <constraint firstAttribute="width" constant="54" id="jwN-NJ-CN9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="확인">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-Aq-6j2">
+                                <rect key="frame" x="310" y="20" width="63" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="다시찍기">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언제 먹은 식가 인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U70-Xi-7Rb">
+                                <rect key="frame" x="128" y="714" width="137" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.30588235294117649" green="0.30588235294117649" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmZ-0R-uL2">
+                                <rect key="frame" x="10" y="85" width="373" height="549"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fXA-dn-QtA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dum-6W-ODI" firstAttribute="top" secondItem="U70-Xi-7Rb" secondAttribute="bottom" constant="40" id="02R-Kw-zRr"/>
+                            <constraint firstItem="xmZ-0R-uL2" firstAttribute="leading" secondItem="fXA-dn-QtA" secondAttribute="leading" constant="10" id="69h-Jz-nVS"/>
+                            <constraint firstItem="fXA-dn-QtA" firstAttribute="trailing" secondItem="HYj-Aq-6j2" secondAttribute="trailing" constant="20" id="8je-gL-QYJ"/>
+                            <constraint firstItem="HYj-Aq-6j2" firstAttribute="top" secondItem="fXA-dn-QtA" secondAttribute="top" constant="20" id="EJe-U2-QQ7"/>
+                            <constraint firstItem="8Bh-HP-LA3" firstAttribute="centerY" secondItem="dum-6W-ODI" secondAttribute="centerY" id="RO0-KS-STN"/>
+                            <constraint firstItem="dWu-KZ-q7V" firstAttribute="top" secondItem="fXA-dn-QtA" secondAttribute="top" constant="20" id="RuN-lX-P6r"/>
+                            <constraint firstItem="qZJ-2m-qhC" firstAttribute="centerY" secondItem="dum-6W-ODI" secondAttribute="centerY" id="YSK-Fd-bQe"/>
+                            <constraint firstItem="U70-Xi-7Rb" firstAttribute="centerX" secondItem="ya5-dc-XzW" secondAttribute="centerX" id="aBv-Zp-2gx"/>
+                            <constraint firstItem="dum-6W-ODI" firstAttribute="centerX" secondItem="ya5-dc-XzW" secondAttribute="centerX" id="bTh-ai-Xe1"/>
+                            <constraint firstItem="fXA-dn-QtA" firstAttribute="trailing" secondItem="xmZ-0R-uL2" secondAttribute="trailing" constant="10" id="cLc-Tx-Gsf"/>
+                            <constraint firstItem="dWu-KZ-q7V" firstAttribute="leading" secondItem="fXA-dn-QtA" secondAttribute="leading" constant="20" id="eQ1-5I-CLt"/>
+                            <constraint firstItem="xmZ-0R-uL2" firstAttribute="top" secondItem="dWu-KZ-q7V" secondAttribute="bottom" constant="30" id="jUG-Ai-D7J"/>
+                            <constraint firstItem="dum-6W-ODI" firstAttribute="leading" secondItem="8Bh-HP-LA3" secondAttribute="trailing" constant="60" id="nyK-eX-Frs"/>
+                            <constraint firstItem="qZJ-2m-qhC" firstAttribute="leading" secondItem="dum-6W-ODI" secondAttribute="trailing" constant="60" id="t8I-o9-KsJ"/>
+                            <constraint firstItem="fXA-dn-QtA" firstAttribute="bottom" secondItem="dum-6W-ODI" secondAttribute="bottom" constant="40" id="uKs-eS-YDt"/>
+                            <constraint firstItem="U70-Xi-7Rb" firstAttribute="top" secondItem="xmZ-0R-uL2" secondAttribute="bottom" constant="80" id="zlN-sU-uqy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="25h-1S-bvU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4pP-Jg-MBX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1498.4732824427481" y="733.80281690140851"/>
         </scene>
     </scenes>
     <resources>
@@ -246,6 +330,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
