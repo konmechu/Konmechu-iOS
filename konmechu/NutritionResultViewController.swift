@@ -124,7 +124,7 @@ class NutritionResultViewController: UIViewController {
             return
         }
         
-        let urlString = "https://98e4-121-130-156-219.ngrok.io/api/infer"
+        let urlString = "https://107c-163-152-3-179.ngrok.io/api/infer"
         guard let url = URL(string: urlString) else {
             completion("Invalid URL.")
             return
@@ -158,6 +158,7 @@ class NutritionResultViewController: UIViewController {
                 if let data = data {
                     do {
                         if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                            print(json)
                             DispatchQueue.main.async {
                                 self.updateLabels(with: json)
                             }
@@ -171,11 +172,13 @@ class NutritionResultViewController: UIViewController {
     }
     
     func updateLabels(with json: [String: String]) {
-        kcalLabel.text = json["Calories (kcal)"]
-        carbohydrateLabel.text = json["Carbohydrates (g)"]
-        proteinLabel.text = json["Protein (g)"]
-        fatLabel.text = json["Fat (g)"]
-        sugarsLabel.text = json["Sugar (g)"]
+        menuNameLabel.text = json["식품명"] ?? "알수없음"
+        kcalLabel.text = (json["열량(kcal)"]?.isEmpty ?? true) ? "0Kcal" : json["열량(kcal)"]! + "kcal"
+        carbohydrateLabel.text = (json["탄수화물(g)"]?.isEmpty ?? true) ? "0g" : json["탄수화물(g)"]! + "g"
+        proteinLabel.text = (json["단백질(g)"]?.isEmpty ?? true) ? "0g" : json["단백질(g)"]! + "g"
+        fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0g" : json["지방(g)"]! + "g"
+        sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0g" : json["당류(g)"]! + "g"
     }
+
 
 }
