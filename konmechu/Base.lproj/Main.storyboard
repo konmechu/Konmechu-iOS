@@ -275,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59g-bq-k2w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2306.1068702290077" y="733.80281690140851"/>
+            <point key="canvasLocation" x="-2306" y="734"/>
         </scene>
         <!--Capture Img View Controller-->
         <scene sceneID="BhR-Qm-281">
@@ -286,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dum-6W-ODI">
-                                <rect key="frame" x="146.66666666666666" y="732" width="100" height="50"/>
+                                <rect key="frame" x="146.66666666666666" y="742" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="IgK-7i-v8o"/>
                                     <constraint firstAttribute="height" constant="50" id="TWJ-Fa-q7i"/>
@@ -298,7 +298,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZJ-2m-qhC">
-                                <rect key="frame" x="271.66666666666669" y="732" width="100" height="50"/>
+                                <rect key="frame" x="266.66666666666669" y="742" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="PAt-Gt-x14"/>
                                     <constraint firstAttribute="width" constant="100" id="sgX-C1-6Th"/>
@@ -310,7 +310,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Bh-HP-LA3">
-                                <rect key="frame" x="21.666666666666671" y="732" width="100" height="50"/>
+                                <rect key="frame" x="26.666666666666671" y="742" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="eQK-YK-OZd"/>
                                     <constraint firstAttribute="width" constant="100" id="eXp-iu-HiW"/>
@@ -348,7 +348,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="언제 먹은 식사 인가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U70-Xi-7Rb">
-                                <rect key="frame" x="128" y="674" width="137" height="18"/>
+                                <rect key="frame" x="128" y="694" width="137" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="137" id="7HR-if-9F0"/>
                                     <constraint firstAttribute="height" constant="18" id="CZS-Yt-JR7"/>
@@ -358,13 +358,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmZ-0R-uL2">
-                                <rect key="frame" x="10" y="85" width="373" height="509"/>
+                                <rect key="frame" x="10" y="85" width="373" height="579"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fXA-dn-QtA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dum-6W-ODI" firstAttribute="top" secondItem="U70-Xi-7Rb" secondAttribute="bottom" constant="40" id="02R-Kw-zRr"/>
+                            <constraint firstItem="dum-6W-ODI" firstAttribute="top" secondItem="U70-Xi-7Rb" secondAttribute="bottom" constant="30" id="02R-Kw-zRr"/>
                             <constraint firstItem="xmZ-0R-uL2" firstAttribute="leading" secondItem="fXA-dn-QtA" secondAttribute="leading" constant="10" id="69h-Jz-nVS"/>
                             <constraint firstItem="fXA-dn-QtA" firstAttribute="trailing" secondItem="HYj-Aq-6j2" secondAttribute="trailing" constant="20" id="8je-gL-QYJ"/>
                             <constraint firstItem="HYj-Aq-6j2" firstAttribute="top" secondItem="fXA-dn-QtA" secondAttribute="top" constant="20" id="EJe-U2-QQ7"/>
@@ -376,10 +376,10 @@
                             <constraint firstItem="fXA-dn-QtA" firstAttribute="trailing" secondItem="xmZ-0R-uL2" secondAttribute="trailing" constant="10" id="cLc-Tx-Gsf"/>
                             <constraint firstItem="dWu-KZ-q7V" firstAttribute="leading" secondItem="fXA-dn-QtA" secondAttribute="leading" constant="20" id="eQ1-5I-CLt"/>
                             <constraint firstItem="xmZ-0R-uL2" firstAttribute="top" secondItem="dWu-KZ-q7V" secondAttribute="bottom" constant="30" id="jUG-Ai-D7J"/>
-                            <constraint firstItem="dum-6W-ODI" firstAttribute="leading" secondItem="8Bh-HP-LA3" secondAttribute="trailing" constant="25" id="nyK-eX-Frs"/>
-                            <constraint firstItem="qZJ-2m-qhC" firstAttribute="leading" secondItem="dum-6W-ODI" secondAttribute="trailing" constant="25" id="t8I-o9-KsJ"/>
-                            <constraint firstItem="fXA-dn-QtA" firstAttribute="bottom" secondItem="dum-6W-ODI" secondAttribute="bottom" constant="60" id="uKs-eS-YDt"/>
-                            <constraint firstItem="U70-Xi-7Rb" firstAttribute="top" secondItem="xmZ-0R-uL2" secondAttribute="bottom" constant="80" id="zlN-sU-uqy"/>
+                            <constraint firstItem="dum-6W-ODI" firstAttribute="leading" secondItem="8Bh-HP-LA3" secondAttribute="trailing" constant="20" id="nyK-eX-Frs"/>
+                            <constraint firstItem="qZJ-2m-qhC" firstAttribute="leading" secondItem="dum-6W-ODI" secondAttribute="trailing" constant="20" id="t8I-o9-KsJ"/>
+                            <constraint firstItem="fXA-dn-QtA" firstAttribute="bottom" secondItem="dum-6W-ODI" secondAttribute="bottom" constant="50" id="uKs-eS-YDt"/>
+                            <constraint firstItem="U70-Xi-7Rb" firstAttribute="top" secondItem="xmZ-0R-uL2" secondAttribute="bottom" constant="30" id="zlN-sU-uqy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="25h-1S-bvU"/>
@@ -409,7 +409,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
