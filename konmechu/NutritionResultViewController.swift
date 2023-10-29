@@ -35,6 +35,11 @@ class NutritionResultViewController: UIViewController {
         
         nutritionBaseView.layer.cornerRadius = 20
         
+        nutritionBaseView.backgroundColor = nutritionBaseView.backgroundColor?.withAlphaComponent(0.2)
+        
+        nutritionBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        nutritionBaseView.layer.shadowOpacity = 0.7
+        
         nutritionViews.append(kcalView)
         nutritionViews.append(carbohydrateView)
         nutritionViews.append(proteinView)
@@ -43,6 +48,10 @@ class NutritionResultViewController: UIViewController {
         
         for view in nutritionViews {
             view.layer.cornerRadius = view.layer.bounds.width / 2
+            view.backgroundColor = view.backgroundColor?.withAlphaComponent(0.2)
+            view.layer.borderWidth = 2
+            view.layer.borderColor = #colorLiteral(red: 0.3176470588, green: 0.8078431373, blue: 0.3647058824, alpha: 1)
+
         }
     }
 
