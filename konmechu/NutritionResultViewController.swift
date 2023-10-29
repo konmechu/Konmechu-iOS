@@ -12,6 +12,8 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var nutritionBaseView: UIView!
     
+    
+    
     @IBOutlet weak var kcalView: UIView!
     
     @IBOutlet weak var carbohydrateView: UIView!
@@ -22,11 +24,36 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var sugarsView: UIView!
     
+    
+    
+    @IBOutlet weak var kcalLabel: UILabel!
+    
+    @IBOutlet weak var carbohydrateLabel: UILabel!
+    
+    @IBOutlet weak var proteinLabel: UILabel!
+    
+    @IBOutlet weak var fatLabel: UILabel!
+    
+    @IBOutlet weak var sugarsLabel: UILabel!
+    
+    
+    
+    
+    
+    
     @IBOutlet weak var menuImgView: UIImageView!
     
     @IBOutlet weak var menuImgBaseView: UIView!
     
     @IBOutlet weak var menuNameLabel: UILabel!
+    
+    
+    
+    
+    
+    
+    
+    
     
     public var menuImg : UIImage?
     
@@ -37,6 +64,7 @@ class NutritionResultViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        
     }
     
     private func setUI() {
@@ -57,6 +85,10 @@ class NutritionResultViewController: UIViewController {
         menuImgView.layer.cornerRadius = 20
         menuImgView.contentMode = .scaleAspectFill
         menuImgView.image = menuImg
+        
+        uploadImage(image: menuImg!) { response in
+            print(response ?? "No response received.")
+        }
         
         
         nutritionViews.append(kcalView)
@@ -85,5 +117,65 @@ class NutritionResultViewController: UIViewController {
     @IBAction func saveMealBtnDidTap(_ sender: Any) {
     }
     
+    //MARK: - API function
+    func uploadImage(image: UIImage, completion: @escaping (String?) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.9) else {
+            completion("Image data could not be converted to JPEG format.")
+            return
+        }
+        
+        let urlString = "https://98e4-121-130-156-219.ngrok.io/api/infer"
+        guard let url = URL(string: urlString) else {
+            completion("Invalid URL.")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // Multipart/form-data boundary and header
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        // Create multipart/form-data body
+        var body = Data()
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"uploaded_image.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        // Attach body to request
+        request.httpBody = body
+        
+        // Send the request
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    completion("Error: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let data = data {
+                    do {
+                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                            DispatchQueue.main.async {
+                                self.updateLabels(with: json)
+                            }
+                        }
+                    } catch {
+                        print("Error parsing JSON: \(error.localizedDescription)")
+                    }
+                }
+            }
+            task.resume()
+    }
+    
+    func updateLabels(with json: [String: String]) {
+        kcalLabel.text = json["Calories (kcal)"]
+        carbohydrateLabel.text = json["Carbohydrates (g)"]
+        proteinLabel.text = json["Protein (g)"]
+        fatLabel.text = json["Fat (g)"]
+        sugarsLabel.text = json["Sugar (g)"]
+    }
 
 }

@@ -678,14 +678,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="TZv-dQ-dQ9"/>
                     <connections>
+                        <outlet property="carbohydrateLabel" destination="t43-eM-4oz" id="vuq-Fj-tzz"/>
                         <outlet property="carbohydrateView" destination="Jtt-bP-Qgj" id="ABS-QI-UIt"/>
+                        <outlet property="fatLabel" destination="U3E-lf-UXV" id="vUF-IB-jDb"/>
                         <outlet property="fatView" destination="DzY-Id-8jW" id="vi5-P6-201"/>
+                        <outlet property="kcalLabel" destination="Lgn-8O-tm3" id="Nbx-YQ-n0m"/>
                         <outlet property="kcalView" destination="gFD-7l-yAS" id="y01-7e-1YU"/>
                         <outlet property="menuImgBaseView" destination="avh-1e-znU" id="2Gt-61-tSZ"/>
                         <outlet property="menuImgView" destination="hVf-5a-2tt" id="7xR-tN-6Ze"/>
                         <outlet property="menuNameLabel" destination="mZA-v0-zsq" id="XNC-xT-YBl"/>
                         <outlet property="nutritionBaseView" destination="b70-Ed-77P" id="gli-fa-XLt"/>
+                        <outlet property="proteinLabel" destination="huW-Ro-AgX" id="EKH-Fi-Cix"/>
                         <outlet property="proteinView" destination="S0D-Lw-o3D" id="LB4-kB-7t8"/>
+                        <outlet property="sugarsLabel" destination="Ffh-g2-f5l" id="ezC-Iy-cKp"/>
                         <outlet property="sugarsView" destination="LFp-5P-LCj" id="pMa-Aa-gqo"/>
                     </connections>
                 </viewController>

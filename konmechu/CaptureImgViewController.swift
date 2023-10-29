@@ -67,10 +67,7 @@ class CaptureImgViewController: UIViewController {
     //MARK: - Button action
     
     @IBAction private func confirmBtnDidTap(_ sender: Any) {
-        print("wow\n\n\n\n")
-        uploadImage(image: capturedImg!) { response in
-            print(response ?? "No response received.")
-        }
+        
         performSegue(withIdentifier: "showNutirtionSG", sender: nil)
     }
     
@@ -90,62 +87,7 @@ class CaptureImgViewController: UIViewController {
     }
     
     //MARK: - Communication function
-    func uploadImage(image: UIImage, completion: @escaping (String?) -> Void) {
-        guard let imageData = image.jpegData(compressionQuality: 0.9) else {
-            completion("Image data could not be converted to JPEG format.")
-            return
-        }
-        
-        let urlString = "https://98e4-121-130-156-219.ngrok.io/api/infer"
-        guard let url = URL(string: urlString) else {
-            completion("Invalid URL.")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        
-        // Multipart/form-data boundary and header
-        let boundary = "Boundary-\(UUID().uuidString)"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
-        // Create multipart/form-data body
-        var body = Data()
-        body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"uploaded_image.jpg\"\r\n".data(using: .utf8)!)
-        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-        body.append(imageData)
-        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-        
-        // Attach body to request
-        request.httpBody = body
-        
-        // Send the request
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                       let foodName = json["Food Name"] as? String {
-                        print(foodName)  // 출력: 보쌈
-                    }
-                } catch {
-                    print("Error parsing JSON: \(error.localizedDescription)")
-                }
-            }
-            
-//            if let data = data, let responseString = String(data: data, encoding: .utf8) {
-//                completion(responseString)
-//            } else {
-//                completion("Unknown error.")
-//            }
-        }
-        task.resume()
-    }
+    
     
     
 
