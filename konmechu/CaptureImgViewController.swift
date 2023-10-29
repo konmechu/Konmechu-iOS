@@ -37,6 +37,7 @@ class CaptureImgViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        addAction()
     }
     
     //MARK: - UI setting function
@@ -49,7 +50,6 @@ class CaptureImgViewController: UIViewController {
             button.layer.cornerRadius = button.bounds.height / 2
             button.layer.borderWidth = 2
             button.layer.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
-            button.addTarget(self, action: #selector(mealBtnAction(sender:)), for: UIControl.Event.touchUpInside)
         }
         
         capturedImgView.layer.cornerRadius = 35
@@ -57,17 +57,23 @@ class CaptureImgViewController: UIViewController {
         capturedImgView.image = capturedImg
     }
     
+    private func addAction() {
+        for button in buttons {
+            button.addTarget(self, action: #selector(mealBtnAction(sender:)), for: UIControl.Event.touchUpInside)
+        }
+    }
+    
     
     //MARK: - Button action
     
-    @IBAction func confirmBtnDidTap(_ sender: Any) {
+    @IBAction private func confirmBtnDidTap(_ sender: Any) {
         print("wow\n\n\n\n")
         uploadImage(image: capturedImg!) { response in
             print(response ?? "No response received.")
         }
     }
     
-    @IBAction func cancelBtnDidTap(_ sender: Any) {
+    @IBAction private func cancelBtnDidTap(_ sender: Any) {
         dismiss(animated: true)
     }
     
