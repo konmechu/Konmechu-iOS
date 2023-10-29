@@ -71,6 +71,7 @@ class CaptureImgViewController: UIViewController {
         uploadImage(image: capturedImg!) { response in
             print(response ?? "No response received.")
         }
+        performSegue(withIdentifier: "showNutirtionSG", sender: nil)
     }
     
     @IBAction private func cancelBtnDidTap(_ sender: Any) {

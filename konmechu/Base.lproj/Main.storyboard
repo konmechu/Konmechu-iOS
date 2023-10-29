@@ -398,10 +398,10 @@
             </objects>
             <point key="canvasLocation" x="-1573" y="856"/>
         </scene>
-        <!--View Controller-->
+        <!--Nutrition Result View Controller-->
         <scene sceneID="fKt-Mg-IDr">
             <objects>
-                <viewController id="BQE-hS-6Xh" sceneMemberID="viewController">
+                <viewController id="BQE-hS-6Xh" customClass="NutritionResultViewController" customModule="konmechu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LAk-dp-prk">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,6 +573,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TZv-dQ-dQ9"/>
+                    <connections>
+                        <outlet property="carbohydrateView" destination="Jtt-bP-Qgj" id="ABS-QI-UIt"/>
+                        <outlet property="fatView" destination="DzY-Id-8jW" id="vi5-P6-201"/>
+                        <outlet property="kcalView" destination="gFD-7l-yAS" id="y01-7e-1YU"/>
+                        <outlet property="nutritionBaseView" destination="b70-Ed-77P" id="gli-fa-XLt"/>
+                        <outlet property="proteinView" destination="S0D-Lw-o3D" id="LB4-kB-7t8"/>
+                        <outlet property="sugarsView" destination="LFp-5P-LCj" id="pMa-Aa-gqo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwh-iE-At0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
