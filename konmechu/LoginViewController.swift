@@ -40,7 +40,8 @@ class LoginViewController: UIViewController {
         googleLoginBtn.layer.cornerRadius = googleLoginBtn.bounds.width / 2
         
         emailLoginBtn.layer.cornerRadius = 8
-        emailLoginBtn.layer.shadowOffset = CGSize(width: 5, height: 5)
+        emailLoginBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
+        emailLoginBtn.backgroundColor = emailLoginBtn.backgroundColor?.withAlphaComponent(0.2)
     }
     
     //MARK: - button action func
