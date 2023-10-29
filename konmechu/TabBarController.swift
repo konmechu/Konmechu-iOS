@@ -36,7 +36,7 @@ class TabBarController: UITabBarController {
             let tintedImage = image.withTintColor(.black, renderingMode: .alwaysOriginal)
 
             // 이미지 크기 조절
-            let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .large) // 여기에서 원하는 크기와 무게, 스케일을 설정하세요.
+            let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .light, scale: .default) // 여기에서 원하는 크기와 무게, 스케일을 설정하세요.
             let largeImage = tintedImage.applyingSymbolConfiguration(largeConfig)
 
             // UIButton에 이미지 설정
