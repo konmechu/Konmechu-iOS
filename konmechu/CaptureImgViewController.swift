@@ -10,26 +10,28 @@ import UIKit
 class CaptureImgViewController: UIViewController {
     
     
-    @IBOutlet weak var confirmBtn: UIButton!
+    @IBOutlet weak private var confirmBtn: UIButton!
     
     
-    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak private var cancelBtn: UIButton!
     
     
-    @IBOutlet weak var capturedImgView: UIImageView!
+    @IBOutlet weak private var capturedImgView: UIImageView!
     
     
-    @IBOutlet weak var morningBtn: UIButton!
+    @IBOutlet weak private var morningBtn: UIButton!
     
     
-    @IBOutlet weak var lunchBtn: UIButton!
+    @IBOutlet weak private var lunchBtn: UIButton!
     
     
-    @IBOutlet weak var dinnerBtn: UIButton!
+    @IBOutlet weak private var dinnerBtn: UIButton!
     
-    var buttons: [UIButton] = []
+    private var buttons: [UIButton] = []
 
-    var capturedImg : UIImage?
+    public var capturedImg : UIImage?
+    
+    private var mealTime : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +40,7 @@ class CaptureImgViewController: UIViewController {
     }
     
     //MARK: - UI setting function
-    func setUI() {
+    private func setUI() {
         buttons.append(morningBtn)
         buttons.append(lunchBtn)
         buttons.append(dinnerBtn)
@@ -47,12 +49,14 @@ class CaptureImgViewController: UIViewController {
             button.layer.cornerRadius = button.bounds.height / 2
             button.layer.borderWidth = 2
             button.layer.borderColor = #colorLiteral(red: 0.6666666667, green: 0.6666666667, blue: 0.6666666667, alpha: 1)
+            button.addTarget(self, action: #selector(mealBtnAction(sender:)), for: UIControl.Event.touchUpInside)
         }
         
         capturedImgView.layer.cornerRadius = 35
         
         capturedImgView.image = capturedImg
     }
+    
     
     //MARK: - Button action
     
@@ -65,6 +69,17 @@ class CaptureImgViewController: UIViewController {
     
     @IBAction func cancelBtnDidTap(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    @objc private func mealBtnAction(sender: UIButton) {
+        for button in buttons {
+            button.backgroundColor = UIColor.white
+            button.setTitleColor(UIColor.gray, for: .normal)
+        }
+        
+        sender.backgroundColor = #colorLiteral(red: 0.2235294118, green: 0.4431372549, blue: 0.168627451, alpha: 1)
+        sender.setTitleColor(UIColor.white, for: .normal)
+        mealTime = sender.title(for: .normal)
     }
     
     //MARK: - Communication function
