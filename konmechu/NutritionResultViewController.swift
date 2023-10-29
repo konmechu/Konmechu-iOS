@@ -22,6 +22,10 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var sugarsView: UIView!
     
+    @IBOutlet weak var menuImgView: UIImageView!
+    
+    public var menuImg : UIImage?
+    
     private var nutritionViews: [UIView] = []
     
     
@@ -39,6 +43,10 @@ class NutritionResultViewController: UIViewController {
         
         nutritionBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
         nutritionBaseView.layer.shadowOpacity = 0.7
+        
+        menuImgView.layer.cornerRadius = 20
+        menuImgView.image = menuImg
+        
         
         nutritionViews.append(kcalView)
         nutritionViews.append(carbohydrateView)
