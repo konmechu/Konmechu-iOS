@@ -24,6 +24,10 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var menuImgView: UIImageView!
     
+    @IBOutlet weak var menuImgBaseView: UIView!
+    
+    @IBOutlet weak var menuNameLabel: UILabel!
+    
     public var menuImg : UIImage?
     
     private var nutritionViews: [UIView] = []
@@ -37,6 +41,12 @@ class NutritionResultViewController: UIViewController {
     
     private func setUI() {
         
+        menuImgBaseView.backgroundColor = menuImgBaseView.backgroundColor?.withAlphaComponent(0.2)
+        menuImgBaseView.layer.cornerRadius = 20
+        menuImgBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        menuImgBaseView.layer.shadowOpacity = 0.7
+        
+        
         nutritionBaseView.layer.cornerRadius = 20
         
         nutritionBaseView.backgroundColor = nutritionBaseView.backgroundColor?.withAlphaComponent(0.2)
@@ -45,6 +55,7 @@ class NutritionResultViewController: UIViewController {
         nutritionBaseView.layer.shadowOpacity = 0.7
         
         menuImgView.layer.cornerRadius = 20
+        menuImgView.contentMode = .scaleAspectFill
         menuImgView.image = menuImg
         
         
@@ -62,7 +73,17 @@ class NutritionResultViewController: UIViewController {
 
         }
     }
+    
+    //MARK: - button Action function
+    
 
-   
+    @IBAction func calcelBtnDidTap(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    
+    @IBAction func saveMealBtnDidTap(_ sender: Any) {
+    }
+    
 
 }

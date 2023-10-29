@@ -149,7 +149,13 @@ class CaptureImgViewController: UIViewController {
     
     
 
-    
+    //MARK: - Prepare function
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showNutirtionSG" {
+            let destinationVC = segue.destination as! NutritionResultViewController
+            destinationVC.menuImg = capturedImg
+        }
+    }
     
     
    
