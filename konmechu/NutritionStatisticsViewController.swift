@@ -54,6 +54,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         FSCalendarView.layer.cornerRadius = 30
         FSCalendarView.clipsToBounds = true
         
+        FSCalendarView.layer.shadowOpacity = 0.5
+        FSCalendarView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        
         FSCalendarView.isHidden = true
         
     }
