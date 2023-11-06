@@ -10,11 +10,49 @@ import FSCalendar
 
 class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
+    
+    //MARK: - Calendar var
+    
     @IBOutlet weak var dayIdxBtn: UIButton!
     
     @IBOutlet weak var FSCalendarView: FSCalendar!
     
     private var dateFormatter : DateFormatter?
+    
+    
+    //MARK: - Nutritioin info var
+    
+    @IBOutlet weak var nutritionBaseView: UIView!
+    
+    
+    
+    @IBOutlet weak var kcalView: UIView!
+    
+    @IBOutlet weak var carbohydrateView: UIView!
+    
+    @IBOutlet weak var proteinView: UIView!
+    
+    @IBOutlet weak var fatView: UIView!
+    
+    @IBOutlet weak var sugarsView: UIView!
+    
+    
+    
+    @IBOutlet weak var kcalLabel: UILabel!
+    
+    @IBOutlet weak var carbohydrateLabel: UILabel!
+    
+    @IBOutlet weak var proteinLabel: UILabel!
+    
+    @IBOutlet weak var fatLabel: UILabel!
+    
+    @IBOutlet weak var sugarsLabel: UILabel!
+    
+    private var nutritionViews: [UIView] = []
+
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +66,33 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func setUILayer() {
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
+        
+        setNutritionInfoView()
+    }
+    
+    //MARK: -
+    func setNutritionInfoView() {
+        
+        nutritionBaseView.layer.cornerRadius = 20
+        
+        nutritionBaseView.backgroundColor = nutritionBaseView.backgroundColor?.withAlphaComponent(0.2)
+        
+        nutritionBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        nutritionBaseView.layer.shadowOpacity = 0.7
+        
+        nutritionViews.append(kcalView)
+        nutritionViews.append(carbohydrateView)
+        nutritionViews.append(proteinView)
+        nutritionViews.append(fatView)
+        nutritionViews.append(sugarsView)
+        
+        for view in nutritionViews {
+            view.layer.cornerRadius = view.layer.bounds.width / 2
+            view.backgroundColor = view.backgroundColor?.withAlphaComponent(0.2)
+            view.layer.borderWidth = 2
+            view.layer.borderColor = #colorLiteral(red: 0.3176470588, green: 0.8078431373, blue: 0.3647058824, alpha: 1)
+
+        }
     }
     
     //MARK: - calendar setting
