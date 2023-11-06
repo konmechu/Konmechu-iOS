@@ -33,12 +33,51 @@
                     <view key="view" contentMode="scaleToFill" id="Tjh-8D-kH2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pnc-XS-zgZ">
+                                <rect key="frame" x="0.0" y="10" width="393" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObP-u6-jPT">
+                                        <rect key="frame" x="138" y="0.0" width="117" height="32"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="2023년 11월 6일">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dayIdxButtonDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="Tac-hD-y32"/>
+                                        </connections>
+                                    </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vri-OS-UrR" customClass="FSCalendar">
+                                        <rect key="frame" x="10" y="0.0" width="373" height="350"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="350" id="Ec1-5v-hTc" customClass="FS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Vri-OS-UrR" firstAttribute="leading" secondItem="pnc-XS-zgZ" secondAttribute="leading" constant="10" id="dob-iA-AyJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vri-OS-UrR" secondAttribute="trailing" constant="10" id="wRT-XS-WZ7"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="wX4-b8-ZKt"/>
                         <color key="backgroundColor" red="0.22352941176470587" green="0.44313725490196076" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="wX4-b8-ZKt" firstAttribute="trailing" secondItem="pnc-XS-zgZ" secondAttribute="trailing" id="8LT-ga-RP2"/>
+                            <constraint firstItem="pnc-XS-zgZ" firstAttribute="top" secondItem="wX4-b8-ZKt" secondAttribute="top" constant="10" id="cxy-3m-s1l"/>
+                            <constraint firstItem="pnc-XS-zgZ" firstAttribute="leading" secondItem="wX4-b8-ZKt" secondAttribute="leading" id="ehh-Ao-ChH"/>
+                            <constraint firstItem="pnc-XS-zgZ" firstAttribute="centerX" secondItem="Tjh-8D-kH2" secondAttribute="centerX" id="xBv-xr-6ox"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="영양 통계" image="calendar" catalog="system" selectedImage="calendar" id="8qY-Xh-Fe0">
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="FSCalendarView" destination="Vri-OS-UrR" id="bU5-tk-j9R"/>
+                        <outlet property="dayIdxBtn" destination="ObP-u6-jPT" id="wMf-Mz-Bao"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnf-nW-h25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
