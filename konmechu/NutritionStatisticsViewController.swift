@@ -13,6 +13,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     //MARK: - Calendar var
     
+    
+    @IBOutlet weak var calendarStackView: UIStackView!
+    
     @IBOutlet weak var dayIdxBtn: UIButton!
     
     @IBOutlet weak var FSCalendarView: FSCalendar!
@@ -120,7 +123,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         FSCalendarView.appearance.weekdayFont = UIFont.boldSystemFont(ofSize: 14)
         FSCalendarView.appearance.weekdayTextColor = .white
         
-        FSCalendarView.backgroundColor = FSCalendarView.backgroundColor?.withAlphaComponent(0.2)
+        FSCalendarView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 14)
+        
+        FSCalendarView.backgroundColor = FSCalendarView.backgroundColor?.withAlphaComponent(0.9)
         
         FSCalendarView.layer.cornerRadius = 30
         FSCalendarView.clipsToBounds = true
@@ -140,10 +145,34 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     
     @IBAction func dayIdxButtonDidTap(_ sender: Any) {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.FSCalendarView.isHidden = !self.FSCalendarView.isHidden
-            self.FSCalendarView.alpha = self.FSCalendarView.isHidden ? 0 : 1
-        })
+        if let overlayView = self.view.viewWithTag(100) {
+               UIView.animate(withDuration: 0.3, animations: {
+                   self.FSCalendarView.alpha = 0
+                   overlayView.alpha = 0
+               }) { _ in
+                   self.FSCalendarView.isHidden = true
+                   overlayView.removeFromSuperview()
+               }
+               return
+           }
+
+           // 새로운 오버레이 뷰를 생성합니다.
+           let overlayView = UIView(frame: self.view.bounds)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.7) // 투명도를 50%로 설정
+           overlayView.tag = 100 // 나중에 오버레이 뷰를 쉽게 찾기 위한 태그
+           overlayView.alpha = 0 // 초기 알파 값을 0으로 설정하여 뷰가 보이지 않게 합니다.
+
+           // 오버레이 뷰를 현재 뷰 컨트롤러의 뷰에 추가합니다.
+           self.view.addSubview(overlayView)
+           self.view.bringSubviewToFront(self.calendarStackView)
+        
+
+           // 애니메이션을 사용하여 오버레이 뷰와 캘린더 뷰를 서서히 표시합니다.
+           UIView.animate(withDuration: 0.3, animations: {
+               self.FSCalendarView.isHidden = false
+               self.FSCalendarView.alpha = 1
+               overlayView.alpha = 0.7
+           })
     }
     
     
