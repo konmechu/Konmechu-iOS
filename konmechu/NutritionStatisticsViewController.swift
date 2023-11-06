@@ -14,6 +14,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var FSCalendarView: FSCalendar!
     
+    private var dateFormatter : DateFormatter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,13 +27,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - initial UI setting func
     
     func setUILayer() {
-        
+        dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
     }
     
-    //MARK: - calendar initial setting
+    //MARK: - calendar setting
+    
     func setCalendar() {
         FSCalendarView.delegate = self
         FSCalendarView.dataSource = self
+        
+        dateFormatter = DateFormatter()
+        dateFormatter?.dateFormat = "YYYY년 MM월 dd일"
         
         FSCalendarView.locale = Locale(identifier: "ko_KR")
         
@@ -59,6 +65,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         FSCalendarView.isHidden = true
         
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
     }
     
     //MARK: - btn acction func
