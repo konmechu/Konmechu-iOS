@@ -8,7 +8,10 @@
 import UIKit
 import FSCalendar
 
-class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
+class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK: - Data var
+    let menuList = MenuData.data
     
     
     //MARK: - Calendar var
@@ -54,7 +57,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     private var nutritionViews: [UIView] = []
 
     
+    //MARK: - menu list table view
     
+    @IBOutlet weak var menuTableView: UITableView!
     
     
     override func viewDidLoad() {
@@ -68,12 +73,73 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - initial UI setting func
     
     func setUILayer() {
+        
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
+        
         setNutritionInfoView()
+        setMenuTableViewUI()
+        setMenuTableView()
+        
         self.view.bringSubviewToFront(calendarStackView)
     }
     
-    //MARK: -
+    //MARK: - menuTableView
+    
+    private func setMenuTableViewUI() {
+        menuTableView.layer.cornerRadius = 20
+        
+        menuTableView.backgroundColor = menuTableView.backgroundColor?.withAlphaComponent(0.2)
+        
+        menuTableView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        menuTableView.layer.shadowOpacity = 0.7
+    }
+    
+    private func setMenuTableView() {
+        menuTableView.delegate = self
+        menuTableView.dataSource = self
+        registerXib()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+            return menuList.count
+    }
+    
+    let cellSpacingHeight :CGFloat = 1
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! menuTableViewCell
+               let target = menuList[indexPath.section]
+               
+               let img = UIImage(named: "\(target.image).png")
+               cell.menuImgView?.image = img
+               cell.mealTimeLabel?.text = target.title
+               cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+               
+               return cell
+    }
+    
+    let cellName = "menuTableViewCell"
+    let cellReuseIdentifier = "menuCell"
+    
+    private func registerXib() {
+        let nibName = UINib(nibName: cellName, bundle: nil)
+        menuTableView.register(nibName, forCellReuseIdentifier: cellReuseIdentifier)
+    }
+
+    
+    //MARK: - NutritionInfoView
     func setNutritionInfoView() {
         
         nutritionBaseView.layer.cornerRadius = 20
