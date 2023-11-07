@@ -69,8 +69,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func setUILayer() {
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
-        
         setNutritionInfoView()
+        self.view.bringSubviewToFront(calendarStackView)
     }
     
     //MARK: -
@@ -125,7 +125,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         FSCalendarView.appearance.titleFont = UIFont.boldSystemFont(ofSize: 14)
         
-        FSCalendarView.backgroundColor = FSCalendarView.backgroundColor?.withAlphaComponent(0.9)
+        FSCalendarView.backgroundColor = FSCalendarView.backgroundColor?.withAlphaComponent(0.2)
         
         FSCalendarView.layer.cornerRadius = 30
         FSCalendarView.clipsToBounds = true
@@ -144,35 +144,37 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - btn acction func
     
     
-    @IBAction func dayIdxButtonDidTap(_ sender: Any) {
+    @IBAction func dayBtnDidTap(_ sender: Any) {
+
         if let overlayView = self.view.viewWithTag(100) {
-               UIView.animate(withDuration: 0.3, animations: {
-                   self.FSCalendarView.alpha = 0
-                   overlayView.alpha = 0
-               }) { _ in
-                   self.FSCalendarView.isHidden = true
-                   overlayView.removeFromSuperview()
-               }
-               return
-           }
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.FSCalendarView.alpha = 0
+                    overlayView.alpha = 0
+                }) { _ in
+                    self.FSCalendarView.isHidden = true
+                    overlayView.removeFromSuperview()
+                }
+                return
+            }
 
-           // 새로운 오버레이 뷰를 생성합니다.
-           let overlayView = UIView(frame: self.view.bounds)
-        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.7) // 투명도를 50%로 설정
-           overlayView.tag = 100 // 나중에 오버레이 뷰를 쉽게 찾기 위한 태그
-           overlayView.alpha = 0 // 초기 알파 값을 0으로 설정하여 뷰가 보이지 않게 합니다.
+            // 새로운 오버레이 뷰를 생성합니다.
+            let overlayView = UIView(frame: self.view.bounds)
+            overlayView.backgroundColor = UIColor(named: "mainColor") // 투명도를 50%로 설정
+            overlayView.tag = 100 // 나중에 오버레이 뷰를 쉽게 찾기 위한 태그
+            overlayView.alpha = 0 // 초기 알파 값을 0으로 설정하여 뷰가 보이지 않게 합니다.
+            overlayView.isUserInteractionEnabled = false // 오버레이 뷰가 이벤트를 받지 않도록 설정합니다.
 
-           // 오버레이 뷰를 현재 뷰 컨트롤러의 뷰에 추가합니다.
-           self.view.addSubview(overlayView)
-           self.view.bringSubviewToFront(self.calendarStackView)
+            // 오버레이 뷰를 현재 뷰 컨트롤러의 뷰에 추가합니다.
+            self.view.addSubview(overlayView)
+            self.view.bringSubviewToFront(self.calendarStackView)
+
+            // 애니메이션을 사용하여 오버레이 뷰와 캘린더 뷰를 서서히 표시합니다.
+            UIView.animate(withDuration: 0.3, animations: {
+                self.FSCalendarView.isHidden = false
+                self.FSCalendarView.alpha = 1
+                overlayView.alpha = 1 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
+            })
         
-
-           // 애니메이션을 사용하여 오버레이 뷰와 캘린더 뷰를 서서히 표시합니다.
-           UIView.animate(withDuration: 0.3, animations: {
-               self.FSCalendarView.isHidden = false
-               self.FSCalendarView.alpha = 1
-               overlayView.alpha = 0.7
-           })
     }
     
     
