@@ -57,13 +57,29 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var sugarsLabel: UILabel!
     
     private var nutritionViews: [UIView] = []
-
+    
+    //MARK: - menu Recommendation View
+    
+    
+    @IBOutlet weak var recommendationStackView: UIStackView!
+    
+    
+    @IBOutlet weak var lackOfNutriRecoImgView: UIImageView!
+    
+    
+    @IBOutlet weak var habitsRecoImgView: UIImageView!
+    
+    
+    @IBOutlet weak var recoAppendBtn: UIButton!
+    
     
     //MARK: - menu list table view
     
     @IBOutlet weak var menuTableView: UITableView!
     
     @IBOutlet weak var menuTableViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var menuListAppendBtn: UIButton!
     
     
     override func viewDidLoad() {
@@ -89,10 +105,29 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
         
         setNutritionInfoViewUI()
+        setRecommendationViewUI()
         setMenuTableViewUI()
         setMenuTableView()
         
         self.view.bringSubviewToFront(calendarStackView)
+    }
+    
+    //MARK: - Setting recommendation View
+    private func setRecommendationViewUI() {
+        
+        recommendationStackView.backgroundColor = recommendationStackView.backgroundColor?.withAlphaComponent(0.2)
+        
+        recommendationStackView.layer.cornerRadius = 20
+        
+        recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        recommendationStackView.layer.shadowOpacity = 0.7
+        
+        lackOfNutriRecoImgView.layer.cornerRadius = 20
+        habitsRecoImgView.layer.cornerRadius = 20
+        
+        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
+        
+        habitsRecoImgView.image = UIImage(named: "zzazang")
     }
     
     //MARK: - menuTableView
@@ -324,6 +359,47 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                 overlayView.alpha = 1 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
             })
         
+    }
+    
+    
+    @IBAction func recoAppendDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
+                    // 뷰가 현재 보이는 상태라면 페이드 아웃
+                    if self.recommendationStackView.alpha == 1 {
+                        self.recommendationStackView.alpha = 0
+                    } else { // 그렇지 않다면 페이드 인
+                        self.recommendationStackView.isHidden = false
+                        self.recommendationStackView.alpha = 1
+                    }
+                }) { _ in
+                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
+                    if self.recommendationStackView.alpha == 0 {
+                        self.recommendationStackView.isHidden = true
+                    }
+                }
+        })
+    }
+    
+    
+    @IBAction func menuListBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
+                    // 뷰가 현재 보이는 상태라면 페이드 아웃
+                    if self.menuTableView.alpha == 1 {
+                        self.menuTableView.alpha = 0
+                    } else { // 그렇지 않다면 페이드 인
+                        self.menuTableView.isHidden = false
+                        self.menuTableView.alpha = 1
+                    }
+                }) { _ in
+                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
+                    if self.menuTableView.alpha == 0 {
+                        self.menuTableView.isHidden = true
+                    }
+                }
+
+        })
     }
     
     //MARK: - unwined Segue
