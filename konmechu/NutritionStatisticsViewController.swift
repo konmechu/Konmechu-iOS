@@ -11,7 +11,7 @@ import FSCalendar
 class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Table view Data var
-    var menuList = MenuData.yesterdayData
+    var menuList = MenuData.todayData
     
     var menuSections : [MenuSection] = []
     
@@ -273,7 +273,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
-        menuList = MenuData.todayData
+        if date.compare(FSCalendarView.today!).rawValue == 0 {
+            menuList = MenuData.todayData
+        } else {
+            menuList = MenuData.yesterdayData
+        }
         setMenuTableView()
     }
     
