@@ -11,7 +11,7 @@ import FSCalendar
 class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Table view Data var
-    let menuList = MenuData.data
+    var menuList = MenuData.yesterdayData
     
     var menuSections : [MenuSection] = []
     
@@ -90,6 +90,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - menuTableView
     
     private func setMenuTableViewUI() {
+        menuTableView.delegate = self
+        menuTableView.dataSource = self
+        registerXib()
+        
         menuTableView.layer.cornerRadius = 20
         
         menuTableView.backgroundColor = menuTableView.backgroundColor?.withAlphaComponent(0.2)
@@ -101,14 +105,16 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     }
     
     private func setMenuTableView() {
-        menuTableView.delegate = self
-        menuTableView.dataSource = self
-        registerXib()
+        
+        menuSections.removeAll()
         
         for mealTime in MealTime.allCases {
             let filteredMenus = menuList.filter { $0.mealTime == mealTime }
             let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
             menuSections.append(section)
+        }
+        DispatchQueue.main.async {
+            self.menuTableView.reloadData()
         }
         
     }
@@ -147,6 +153,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if menuSections[section].menus.count == 0 {
+            return nil
+        }
+        
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear// 배경색 설정
            
@@ -240,6 +251,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
+        menuList = MenuData.todayData
+        setMenuTableView()
     }
     
     //MARK: - btn acction func
