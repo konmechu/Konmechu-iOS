@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     //MARK: - initial UI setting func
     
     func setUILayer() {
-       
+        edgesForExtendedLayout = [.bottom]
     }
     
     //MARK: - btn acction func
