@@ -63,6 +63,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var menuTableView: UITableView!
     
+    @IBOutlet weak var menuTableViewHeight: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +72,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         setCalendar()
         setUI()
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setTableViewHeight()
     }
     
     
@@ -88,6 +94,20 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     }
     
     //MARK: - menuTableView
+    
+    private func setTableViewHeight() {
+        var tableViewHeight: CGFloat = 10
+
+        for section in 0..<menuTableView.numberOfSections {
+            if menuSections[section].menus.count == 0 {continue}
+            tableViewHeight += 55
+            for row in 0..<menuTableView.numberOfRows(inSection: section) {
+                tableViewHeight += 100
+            }
+        }
+
+        menuTableViewHeight.constant = tableViewHeight
+    }
     
     private func setMenuTableViewUI() {
         menuTableView.delegate = self
@@ -113,8 +133,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
             menuSections.append(section)
         }
+        
         DispatchQueue.main.async {
             self.menuTableView.reloadData()
+            self.setTableViewHeight()
         }
         
     }
