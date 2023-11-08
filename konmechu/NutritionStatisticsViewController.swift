@@ -84,6 +84,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func setUI() {
         
+        edgesForExtendedLayout = [.bottom]
+        
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
         
         setNutritionInfoViewUI()

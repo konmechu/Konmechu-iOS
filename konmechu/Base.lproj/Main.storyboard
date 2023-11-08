@@ -63,10 +63,10 @@
                                 </constraints>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-bd-m8L">
-                                <rect key="frame" x="0.0" y="52" width="393" height="751"/>
+                                <rect key="frame" x="0.0" y="52" width="393" height="801"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7mY-kD-75U">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="994.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="594.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR5-3J-z2J">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="260"/>
@@ -273,11 +273,11 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-nu-wZR">
-                                                <rect key="frame" x="10" y="294.33333333333326" width="373" height="700"/>
+                                                <rect key="frame" x="10" y="294.33333333333331" width="373" height="299.99999999999994"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="373" id="8lu-YF-oRM"/>
-                                                    <constraint firstAttribute="height" constant="700" id="ux3-ma-Clm"/>
+                                                    <constraint firstAttribute="height" constant="300" id="ux3-ma-Clm"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ipE-4C-ZHR">
@@ -311,8 +311,8 @@
                             <constraint firstItem="pnc-XS-zgZ" firstAttribute="leading" secondItem="wX4-b8-ZKt" secondAttribute="leading" id="ehh-Ao-ChH"/>
                             <constraint firstItem="KzR-bd-m8L" firstAttribute="leading" secondItem="wX4-b8-ZKt" secondAttribute="leading" id="hfd-DR-8m6"/>
                             <constraint firstItem="wX4-b8-ZKt" firstAttribute="trailing" secondItem="KzR-bd-m8L" secondAttribute="trailing" id="msy-z6-EFc"/>
-                            <constraint firstItem="wX4-b8-ZKt" firstAttribute="bottom" secondItem="KzR-bd-m8L" secondAttribute="bottom" id="tGP-xa-JZy"/>
                             <constraint firstItem="pnc-XS-zgZ" firstAttribute="centerX" secondItem="Tjh-8D-kH2" secondAttribute="centerX" id="xBv-xr-6ox"/>
+                            <constraint firstItem="wX4-b8-ZKt" firstAttribute="bottom" secondItem="KzR-bd-m8L" secondAttribute="bottom" constant="-50" id="xdZ-7a-LLS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="영양 통계" image="calendar" catalog="system" selectedImage="calendar" id="8qY-Xh-Fe0">
@@ -1018,7 +1018,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
