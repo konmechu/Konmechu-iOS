@@ -57,14 +57,18 @@ class NutritionResultViewController: UIViewController {
     
     public var menuImg : UIImage?
     
+    public var mealTime : MealTime?
+    
     private var nutritionViews: [UIView] = []
+    
+    
+    var tempMenuData : MenuData?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
-        
     }
     
     private func setUI() {
@@ -85,6 +89,7 @@ class NutritionResultViewController: UIViewController {
         menuImgView.layer.cornerRadius = 20
         menuImgView.contentMode = .scaleAspectFill
         menuImgView.image = menuImg
+        tempMenuData = MenuData(title: "아이스티", image: "nil", mealTime: mealTime!, uiImage: menuImg)
         
         uploadImage(image: menuImg!) { response in
             print(response ?? "No response received.")
@@ -115,6 +120,7 @@ class NutritionResultViewController: UIViewController {
     
     
     @IBAction func saveMealBtnDidTap(_ sender: Any) {
+        
     }
     
     //MARK: - API function

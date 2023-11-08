@@ -14,7 +14,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     var menuList = MenuData.todayData
     
     var menuSections : [MenuSection] = []
-    
+        
     
     //MARK: - Calendar var
     
@@ -162,11 +162,18 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! menuTableViewCell
         
         let target = menuSections[indexPath.section].menus[indexPath.row]
-               
-        let img = UIImage(named: "\(target.image).png")
+        
+        var img : UIImage?
+        if target.uiImage == nil {
+            img = UIImage(named: "\(target.image).png")
+        } else {
+            img = target.uiImage
+        }
+        
         cell.menuImgView?.image = img
         cell.mealTimeLabel?.text = target.title
         cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+        
                 
         cell.selectionStyle = .none
 
@@ -316,6 +323,16 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             })
         
     }
+    
+    //MARK: - unwined Segue
+    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? NutritionResultViewController {
+            let data = sourceViewController.tempMenuData // 데이터를 가져옴
+            menuList.append(data!)
+            setMenuTableView()
+        }
+    }
+
     
     
 }

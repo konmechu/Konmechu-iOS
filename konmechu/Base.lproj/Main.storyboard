@@ -947,6 +947,7 @@
                                 </state>
                                 <connections>
                                     <action selector="saveMealBtnDidTap:" destination="BQE-hS-6Xh" eventType="touchUpInside" id="yRU-Z5-7Fa"/>
+                                    <segue destination="v3F-30-Oif" kind="unwind" unwindAction="unwindToMainViewControllerWithSegue:" id="jZ8-8A-deZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQk-A4-MHM">
@@ -992,17 +993,14 @@
                         <outlet property="proteinView" destination="S0D-Lw-o3D" id="LB4-kB-7t8"/>
                         <outlet property="sugarsLabel" destination="Ffh-g2-f5l" id="ezC-Iy-cKp"/>
                         <outlet property="sugarsView" destination="LFp-5P-LCj" id="pMa-Aa-gqo"/>
-                        <segue destination="SQQ-jt-lUP" kind="presentation" identifier="saveSG" modalPresentationStyle="fullScreen" id="7Qj-VM-6Lb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uwh-iE-At0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="v3F-30-Oif" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-622.13740458015263" y="855.63380281690149"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="7Qj-VM-6Lb"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
