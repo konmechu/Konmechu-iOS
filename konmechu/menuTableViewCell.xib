@@ -18,10 +18,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="reu-2l-kll">
-                        <rect key="frame" x="0.0" y="0.0" width="339" height="90"/>
+                        <rect key="frame" x="-10.666666666666657" y="0.0" width="360.33333333333326" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="1Xc-MB-h71"/>
+                            <constraint firstAttribute="width" constant="360" id="gwf-rZ-wGs"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h32-MB-4a9">
-                        <rect key="frame" x="279" y="60" width="48.666666666666686" height="17"/>
+                        <rect key="frame" x="289.66666666666669" y="60" width="48.666666666666686" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -29,11 +33,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-30" id="1m0-CM-W08"/>
+                    <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-60" id="CLE-6g-1iM"/>
-                    <constraint firstAttribute="trailing" secondItem="reu-2l-kll" secondAttribute="trailing" id="P4L-x9-B2U"/>
-                    <constraint firstItem="reu-2l-kll" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Vb6-aJ-HKV"/>
-                    <constraint firstItem="reu-2l-kll" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WvE-ci-0Jq"/>
-                    <constraint firstAttribute="bottom" secondItem="reu-2l-kll" secondAttribute="bottom" id="nbB-dA-2ek"/>
+                    <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

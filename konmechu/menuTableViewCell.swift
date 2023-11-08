@@ -17,6 +17,7 @@ class menuTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        menuImgView.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

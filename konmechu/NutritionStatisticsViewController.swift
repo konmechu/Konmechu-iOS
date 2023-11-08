@@ -10,8 +10,10 @@ import FSCalendar
 
 class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: - Data var
+    //MARK: - Table view Data var
     let menuList = MenuData.data
+    
+    var menuSections : [MenuSection] = []
     
     
     //MARK: - Calendar var
@@ -66,17 +68,19 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         super.viewDidLoad()
         
         setCalendar()
-        setUILayer()
+        setUI()
 
     }
     
+    
+    
     //MARK: - initial UI setting func
     
-    func setUILayer() {
+    func setUI() {
         
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
         
-        setNutritionInfoView()
+        setNutritionInfoViewUI()
         setMenuTableViewUI()
         setMenuTableView()
         
@@ -92,43 +96,74 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         menuTableView.layer.shadowOffset = CGSize(width: 0, height: 0)
         menuTableView.layer.shadowOpacity = 0.7
+        
+        menuTableView.separatorStyle = .none
     }
     
     private func setMenuTableView() {
         menuTableView.delegate = self
         menuTableView.dataSource = self
         registerXib()
+        
+        for mealTime in MealTime.allCases {
+            let filteredMenus = menuList.filter { $0.mealTime == mealTime }
+            let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
+            menuSections.append(section)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return menuSections[section].menus.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-            return menuList.count
+        return menuSections.count
     }
     
-    let cellSpacingHeight :CGFloat = 1
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
+        return 30
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! menuTableViewCell
-               let target = menuList[indexPath.section]
+        
+        let target = menuSections[indexPath.section].menus[indexPath.row]
                
-               let img = UIImage(named: "\(target.image).png")
-               cell.menuImgView?.image = img
-               cell.mealTimeLabel?.text = target.title
-               cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+        let img = UIImage(named: "\(target.image).png")
+        cell.menuImgView?.image = img
+        cell.mealTimeLabel?.text = target.title
+        cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+                
+        cell.selectionStyle = .none
+
                
-               return cell
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear// 배경색 설정
+           
+        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 16) // 글꼴 크기 설정
+        headerLabel.textColor = UIColor.white // 글자색 설정
+        
+        let sectionTitle = menuSections[section].mealTime.rawValue
+        headerLabel.text = sectionTitle // 섹션 타이틀 설정
+        
+           headerLabel.textAlignment = .center // 텍스트 정렬 설정
+           
+           headerView.addSubview(headerLabel)
+           
+           return headerView
+       }
+       
     
     let cellName = "menuTableViewCell"
     let cellReuseIdentifier = "menuCell"
@@ -140,7 +175,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
 
     
     //MARK: - NutritionInfoView
-    func setNutritionInfoView() {
+    func setNutritionInfoViewUI() {
         
         nutritionBaseView.layer.cornerRadius = 20
         
@@ -159,7 +194,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             view.layer.cornerRadius = view.layer.bounds.width / 2
             view.backgroundColor = view.backgroundColor?.withAlphaComponent(0.2)
             view.layer.borderWidth = 2
-            view.layer.borderColor = #colorLiteral(red: 0.3176470588, green: 0.8078431373, blue: 0.3647058824, alpha: 1)
+            view.layer.borderColor = view.backgroundColor?.withAlphaComponent(1).cgColor
 
         }
     }

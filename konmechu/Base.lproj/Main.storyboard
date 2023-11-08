@@ -65,8 +65,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KzR-bd-m8L">
                                 <rect key="frame" x="0.0" y="52" width="393" height="751"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7mY-kD-75U">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="780"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7mY-kD-75U">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="994.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR5-3J-z2J">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="260"/>
@@ -80,8 +80,8 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계산중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wm-e0-tP2">
-                                                                <rect key="frame" x="26.333333333333346" y="35" width="47.333333333333343" height="15.666666666666664"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1960kcal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wm-e0-tP2">
+                                                                <rect key="frame" x="20.333333333333346" y="35" width="59.333333333333343" height="15.666666666666664"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -106,14 +106,14 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계산중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKR-8f-RgX">
-                                                                <rect key="frame" x="13.666666666666668" y="25.000000000000004" width="47.333333333333329" height="15.666666666666668"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="96.57g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKR-8f-RgX">
+                                                                <rect key="frame" x="14.666666666666668" y="25.000000000000004" width="45.666666666666657" height="15.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.31764705879999999" green="0.80784313730000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="1" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="iKR-8f-RgX" firstAttribute="top" secondItem="hk4-AW-xhT" secondAttribute="top" constant="25" id="5bG-vP-TZ8"/>
                                                             <constraint firstItem="1ad-Yc-rq2" firstAttribute="centerX" secondItem="hk4-AW-xhT" secondAttribute="centerX" id="IAq-La-Uy0"/>
@@ -126,8 +126,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSD-wC-jg3">
                                                         <rect key="frame" x="276.66666666666669" y="60" width="75" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계산중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlE-J0-Gwx">
-                                                                <rect key="frame" x="13.666666666666632" y="25.000000000000004" width="47.333333333333343" height="15.666666666666668"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25.34g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlE-J0-Gwx">
+                                                                <rect key="frame" x="14.333333333333318" y="25.000000000000004" width="46.333333333333343" height="15.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -152,8 +152,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYV-bJ-yOh">
                                                         <rect key="frame" x="201.66666666666666" y="150" width="74.999999999999972" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계산중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOE-tW-eFV">
-                                                                <rect key="frame" x="13.666666666666689" y="25.000000000000004" width="47.333333333333343" height="15.666666666666668"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.7g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOE-tW-eFV">
+                                                                <rect key="frame" x="19.333333333333346" y="25.000000000000004" width="36.333333333333343" height="15.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -165,7 +165,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.31764705879999999" green="0.80784313730000001" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="1" green="0.90980392156862744" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="iOE-tW-eFV" firstAttribute="top" secondItem="RYV-bJ-yOh" secondAttribute="top" constant="25" id="5Nr-qV-aMd"/>
                                                             <constraint firstItem="r2z-7i-rdb" firstAttribute="top" secondItem="iOE-tW-eFV" secondAttribute="bottom" constant="3" id="BQk-wu-hIH"/>
@@ -178,8 +178,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buP-ie-Mkn">
                                                         <rect key="frame" x="96.666666666666686" y="150" width="75" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계산중..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QQ-lZ-7of">
-                                                                <rect key="frame" x="13.666666666666661" y="25.000000000000004" width="47.333333333333343" height="15.666666666666668"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25.34g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QQ-lZ-7of">
+                                                                <rect key="frame" x="14.333333333333332" y="25.000000000000004" width="46.333333333333343" height="15.666666666666668"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -213,16 +213,16 @@
                                                         <color key="textColor" red="0.1764705882" green="0.95294117649999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="적당" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWI-ki-v53">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="과잉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWI-ki-v53">
                                                         <rect key="frame" x="49.333333333333336" y="143" width="19.333333333333336" height="13.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                                        <color key="textColor" red="0.1764705882" green="0.95294117649999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="1" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="적당" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-eB-Lak">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="부족" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pn9-eB-Lak">
                                                         <rect key="frame" x="229.33333333333334" y="230" width="19.333333333333343" height="13.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
-                                                        <color key="textColor" red="0.1764705882" green="0.95294117649999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" red="1" green="0.90980392156862744" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="적당" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwC-zx-biQ">
@@ -266,12 +266,18 @@
                                                     <constraint firstItem="HeZ-to-itl" firstAttribute="centerX" secondItem="buP-ie-Mkn" secondAttribute="centerX" id="ypo-WX-QER"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메뉴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJ1-J6-nOK">
+                                                <rect key="frame" x="186" y="270" width="21" height="14.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-nu-wZR">
-                                                <rect key="frame" x="10" y="280" width="373" height="500"/>
+                                                <rect key="frame" x="10" y="294.33333333333326" width="373" height="700"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="373" id="8lu-YF-oRM"/>
-                                                    <constraint firstAttribute="height" constant="500" id="ux3-ma-Clm"/>
+                                                    <constraint firstAttribute="height" constant="700" id="ux3-ma-Clm"/>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ipE-4C-ZHR">
@@ -470,7 +476,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7MB-T3-9Mj" customClass="TabBar" customModule="konmechu" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="mainColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <tabBarAppearance key="standardAppearance"/>
@@ -1009,7 +1015,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
