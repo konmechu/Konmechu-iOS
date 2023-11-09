@@ -63,6 +63,7 @@ class NutritionResultViewController: UIViewController {
     
     
     var tempMenuData : MenuData?
+    var tempNutritionData : NutritionData?
     
     
     override func viewDidLoad() {
@@ -89,7 +90,7 @@ class NutritionResultViewController: UIViewController {
         menuImgView.layer.cornerRadius = 20
         menuImgView.contentMode = .scaleAspectFill
         menuImgView.image = menuImg
-        tempMenuData = MenuData(title: "아이스티", image: "nil", mealTime: mealTime!, uiImage: menuImg)
+        tempMenuData = MenuData(title: "베이글", image: "nil", mealTime: mealTime!, uiImage: menuImg)
         
         uploadImage(image: menuImg!) { response in
             print(response ?? "No response received.")
@@ -130,7 +131,7 @@ class NutritionResultViewController: UIViewController {
             return
         }
         
-        let urlString = "https://107c-163-152-3-179.ngrok.io/api/infer"
+        let urlString = "https://e6cf-210-106-232-152.ngrok.io/api/infer"
         guard let url = URL(string: urlString) else {
             completion("Invalid URL.")
             return
@@ -178,12 +179,15 @@ class NutritionResultViewController: UIViewController {
     }
     
     func updateLabels(with json: [String: String]) {
+        
         menuNameLabel.text = json["식품명"] ?? "알수없음"
-        kcalLabel.text = (json["열량(kcal)"]?.isEmpty ?? true) ? "0Kcal" : json["열량(kcal)"]! + "kcal"
-        carbohydrateLabel.text = (json["탄수화물(g)"]?.isEmpty ?? true) ? "0g" : json["탄수화물(g)"]! + "g"
-        proteinLabel.text = (json["단백질(g)"]?.isEmpty ?? true) ? "0g" : json["단백질(g)"]! + "g"
-        fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0g" : json["지방(g)"]! + "g"
-        sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0g" : json["당류(g)"]! + "g"
+        kcalLabel.text = (json["열량(kcal)"]?.isEmpty ?? true) ? "0" : json["열량(kcal)"]!
+        carbohydrateLabel.text = (json["탄수화물(g)"]?.isEmpty ?? true) ? "0" : json["탄수화물(g)"]!
+        proteinLabel.text = (json["단백질(g)"]?.isEmpty ?? true) ? "0" : json["단백질(g)"]!
+        fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0" : json["지방(g)"]!
+        sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0" : json["당류(g)"]! 
+        
+        tempNutritionData = NutritionData(caloties: Float(kcalLabel.text!), protein: Float(proteinLabel.text!), carborhydrate: Float(carbohydrateLabel.text!), fat: Float(fatLabel.text!), sugars: Float(sugarsLabel.text!))
     }
 
 
