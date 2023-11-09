@@ -8,11 +8,11 @@
 import UIKit
 
 struct NutritionData {
-    let caloties : Float?
-    let protein : Float?
-    let carborhydrate : Float?
-    let fat : Float?
-    let sugars : Float?
+    var caloties : Float?
+    var protein : Float?
+    var carborhydrate : Float?
+    var fat : Float?
+    var sugars : Float?
 }
 
 extension NutritionData {

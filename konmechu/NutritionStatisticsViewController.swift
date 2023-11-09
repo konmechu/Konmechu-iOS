@@ -131,6 +131,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
         
         habitsRecoImgView.image = UIImage(named: "zzazang")
+        
+        recommendationStackView.isHidden = true
     }
     
     //MARK: - menuTableView
@@ -420,8 +422,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? NutritionResultViewController {
             let data = sourceViewController.tempMenuData // 데이터를 가져옴
+            let data2 = sourceViewController.tempNutritionData
             menuList.append(data!)
             setMenuTableView()
+            
+            nutritionData.caloties! += (data2?.caloties)!
+            nutritionData.carborhydrate! += (data2?.carborhydrate)!
+            nutritionData.fat! += (data2?.fat)!
+            nutritionData.protein! += (data2?.protein)!
+            nutritionData.sugars! += (data2?.sugars)!
+            
+            setNutritionInfo()
         }
     }
 
