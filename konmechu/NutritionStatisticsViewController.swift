@@ -30,6 +30,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     //MARK: - Nutritioin info var
     
+    var nutritionData = NutritionData.todayNutritionData
+    
     @IBOutlet weak var nutritionBaseView: UIView!
     
     
@@ -105,6 +107,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
         
         setNutritionInfoViewUI()
+        setNutritionInfo()
         setRecommendationViewUI()
         setMenuTableViewUI()
         setMenuTableView()
@@ -272,8 +275,16 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             view.backgroundColor = view.backgroundColor?.withAlphaComponent(0.2)
             view.layer.borderWidth = 2
             view.layer.borderColor = view.backgroundColor?.withAlphaComponent(1).cgColor
-
         }
+
+    }
+    
+    func setNutritionInfo() {
+        kcalLabel.text = "\(nutritionData.caloties ?? 0)kcal"
+        proteinLabel.text = "\(nutritionData.protein ?? 0)g"
+        carbohydrateLabel.text = "\(nutritionData.carborhydrate ?? 0)g"
+        fatLabel.text = "\(nutritionData.fat ?? 0)g"
+        sugarsLabel.text = "\(nutritionData.sugars ?? 0)g"
     }
     
     //MARK: - calendar setting
@@ -319,10 +330,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
         if date.compare(FSCalendarView.today!).rawValue == 0 {
             menuList = MenuData.todayData
+            nutritionData = NutritionData.todayNutritionData
         } else {
             menuList = MenuData.yesterdayData
+            nutritionData = NutritionData.yesterdayNutritionData
         }
         setMenuTableView()
+        setNutritionInfo()
     }
     
     //MARK: - btn acction func
