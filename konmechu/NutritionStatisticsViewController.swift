@@ -378,7 +378,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             self.view.bringSubviewToFront(self.calendarStackView)
 
             // 애니메이션을 사용하여 오버레이 뷰와 캘린더 뷰를 서서히 표시합니다.
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.2) {
                 self.FSCalendarView.isHidden = false
                 self.FSCalendarView.alpha = 1
                 overlayView.alpha = 0.5 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
@@ -388,12 +388,14 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @objc func hideCalendarAndOverlay() {
         if let overlayView = self.view.viewWithTag(100) {
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.FSCalendarView.alpha = 0
                 overlayView.alpha = 0
             }) { _ in
-                self.FSCalendarView.isHidden = true
-                overlayView.removeFromSuperview()
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.FSCalendarView.isHidden = true
+                    overlayView.removeFromSuperview()
+                })
             }
         }
     }
@@ -413,9 +415,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             }
         }) { _ in
             for subview in self.recommendationSubViews {
-                if subview.alpha == 0 {
-                    subview.isHidden = true
-                }
+                UIView.animate(withDuration: 0.2, animations: {
+                    if subview.alpha == 0 {
+                        subview.isHidden = true
+                    }
+                })
             }
         }
         
@@ -448,10 +452,14 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         self.menuTableView.alpha = 1
                     }
                 }) { _ in
-                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
-                    if self.menuTableView.alpha == 0 {
-                        self.menuTableView.isHidden = true
-                    }
+                    
+                    UIView.animate(withDuration: 0.2, animations: {
+                        // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
+                        if self.menuTableView.alpha == 0 {
+                            self.menuTableView.isHidden = true
+                        }
+                    })
+                    
                 }
 
         })
