@@ -279,20 +279,33 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOg-mB-7Of">
-                                                        <rect key="frame" x="6.6666666666666572" y="11" width="360" height="27"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qA2-kk-6xo">
+                                                        <rect key="frame" x="0.0" y="11" width="373" height="27"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOg-mB-7Of">
+                                                                <rect key="frame" x="6.6666666666666572" y="0.0" width="360" height="27"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="27" id="Uln-yL-rbx"/>
+                                                                    <constraint firstAttribute="width" constant="360" id="qay-P0-rch"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="이런 메뉴는 어떤가요?">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="recoAppendDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="tt8-1X-6lR"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="360" id="qay-P0-rch"/>
+                                                            <constraint firstItem="GOg-mB-7Of" firstAttribute="centerY" secondItem="qA2-kk-6xo" secondAttribute="centerY" id="2Ks-pd-KY0"/>
+                                                            <constraint firstItem="GOg-mB-7Of" firstAttribute="centerX" secondItem="qA2-kk-6xo" secondAttribute="centerX" id="H04-hd-iSU"/>
+                                                            <constraint firstAttribute="width" constant="373" id="N9j-6c-ZRu"/>
+                                                            <constraint firstAttribute="height" constant="27" id="VM0-Qp-Tzl"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="이런 메뉴는 어떤가요?">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="recoAppendDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="tt8-1X-6lR"/>
-                                                        </connections>
-                                                    </button>
+                                                    </view>
                                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-hk-IP3">
                                                         <rect key="frame" x="6.6666666666666572" y="43" width="360" height="90"/>
                                                         <constraints>
@@ -388,20 +401,33 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-l0-ztU">
-                                                        <rect key="frame" x="5" y="11" width="363" height="27"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-y6-2dy">
+                                                        <rect key="frame" x="0.0" y="11" width="373" height="27"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNy-l0-ztU">
+                                                                <rect key="frame" x="5" y="0.0" width="363" height="27"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="27" id="4Kn-fl-KWc"/>
+                                                                    <constraint firstAttribute="width" constant="363" id="Lat-a0-VGb"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="먹은 메뉴">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="menuListBtnDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="PuO-jh-iTw"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="363" id="Lat-a0-VGb"/>
+                                                            <constraint firstItem="QNy-l0-ztU" firstAttribute="centerX" secondItem="fTe-y6-2dy" secondAttribute="centerX" id="2ZT-nV-Luw"/>
+                                                            <constraint firstAttribute="height" constant="27" id="K70-oj-hqc"/>
+                                                            <constraint firstItem="QNy-l0-ztU" firstAttribute="centerY" secondItem="fTe-y6-2dy" secondAttribute="centerY" id="f14-sz-uNc"/>
+                                                            <constraint firstAttribute="width" constant="373" id="scy-TQ-kCU"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="먹은 메뉴">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="menuListBtnDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="PuO-jh-iTw"/>
-                                                        </connections>
-                                                    </button>
+                                                    </view>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b4y-nu-wZR">
                                                         <rect key="frame" x="0.0" y="48" width="373" height="300"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -714,6 +740,19 @@
                                     <action selector="infoBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="wYv-xp-Mye"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qan-nj-URV">
+                                <rect key="frame" x="41.666666666666657" y="747" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="T1y-Ox-KW0"/>
+                                    <constraint firstAttribute="height" constant="60" id="pNg-vH-R1C"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="0.89000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="photo.on.rectangle.angled" catalog="system"/>
+                                <connections>
+                                    <action selector="selectImgFromAlbumBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="CTa-zO-cZh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Goj-4I-bNg"/>
                         <color key="backgroundColor" name="mainColor"/>
@@ -725,8 +764,10 @@
                             <constraint firstItem="z9I-KL-Qlh" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="GVB-6g-5es"/>
                             <constraint firstItem="kDO-zu-Twz" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="LeP-U9-JXO"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="3MM-Ld-UJ6" secondAttribute="trailing" constant="20" id="O4k-gc-VZO"/>
+                            <constraint firstItem="z9I-KL-Qlh" firstAttribute="leading" secondItem="qan-nj-URV" secondAttribute="trailing" constant="60" id="Rp8-UC-RKC"/>
                             <constraint firstItem="aIU-6J-Kyx" firstAttribute="top" secondItem="kDO-zu-Twz" secondAttribute="bottom" constant="20" id="c6j-8n-VaA"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="aIU-6J-Kyx" secondAttribute="trailing" constant="10" id="d6V-TT-A0s"/>
+                            <constraint firstItem="qan-nj-URV" firstAttribute="centerY" secondItem="z9I-KL-Qlh" secondAttribute="centerY" id="j5P-zg-dtR"/>
                             <constraint firstItem="aIU-6J-Kyx" firstAttribute="leading" secondItem="Goj-4I-bNg" secondAttribute="leading" constant="10" id="jp2-9n-5ip"/>
                             <constraint firstItem="kDO-zu-Twz" firstAttribute="top" secondItem="Goj-4I-bNg" secondAttribute="top" constant="10" id="lQX-65-Kwb"/>
                             <constraint firstItem="z9I-KL-Qlh" firstAttribute="top" secondItem="aIU-6J-Kyx" secondAttribute="bottom" constant="50" id="oEE-pT-QuZ"/>
@@ -736,6 +777,7 @@
                     <connections>
                         <outlet property="captureImageBtn" destination="z9I-KL-Qlh" id="q6j-6T-jfY"/>
                         <outlet property="previewView" destination="aIU-6J-Kyx" id="YOX-9a-9Cu"/>
+                        <outlet property="selectImgFromAlbum" destination="qan-nj-URV" id="H6x-fG-FRN"/>
                         <segue destination="ygq-m4-Vce" kind="show" identifier="CaptureImgSG" id="qa8-oG-w17"/>
                     </connections>
                 </viewController>
@@ -1174,6 +1216,7 @@
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="kakao" width="34" height="35"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="photo.on.rectangle.angled" catalog="system" width="128" height="98"/>
         <namedColor name="mainColor">
             <color red="0.22352941176470589" green="0.44313725490196076" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

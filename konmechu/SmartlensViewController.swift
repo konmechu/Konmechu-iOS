@@ -28,6 +28,9 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageBtn: UIButton!
     
+    @IBOutlet weak var selectImgFromAlbum: UIButton!
+    let imagePickerController = UIImagePickerController()
+    
     
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
@@ -35,6 +38,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        imagePickerController.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(restartCaptureSession), name: NSNotification.Name("DidDismissCaptureImgViewController"), object: nil)
     }
@@ -203,6 +208,12 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     }
     
     
+    @IBAction func selectImgFromAlbumBtnDidTap(_ sender: Any) {
+        self.imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
+        stopCaptureSession()
+    }
+    
     @IBAction func backBtnDidTap(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -210,6 +221,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     @IBAction func infoBtnDidTap(_ sender: Any) {
     }
+    
+    
     
     
     @objc func switchCamera(_ sender: UIButton?) {
@@ -239,7 +252,6 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
-            
         }
     }
     
@@ -276,4 +288,20 @@ extension UIViewController {
         }
 }
 
+extension SmartlensViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage]{
+            imgToSend = image as! UIImage
+        }
+        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        restartCaptureSession()
+        dismiss(animated: true)
+    }
+}
 
