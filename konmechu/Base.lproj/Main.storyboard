@@ -66,7 +66,7 @@
                                 <rect key="frame" x="0.0" y="52" width="393" height="801"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7mY-kD-75U">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1008"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="688"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR5-3J-z2J">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="260"/>
@@ -267,7 +267,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9Dt-lf-dNj">
-                                                <rect key="frame" x="10" y="270" width="373" height="369"/>
+                                                <rect key="frame" x="10" y="270" width="373" height="49"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66g-Sa-KTD">
                                                         <rect key="frame" x="161.66666666666666" y="0.0" width="50" height="1"/>
@@ -293,15 +293,15 @@
                                                             <action selector="recoAppendDidTap:" destination="MIc-tK-B7R" eventType="touchUpInside" id="tt8-1X-6lR"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-hk-IP3">
-                                                        <rect key="frame" x="6.6666666666666572" y="48" width="360" height="90"/>
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-hk-IP3">
+                                                        <rect key="frame" x="6.6666666666666572" y="43" width="360" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="360" id="GEK-9Z-8fQ"/>
                                                             <constraint firstAttribute="height" constant="90" id="Nxk-zg-f9a"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qW0-NG-VOL">
-                                                        <rect key="frame" x="0.0" y="148" width="373" height="50"/>
+                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qW0-NG-VOL">
+                                                        <rect key="frame" x="0.0" y="43" width="373" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 섭취한 영양정보를 분석해본 결과 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-Rx-ECR">
                                                                 <rect key="frame" x="95" y="8" width="183" height="14.333333333333336"/>
@@ -325,15 +325,15 @@
                                                             <constraint firstItem="yAB-Rx-ECR" firstAttribute="top" secondItem="qW0-NG-VOL" secondAttribute="top" constant="8" id="y2e-oX-uuP"/>
                                                         </constraints>
                                                     </view>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lve-HS-fRe">
-                                                        <rect key="frame" x="6.6666666666666572" y="208" width="360" height="90"/>
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lve-HS-fRe">
+                                                        <rect key="frame" x="6.6666666666666572" y="43" width="360" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="4nz-PR-wHe"/>
                                                             <constraint firstAttribute="width" constant="360" id="VWl-kH-WcQ"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuI-89-d9Z">
-                                                        <rect key="frame" x="0.0" y="308" width="373" height="50"/>
+                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuI-89-d9Z">
+                                                        <rect key="frame" x="0.0" y="43" width="373" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식습관을 분석해 보니 이 음식을 좋아하실 것 같아요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nno-iL-ceH">
                                                                 <rect key="frame" x="63.666666666666671" y="8" width="245.66666666666663" height="14.333333333333336"/>
@@ -358,7 +358,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J54-bu-sJ0">
-                                                        <rect key="frame" x="161.66666666666666" y="368" width="50" height="1"/>
+                                                        <rect key="frame" x="161.66666666666666" y="48" width="50" height="1"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="7uW-cQ-Pbd"/>
                                                             <constraint firstAttribute="width" constant="50" id="fEv-eE-TVs"/>
@@ -376,7 +376,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i9i-Sf-0RT">
-                                                <rect key="frame" x="10" y="649" width="373" height="359"/>
+                                                <rect key="frame" x="10" y="329" width="373" height="359"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdI-SL-nSU">
                                                         <rect key="frame" x="161.66666666666666" y="0.0" width="50" height="1"/>
