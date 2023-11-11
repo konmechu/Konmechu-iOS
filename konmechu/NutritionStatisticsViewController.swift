@@ -73,7 +73,28 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var recoAppendBtn: UIButton!
     
     
+    @IBOutlet weak var recoReasonView1: UIView!
+    
+    @IBOutlet weak var recoReasonView2: UIView!
+    
+    
+    @IBOutlet weak var recoLabel1: UILabel!
+    
+    @IBOutlet weak var recoLabel2: UILabel!
+    
+    
+    @IBOutlet weak var recoLable3: UILabel!
+    
+    @IBOutlet weak var recoLabel4: UILabel!
+    
+    
+    private var recommendationSubViews: [UIView] = []
+    
+    
     //MARK: - menu list table view
+    
+    
+    @IBOutlet weak var tableBaseView: UIStackView!
     
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -128,6 +149,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
         
         habitsRecoImgView.image = UIImage(named: "zzazang")
+        
+        recommendationSubViews.append(lackOfNutriRecoImgView)
+        recommendationSubViews.append(habitsRecoImgView)
+        recommendationSubViews.append(recoReasonView1)
+        recommendationSubViews.append(recoReasonView2)
+        
     }
     
     //MARK: - menuTableView
@@ -151,12 +178,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         menuTableView.dataSource = self
         registerXib()
         
-        menuTableView.layer.cornerRadius = 20
+        tableBaseView.layer.cornerRadius = 20
+        tableBaseView.backgroundColor = tableBaseView.backgroundColor?.withAlphaComponent(0.2)
+    
         
-        menuTableView.backgroundColor = menuTableView.backgroundColor?.withAlphaComponent(0.2)
-        
-        menuTableView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        menuTableView.layer.shadowOpacity = 0.7
+        tableBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        tableBaseView.layer.shadowOpacity = 0.7
         
         menuTableView.separatorStyle = .none
     }
@@ -363,22 +390,40 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     
     @IBAction func recoAppendDidTap(_ sender: Any) {
+        
         UIView.animate(withDuration: 0.2, animations: {
-            UIView.animate(withDuration: 0.2, animations: {
-                    // 뷰가 현재 보이는 상태라면 페이드 아웃
-                    if self.recommendationStackView.alpha == 1 {
-                        self.recommendationStackView.alpha = 0
-                    } else { // 그렇지 않다면 페이드 인
-                        self.recommendationStackView.isHidden = false
-                        self.recommendationStackView.alpha = 1
-                    }
-                }) { _ in
-                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
-                    if self.recommendationStackView.alpha == 0 {
-                        self.recommendationStackView.isHidden = true
-                    }
+            
+            for subview in self.recommendationSubViews {
+                if subview.alpha == 1 {
+                    subview.alpha = 0
+                } else {
+                    subview.isHidden = false
+                    subview.alpha = 1
                 }
-        })
+            }
+        }) { _ in
+            for subview in self.recommendationSubViews {
+                if subview.alpha == 0 {
+                    subview.isHidden = true
+                }
+            }
+        }
+        
+//            UIView.animate(withDuration: 0.2, animations: {
+//                    // 뷰가 현재 보이는 상태라면 페이드 아웃
+//                    if self.recommendationStackView.alpha == 1 {
+//                        self.recommendationStackView.alpha = 0
+//                    } else { // 그렇지 않다면 페이드 인
+//                        self.recommendationStackView.isHidden = false
+//                        self.recommendationStackView.alpha = 1
+//                    }
+//                }) { _ in
+//                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
+//                    if self.recommendationStackView.alpha == 0 {
+//                        self.recommendationStackView.isHidden = true
+//                    }
+//                }
+        
     }
     
     
