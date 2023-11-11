@@ -216,9 +216,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         imgToSend = uiImage
         
+        self.isTakePicture = false
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
-            self.isTakePicture = false
+            
         }
     }
     
