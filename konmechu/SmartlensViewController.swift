@@ -180,12 +180,16 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     func startCaptureSession() {
         guard let captureSession = self.captureSession, !captureSession.isRunning else { return }
-        captureSession.startRunning()
+        DispatchQueue.global(qos: .userInitiated).async {
+            captureSession.startRunning()
+        }
     }
 
     func stopCaptureSession() {
         guard let captureSession = self.captureSession, captureSession.isRunning else { return }
-        captureSession.stopRunning()
+        DispatchQueue.global(qos: .userInitiated).async {
+            captureSession.stopRunning()
+        }
     }
     
     @objc func restartCaptureSession() {

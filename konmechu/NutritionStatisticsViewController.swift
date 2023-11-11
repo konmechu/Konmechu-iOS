@@ -123,7 +123,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         edgesForExtendedLayout = [.bottom]
         
-        dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
+        dayIdxBtn.setTitle("오늘", for: .normal)
         
         setNutritionInfoViewUI()
         setRecommendationViewUI()
@@ -132,6 +132,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         self.view.bringSubviewToFront(calendarStackView)
     }
+    
     
     //MARK: - Setting recommendation View
     private func setRecommendationViewUI() {
@@ -345,6 +346,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
         if date.compare(FSCalendarView.today!).rawValue == 0 {
+            dayIdxBtn.setTitle("오늘", for: .normal)
             menuList = MenuData.todayData
         } else {
             menuList = MenuData.yesterdayData
@@ -422,21 +424,6 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                 })
             }
         }
-        
-//            UIView.animate(withDuration: 0.2, animations: {
-//                    // 뷰가 현재 보이는 상태라면 페이드 아웃
-//                    if self.recommendationStackView.alpha == 1 {
-//                        self.recommendationStackView.alpha = 0
-//                    } else { // 그렇지 않다면 페이드 인
-//                        self.recommendationStackView.isHidden = false
-//                        self.recommendationStackView.alpha = 1
-//                    }
-//                }) { _ in
-//                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
-//                    if self.recommendationStackView.alpha == 0 {
-//                        self.recommendationStackView.isHidden = true
-//                    }
-//                }
         
     }
     
