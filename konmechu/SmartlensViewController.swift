@@ -34,9 +34,9 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(restartCaptureSession), name: NSNotification.Name("DidDismissCaptureImgViewController"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -178,6 +178,20 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
 
     }
     
+    func startCaptureSession() {
+        guard let captureSession = self.captureSession, !captureSession.isRunning else { return }
+        captureSession.startRunning()
+    }
+
+    func stopCaptureSession() {
+        guard let captureSession = self.captureSession, captureSession.isRunning else { return }
+        captureSession.stopRunning()
+    }
+    
+    @objc func restartCaptureSession() {
+        startCaptureSession()
+    }
+    
     //MARK: - Button Actions
     
     @IBAction func captureImageBtnDidTap(_ sender: Any) {
@@ -217,6 +231,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         imgToSend = uiImage
         
         self.isTakePicture = false
+        stopCaptureSession()
+        
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
             

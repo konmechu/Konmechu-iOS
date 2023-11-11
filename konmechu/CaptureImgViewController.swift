@@ -40,6 +40,9 @@ class CaptureImgViewController: UIViewController {
         addAction()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.post(name: NSNotification.Name("DidDismissCaptureImgViewController"), object: nil)
+    }
     //MARK: - UI setting function
     private func setUI() {
         buttons.append(morningBtn)
