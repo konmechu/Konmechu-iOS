@@ -404,6 +404,8 @@
 				DEVELOPMENT_TEAM = D4B7MZD5ZU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = konmechu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -434,6 +436,8 @@
 				DEVELOPMENT_TEAM = D4B7MZD5ZU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = konmechu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
