@@ -18,8 +18,21 @@
                     <view key="view" contentMode="scaleToFill" id="hBO-Dh-T6Y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FmE-qF-cme">
+                                <rect key="frame" x="156.66666666666666" y="50" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="2GG-cq-FQg"/>
+                                    <constraint firstAttribute="height" constant="80" id="4LH-nH-sHU"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="95E-rK-l9y"/>
                         <color key="backgroundColor" name="mainColor"/>
+                        <constraints>
+                            <constraint firstItem="FmE-qF-cme" firstAttribute="centerX" secondItem="hBO-Dh-T6Y" secondAttribute="centerX" id="8pV-h8-B94"/>
+                            <constraint firstItem="FmE-qF-cme" firstAttribute="top" secondItem="95E-rK-l9y" secondAttribute="top" constant="50" id="fcP-Js-n8y"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="회원 정보" image="person" catalog="system" selectedImage="person" id="u7N-oJ-wTA"/>
                 </viewController>
@@ -603,6 +616,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="kakao">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="kakaoLoginBtnDidTap:" destination="zdf-NL-Au2" eventType="touchUpInside" id="ll9-Cy-hpl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-VQ-o8U">
                                         <rect key="frame" x="99.999999999999986" y="0.0" width="50.000000000000014" height="50"/>
@@ -1215,7 +1231,7 @@
         <image name="google" width="44" height="44"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="kakao" width="34" height="35"/>
-        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person" catalog="system" width="32" height="32"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="98"/>
         <namedColor name="mainColor">
             <color red="0.22352941176470589" green="0.44313725490196076" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
