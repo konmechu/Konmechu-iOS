@@ -575,70 +575,16 @@
                                                             <constraint firstAttribute="height" constant="27" id="VM0-Qp-Tzl"/>
                                                         </constraints>
                                                     </view>
-                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-hk-IP3">
-                                                        <rect key="frame" x="6.6666666666666572" y="43" width="360" height="90"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="360" id="GEK-9Z-8fQ"/>
-                                                            <constraint firstAttribute="height" constant="90" id="Nxk-zg-f9a"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qW0-NG-VOL">
-                                                        <rect key="frame" x="0.0" y="43" width="373" height="50"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 섭취한 영양정보를 분석해본 결과 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-Rx-ECR">
-                                                                <rect key="frame" x="95" y="8" width="183" height="14.333333333333336"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="단백질과 지방이 풍부한  ‘삼겹살'을 추천드려요! " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBa-uV-JAd">
-                                                                <rect key="frame" x="72.333333333333329" y="26.999999999999996" width="228.33333333333337" height="14.333333333333332"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
+                                                    <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLM-ZJ-TRc">
+                                                        <rect key="frame" x="1.6666666666666572" y="43" width="370" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="GBa-uV-JAd" firstAttribute="top" secondItem="yAB-Rx-ECR" secondAttribute="bottom" constant="4.6699999999999999" id="Bwh-N3-k4f"/>
-                                                            <constraint firstAttribute="height" constant="50" id="G1N-g2-h52"/>
-                                                            <constraint firstItem="yAB-Rx-ECR" firstAttribute="centerX" secondItem="qW0-NG-VOL" secondAttribute="centerX" id="MuQ-Lh-1Ao"/>
-                                                            <constraint firstItem="GBa-uV-JAd" firstAttribute="centerX" secondItem="qW0-NG-VOL" secondAttribute="centerX" id="cuF-h9-5Ok"/>
-                                                            <constraint firstItem="yAB-Rx-ECR" firstAttribute="top" secondItem="qW0-NG-VOL" secondAttribute="top" constant="8" id="y2e-oX-uuP"/>
+                                                            <constraint firstAttribute="width" constant="370" id="xIl-m6-NDF"/>
                                                         </constraints>
-                                                    </view>
-                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lve-HS-fRe">
-                                                        <rect key="frame" x="6.6666666666666572" y="43" width="360" height="90"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="90" id="4nz-PR-wHe"/>
-                                                            <constraint firstAttribute="width" constant="360" id="VWl-kH-WcQ"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NuI-89-d9Z">
-                                                        <rect key="frame" x="0.0" y="43" width="373" height="50"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식습관을 분석해 보니 이 음식을 좋아하실 것 같아요!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nno-iL-ceH">
-                                                                <rect key="frame" x="63.666666666666671" y="8" width="245.66666666666663" height="14.333333333333336"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘 식사로 ‘짜장면' 어떠신가요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVG-0f-TCf">
-                                                                <rect key="frame" x="107.33333333333333" y="26.999999999999996" width="158.66666666666669" height="14.333333333333332"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstItem="SVG-0f-TCf" firstAttribute="top" secondItem="Nno-iL-ceH" secondAttribute="bottom" constant="4.6699999999999999" id="4bY-9i-PGX"/>
-                                                            <constraint firstItem="Nno-iL-ceH" firstAttribute="centerX" secondItem="NuI-89-d9Z" secondAttribute="centerX" id="fxV-tJ-v5p"/>
-                                                            <constraint firstItem="Nno-iL-ceH" firstAttribute="top" secondItem="NuI-89-d9Z" secondAttribute="top" constant="8" id="iTe-XP-iLJ"/>
-                                                            <constraint firstItem="SVG-0f-TCf" firstAttribute="centerX" secondItem="NuI-89-d9Z" secondAttribute="centerX" id="l07-tz-wf0"/>
-                                                            <constraint firstAttribute="height" constant="50" id="lky-dv-gmA"/>
-                                                        </constraints>
-                                                    </view>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J54-bu-sJ0">
                                                         <rect key="frame" x="161.66666666666666" y="48" width="50" height="1"/>
                                                         <constraints>
@@ -653,8 +599,6 @@
                                                 <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="373" id="A4c-2x-St2"/>
-                                                    <constraint firstItem="qW0-NG-VOL" firstAttribute="leading" secondItem="9Dt-lf-dNj" secondAttribute="leading" id="MjE-X2-aPD"/>
-                                                    <constraint firstAttribute="trailing" secondItem="qW0-NG-VOL" secondAttribute="trailing" id="tu6-0H-oga"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="i9i-Sf-0RT">
@@ -774,10 +718,8 @@
                         <outlet property="dayIdxBtn" destination="ObP-u6-jPT" id="wMf-Mz-Bao"/>
                         <outlet property="fatLabel" destination="iOE-tW-eFV" id="pvN-eA-qvD"/>
                         <outlet property="fatView" destination="RYV-bJ-yOh" id="Mve-RW-1xJ"/>
-                        <outlet property="habitsRecoImgView" destination="lve-HS-fRe" id="ULs-Ly-Bem"/>
                         <outlet property="kcalLabel" destination="7Wm-e0-tP2" id="3Ep-ap-EGK"/>
                         <outlet property="kcalView" destination="mvU-wM-oMj" id="Axg-hi-ko8"/>
-                        <outlet property="lackOfNutriRecoImgView" destination="nSD-hk-IP3" id="XDP-br-T2m"/>
                         <outlet property="menuListAppendBtn" destination="QNy-l0-ztU" id="bCc-Nf-uvd"/>
                         <outlet property="menuTableView" destination="b4y-nu-wZR" id="yjR-QW-Uiq"/>
                         <outlet property="menuTableViewHeight" destination="ux3-ma-Clm" id="ArQ-vH-tkD"/>
@@ -785,12 +727,7 @@
                         <outlet property="proteinLabel" destination="1QQ-lZ-7of" id="0b0-Hc-OqR"/>
                         <outlet property="proteinView" destination="buP-ie-Mkn" id="qOb-Xx-XfL"/>
                         <outlet property="recoAppendBtn" destination="GOg-mB-7Of" id="vL3-Kc-Jhf"/>
-                        <outlet property="recoLabel1" destination="yAB-Rx-ECR" id="lj0-Sp-IZu"/>
-                        <outlet property="recoLabel2" destination="GBa-uV-JAd" id="1UH-3E-5c1"/>
-                        <outlet property="recoLabel4" destination="SVG-0f-TCf" id="JxP-In-CbR"/>
-                        <outlet property="recoLable3" destination="Nno-iL-ceH" id="sim-uj-1L5"/>
-                        <outlet property="recoReasonView1" destination="qW0-NG-VOL" id="j5t-Z5-U14"/>
-                        <outlet property="recoReasonView2" destination="NuI-89-d9Z" id="ieg-8f-Q1q"/>
+                        <outlet property="recoTextView" destination="SLM-ZJ-TRc" id="U6t-X2-mpa"/>
                         <outlet property="recommendationStackView" destination="9Dt-lf-dNj" id="Gd9-za-cds"/>
                         <outlet property="sugarsLabel" destination="nlE-J0-Gwx" id="J9t-ls-SzI"/>
                         <outlet property="sugarsView" destination="XSD-wC-jg3" id="yPs-w6-udY"/>

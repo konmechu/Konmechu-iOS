@@ -120,8 +120,60 @@ class NutritionResultViewController: UIViewController {
     
     
     @IBAction func saveMealBtnDidTap(_ sender: Any) {
-        
+        // 데이터와 이미지를 서버에 업로드하는 코드 작성
+            guard let imageData = menuImg?.jpegData(compressionQuality: 0.9),
+                  let requestDto = createRequestDto() else {
+                print("Invalid data or image")
+                return
+            }
+            
+            let urlString = "https://d6f7-121-130-156-219.ngrok-free.app/app/menus" // 실제 엔드포인트 URL로 변경해야 합니다.
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL.")
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // Multipart/form-data boundary and header 설정
+            let boundary = "Boundary-\(UUID().uuidString)"
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            
+            // Create multipart/form-data body
+            var body = Data()
+            
+            // 이미지 부분
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"menuImages\"; filename=\"menu.jpg\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+            body.append(imageData)
+            body.append("\r\n".data(using: .utf8)!)
+            
+            // JSON 데이터 부분
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"requestDto\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+            body.append(requestDto)
+            body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            // Attach body to request
+            request.httpBody = body
+            
+            // Send the request
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                    return
+                }
+                
+                // Check for successful response, etc...
+                // ...
+            }
+            task.resume()
     }
+    
+    
     
     //MARK: - API function
     func uploadImage(image: UIImage, completion: @escaping (String?) -> Void) {
@@ -130,7 +182,7 @@ class NutritionResultViewController: UIViewController {
             return
         }
         
-        let urlString = "https://107c-163-152-3-179.ngrok.io/api/infer"
+        let urlString = "https://9e2a-121-130-156-219.ngrok.io/api/infer"
         guard let url = URL(string: urlString) else {
             completion("Invalid URL.")
             return
@@ -185,6 +237,39 @@ class NutritionResultViewController: UIViewController {
         fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0g" : json["지방(g)"]! + "g"
         sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0g" : json["당류(g)"]! + "g"
     }
+    
+    // app server 에 저장할 RequestDto JSON 데이터 생성
+    func createRequestDto() -> Data? {
+        // 라벨에서 텍스트를 추출하고 적절한 타입으로 변환합니다.
+        let food = menuNameLabel.text ?? "Unknown"
+        let meal = mealTime?.rawValue ?? "아침" // mealTime을 기반으로 "아침", "점심", "저녁" 중 하나를 설정해야 할 수도 있습니다.
+        let calories = Float(kcalLabel.text?.replacingOccurrences(of: "kcal", with: "") ?? "0") ?? 0
+        let protein = Float(proteinLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let fat = Float(fatLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let carbs = Float(carbohydrateLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let fiber = Float(sugarsLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        
+        // Dictionary로 메뉴 세부 정보 구성
+        let menuDetails: [String: Any] = [
+            "food": food,
+            "meal": meal,
+            "calories": calories,
+            "protein": protein,
+            "fat": fat,
+            "carbs": carbs,
+            "fiber": fiber
+        ]
+        
+        // Dictionary를 JSON Data로 변환
+        do {
+            return try JSONSerialization.data(withJSONObject: menuDetails, options: [])
+        } catch {
+            print("Error creating JSON data: \(error)")
+            return nil
+        }
+    }
 
 
 }
+
+

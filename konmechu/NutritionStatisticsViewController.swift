@@ -64,28 +64,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var recommendationStackView: UIStackView!
     
     
-    @IBOutlet weak var lackOfNutriRecoImgView: UIImageView!
-    
-    
-    @IBOutlet weak var habitsRecoImgView: UIImageView!
-    
-    
     @IBOutlet weak var recoAppendBtn: UIButton!
     
     
-    @IBOutlet weak var recoReasonView1: UIView!
-    
-    @IBOutlet weak var recoReasonView2: UIView!
-    
-    
-    @IBOutlet weak var recoLabel1: UILabel!
-    
-    @IBOutlet weak var recoLabel2: UILabel!
-    
-    
-    @IBOutlet weak var recoLable3: UILabel!
-    
-    @IBOutlet weak var recoLabel4: UILabel!
+    @IBOutlet weak var recoTextView: UITextView!
     
     
     private var recommendationSubViews: [UIView] = []
@@ -144,17 +126,71 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recommendationStackView.layer.shadowOpacity = 0.7
         
-        lackOfNutriRecoImgView.layer.cornerRadius = 20
-        habitsRecoImgView.layer.cornerRadius = 20
+//        lackOfNutriRecoImgView.layer.cornerRadius = 20
+//        habitsRecoImgView.layer.cornerRadius = 20
+//        
+//        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
+//        
+//        habitsRecoImgView.image = UIImage(named: "zzazang")
+//        
+//        recommendationSubViews.append(lackOfNutriRecoImgView)
+//        recommendationSubViews.append(habitsRecoImgView)
+//        recommendationSubViews.append(recoReasonView1)
+//        recommendationSubViews.append(recoReasonView2)
         
-        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
+        // 서버에서 받을 데이터를 위한 구조체
+        struct RecommendationResponse: Codable {
+            let recommend: String
+        }
+
+        // API endpoint
+        let urlString = "https://9e2a-121-130-156-219.ngrok.io/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        // URLSession을 사용한 HTTP 요청
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            // 에러 체크
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            // 응답 체크
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
+
+            do {
+                // JSON 데이터를 RecommendationResponse로 디코드
+                let responseData = try JSONDecoder().decode(RecommendationResponse.self, from: data)
+                // 디코드된 데이터를 사용하여 무언가를 수행합니다.
+                DispatchQueue.main.async {
+                    // UI 업데이트는 메인 스레드에서 수행해야 합니다.
+                    self.recoTextView.text = responseData.recommend
+                }
+            } catch {
+                print("Error: Decoding JSON failed: \(error)")
+            }
+        }
+
+        // 요청 시작
+        task.resume()
+
         
-        habitsRecoImgView.image = UIImage(named: "zzazang")
-        
-        recommendationSubViews.append(lackOfNutriRecoImgView)
-        recommendationSubViews.append(habitsRecoImgView)
-        recommendationSubViews.append(recoReasonView1)
-        recommendationSubViews.append(recoReasonView2)
         
     }
     
@@ -302,6 +338,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             view.layer.borderColor = view.backgroundColor?.withAlphaComponent(1).cgColor
 
         }
+        
+        
     }
     
     //MARK: - calendar setting
@@ -406,25 +444,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBAction func recoAppendDidTap(_ sender: Any) {
         
         UIView.animate(withDuration: 0.2, animations: {
-            
-            for subview in self.recommendationSubViews {
-                if subview.alpha == 1 {
-                    subview.alpha = 0
-                } else {
-                    subview.isHidden = false
-                    subview.alpha = 1
-                }
-            }
-        }) { _ in
-            for subview in self.recommendationSubViews {
-                UIView.animate(withDuration: 0.2, animations: {
-                    if subview.alpha == 0 {
-                        subview.isHidden = true
-                    }
-                })
-            }
-        }
-        
+            self.recoTextView.isHidden = !self.recoTextView.isHidden
+        })
     }
     
     

@@ -139,7 +139,6 @@ class LoginViewController: UIViewController {
                 defaults.set(profilePicUrl?.absoluteString, forKey: "profilePicUrl")
                 defaults.set(fullName, forKey: "name")
                 
-                print(defaults.string(forKey: "emailAddress")! + "this is defaults.emailAddress!!\n\n")
             }}
         
     }

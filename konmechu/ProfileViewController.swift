@@ -49,8 +49,6 @@ class ProfileViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = profileImageView.layer.bounds.width / 2
         
-        
-        
         let defaults = UserDefaults.standard
         
         if let userProfilePicURLString = defaults.string(forKey: "profilePicUrl") {
