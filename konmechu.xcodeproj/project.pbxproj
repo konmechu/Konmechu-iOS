@@ -22,6 +22,7 @@
 		0A8C4F2F2AFA17B400AC5516 /* menuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */; };
 		0A8C4F302AFA17B400AC5516 /* menuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C4F2E2AFA17B400AC5516 /* menuTableViewCell.xib */; };
 		0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */; };
+		0AB2C4092B02184800F05AF6 /* UIImageExtensioin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2C4082B02184800F05AF6 /* UIImageExtensioin.swift */; };
 		0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */; };
 		F960322BA922B33655A4AFBA /* Pods_konmechu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6321D062997223976F40C8E6 /* Pods_konmechu.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuTableViewCell.swift; sourceTree = "<group>"; };
 		0A8C4F2E2AFA17B400AC5516 /* menuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menuTableViewCell.xib; sourceTree = "<group>"; };
 		0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuData.swift; sourceTree = "<group>"; };
+		0AB2C4082B02184800F05AF6 /* UIImageExtensioin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensioin.swift; sourceTree = "<group>"; };
 		0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartlensViewController.swift; sourceTree = "<group>"; };
 		275EE35FBD15DDEB033E5C3C /* Pods-konmechu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-konmechu.release.xcconfig"; path = "Target Support Files/Pods-konmechu/Pods-konmechu.release.xcconfig"; sourceTree = "<group>"; };
 		6321D062997223976F40C8E6 /* Pods_konmechu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_konmechu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +102,7 @@
 				0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */,
 				0A8C4F2E2AFA17B400AC5516 /* menuTableViewCell.xib */,
 				0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */,
+				0AB2C4082B02184800F05AF6 /* UIImageExtensioin.swift */,
 			);
 			path = konmechu;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			files = (
 				0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */,
 				0A3257AA2AE8F8EE0055CE6F /* TabBar.swift in Sources */,
+				0AB2C4092B02184800F05AF6 /* UIImageExtensioin.swift in Sources */,
 				0A3257A72AE8F6550055CE6F /* TabBarController.swift in Sources */,
 				0A3257A12AE8E0A10055CE6F /* LoginViewController.swift in Sources */,
 				0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */,
