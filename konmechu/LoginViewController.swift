@@ -31,7 +31,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         setUILayer()
-
     }
     
     //MARK: - initial UI setting func
@@ -153,3 +152,4 @@ class LoginViewController: UIViewController {
     }
 
 }
+

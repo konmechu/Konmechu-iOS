@@ -70,6 +70,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var recoTextView: UITextView!
     
     
+    @IBOutlet weak var recoAppendTextLabel: UILabel!
+    
+    
     private var recommendationSubViews: [UIView] = []
     
     
@@ -83,6 +86,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var menuTableViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var menuListAppendBtn: UIButton!
+    
+    @IBOutlet weak var menulistAppendTextLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -124,18 +129,6 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recommendationStackView.layer.shadowOpacity = 0.7
-        
-//        lackOfNutriRecoImgView.layer.cornerRadius = 20
-//        habitsRecoImgView.layer.cornerRadius = 20
-//        
-//        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
-//        
-//        habitsRecoImgView.image = UIImage(named: "zzazang")
-//        
-//        recommendationSubViews.append(lackOfNutriRecoImgView)
-//        recommendationSubViews.append(habitsRecoImgView)
-//        recommendationSubViews.append(recoReasonView1)
-//        recommendationSubViews.append(recoReasonView2)
         
         // 서버에서 받을 데이터를 위한 구조체
         struct RecommendationResponse: Codable {
@@ -402,7 +395,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
 
             // 새로운 오버레이 뷰를 생성합니다.
             let overlayView = UIView(frame: self.view.bounds)
-        overlayView.backgroundColor = UIColor(named: "mainColor")?.withAlphaComponent(0.5) // 투명도를 50%로 설정
+        overlayView.backgroundColor = UIColor(named: "mainColor")?.withAlphaComponent(0.8) // 투명도를 50%로 설정
             overlayView.tag = 100 // 나중에 오버레이 뷰를 쉽게 찾기 위한 태그
             overlayView.alpha = 0 // 초기 알파 값을 0으로 설정하여 뷰가 보이지 않게 합니다.
             
@@ -419,7 +412,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             UIView.animate(withDuration: 0.2) {
                 self.FSCalendarView.isHidden = false
                 self.FSCalendarView.alpha = 1
-                overlayView.alpha = 0.5 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
+                overlayView.alpha = 0.8 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
             }
         
     }
@@ -443,19 +436,26 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         UIView.animate(withDuration: 0.2, animations: {
             self.recoTextView.isHidden = !self.recoTextView.isHidden
+            if self.recoTextView.isHidden {
+                self.recoAppendTextLabel.text = "펼치기"
+            } else {
+                self.recoAppendTextLabel.text = "접기"
+            }
         })
     }
     
     
     @IBAction func menuListBtnDidTap(_ sender: Any) {
-        UIView.animate(withDuration: 0.2, animations: {
+       
             UIView.animate(withDuration: 0.2, animations: {
                     // 뷰가 현재 보이는 상태라면 페이드 아웃
                     if self.menuTableView.alpha == 1 {
                         self.menuTableView.alpha = 0
+                        self.menulistAppendTextLabel.text = "펼치기"
                     } else { // 그렇지 않다면 페이드 인
                         self.menuTableView.isHidden = false
                         self.menuTableView.alpha = 1
+                        self.menulistAppendTextLabel.text = "접기"
                     }
                 }) { _ in
                     
@@ -463,12 +463,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
                         if self.menuTableView.alpha == 0 {
                             self.menuTableView.isHidden = true
+                            self.menulistAppendTextLabel.text = "펼치기"
                         }
                     })
                     
                 }
 
-        })
+        
     }
     
     //MARK: - unwined Segue
