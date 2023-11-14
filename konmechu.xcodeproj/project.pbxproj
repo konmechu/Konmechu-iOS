@@ -19,6 +19,7 @@
 		0A3257A72AE8F6550055CE6F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A62AE8F6550055CE6F /* TabBarController.swift */; };
 		0A3257AA2AE8F8EE0055CE6F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3257A82AE8F8180055CE6F /* TabBar.swift */; };
 		0A370AB72AECDC5600D6DA66 /* CaptureImgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */; };
+		0A4BED882AFBC15A0081AF3A /* NutritionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4BED872AFBC15A0081AF3A /* NutritionData.swift */; };
 		0A8C4F2F2AFA17B400AC5516 /* menuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */; };
 		0A8C4F302AFA17B400AC5516 /* menuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A8C4F2E2AFA17B400AC5516 /* menuTableViewCell.xib */; };
 		0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */; };
@@ -42,6 +43,7 @@
 		0A3257A62AE8F6550055CE6F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0A3257A82AE8F8180055CE6F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImgViewController.swift; sourceTree = "<group>"; };
+		0A4BED872AFBC15A0081AF3A /* NutritionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionData.swift; sourceTree = "<group>"; };
 		0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuTableViewCell.swift; sourceTree = "<group>"; };
 		0A8C4F2E2AFA17B400AC5516 /* menuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = menuTableViewCell.xib; sourceTree = "<group>"; };
 		0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuData.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */,
 				0A12ECB72AEE2A4300F79C06 /* NutritionResultViewController.swift in Sources */,
 				0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */,
+				0A4BED882AFBC15A0081AF3A /* NutritionData.swift in Sources */,
 				0A32578D2AE8DED80055CE6F /* AppDelegate.swift in Sources */,
 				0A32578F2AE8DED80055CE6F /* SceneDelegate.swift in Sources */,
 				0A3257A32AE8F0CA0055CE6F /* NutritionStatisticsViewController.swift in Sources */,

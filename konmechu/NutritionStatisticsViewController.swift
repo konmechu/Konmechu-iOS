@@ -30,6 +30,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     //MARK: - Nutritioin info var
     
+    var nutritionData = NutritionData.todayNutritionData
+    
     @IBOutlet weak var nutritionBaseView: UIView!
     
     
@@ -108,6 +110,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         dayIdxBtn.setTitle("오늘", for: .normal)
         
         setNutritionInfoViewUI()
+        setNutritionInfo()
         setRecommendationViewUI()
         setMenuTableViewUI()
         setMenuTableView()
@@ -190,7 +193,6 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         // 요청 시작
         task.resume()
 
-        
         
     }
     
@@ -336,11 +338,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             view.backgroundColor = view.backgroundColor?.withAlphaComponent(0.2)
             view.layer.borderWidth = 2
             view.layer.borderColor = view.backgroundColor?.withAlphaComponent(1).cgColor
-
         }
-        
-        
+
+
     }
+
     
     //MARK: - calendar setting
     
@@ -386,10 +388,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         if date.compare(FSCalendarView.today!).rawValue == 0 {
             dayIdxBtn.setTitle("오늘", for: .normal)
             menuList = MenuData.todayData
+            nutritionData = NutritionData.todayNutritionData
         } else {
             menuList = MenuData.yesterdayData
+            nutritionData = NutritionData.yesterdayNutritionData
         }
         setMenuTableView()
+        setNutritionInfo()
     }
     
     //MARK: - btn acction func
@@ -477,8 +482,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
         if let sourceViewController = segue.source as? NutritionResultViewController {
             let data = sourceViewController.tempMenuData // 데이터를 가져옴
+            let data2 = sourceViewController.tempNutritionData
             menuList.append(data!)
             setMenuTableView()
+            
+            nutritionData.caloties! += (data2?.caloties)!
+            nutritionData.carborhydrate! += (data2?.carborhydrate)!
+            nutritionData.fat! += (data2?.fat)!
+            nutritionData.protein! += (data2?.protein)!
+            nutritionData.sugars! += (data2?.sugars)!
+            
+            setNutritionInfo()
         }
     }
 
