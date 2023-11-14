@@ -37,10 +37,9 @@ class LoginViewController: UIViewController {
     //MARK: - initial UI setting func
     
     func setUILayer () {
-        kakaoLoginBtn.layer.cornerRadius = kakaoLoginBtn.bounds.width / 2
-        googleLoginBtn.layer.cornerRadius = googleLoginBtn.bounds.width / 2
+        kakaoLoginBtn.layer.cornerRadius = 10
         
-        emailLoginBtn.layer.cornerRadius = 8
+        emailLoginBtn.layer.cornerRadius = 10
         emailLoginBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
         emailLoginBtn.backgroundColor = emailLoginBtn.backgroundColor?.withAlphaComponent(0.2)
     }

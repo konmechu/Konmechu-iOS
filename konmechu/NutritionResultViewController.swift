@@ -63,8 +63,6 @@ class NutritionResultViewController: UIViewController {
     
     
     var tempMenuData : MenuData?
-    var tempNutritionData : NutritionData?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -241,7 +239,6 @@ class NutritionResultViewController: UIViewController {
         fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0" : json["지방(g)"]!
         sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0" : json["당류(g)"]! 
         
-        tempNutritionData = NutritionData(caloties: Float(kcalLabel.text!), protein: Float(proteinLabel.text!), carborhydrate: Float(carbohydrateLabel.text!), fat: Float(fatLabel.text!), sugars: Float(sugarsLabel.text!))
     }
     
     // app server 에 저장할 RequestDto JSON 데이터 생성

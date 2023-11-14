@@ -747,10 +747,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGr-Js-8O6">
-                                <rect key="frame" x="30" y="725.66666666666663" width="333" height="35"/>
+                                <rect key="frame" x="46.666666666666657" y="710.66666666666663" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="uvi-ii-zg1"/>
+                                    <constraint firstAttribute="width" constant="300" id="DhB-m9-Ce2"/>
+                                    <constraint firstAttribute="height" constant="50" id="uvi-ii-zg1"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -796,32 +797,20 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hNj-Oe-G2i">
-                                <rect key="frame" x="121.66666666666669" y="655.66666666666663" width="150" height="50"/>
+                                <rect key="frame" x="46.666666666666657" y="640.66666666666663" width="300" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuI-e2-b20">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuI-e2-b20">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.9137254901960784" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="79h-Ve-m0n"/>
+                                            <constraint firstAttribute="width" constant="300" id="79h-Ve-m0n"/>
                                             <constraint firstAttribute="height" constant="50" id="Vd4-bu-u3R"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="kakao">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="kakao_login_medium_wide"/>
                                         <connections>
                                             <action selector="kakaoLoginBtnDidTap:" destination="zdf-NL-Au2" eventType="touchUpInside" id="ll9-Cy-hpl"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-VQ-o8U">
-                                        <rect key="frame" x="99.999999999999986" y="0.0" width="50.000000000000014" height="50"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="UBO-y9-w6X"/>
-                                            <constraint firstAttribute="width" constant="50" id="Wch-GF-1x0"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="google"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -840,15 +829,11 @@
                             <constraint firstItem="jGr-Js-8O6" firstAttribute="top" secondItem="hNj-Oe-G2i" secondAttribute="bottom" constant="20" id="GFC-pY-sHj"/>
                             <constraint firstItem="THu-pT-Xa2" firstAttribute="leading" secondItem="ZKZ-hA-8jj" secondAttribute="trailing" constant="5" id="K6a-Y6-XMf"/>
                             <constraint firstItem="THu-pT-Xa2" firstAttribute="centerX" secondItem="Q46-WA-xlr" secondAttribute="centerX" id="PnA-MP-noY"/>
-                            <constraint firstItem="LXu-qn-O5S" firstAttribute="trailing" secondItem="jGr-Js-8O6" secondAttribute="trailing" constant="30" id="Pu2-WT-Jfw"/>
                             <constraint firstItem="THu-pT-Xa2" firstAttribute="leading" secondItem="ZKZ-hA-8jj" secondAttribute="trailing" constant="5" id="Qcm-ch-KuY"/>
-                            <constraint firstItem="LXu-qn-O5S" firstAttribute="trailing" secondItem="jGr-Js-8O6" secondAttribute="trailing" constant="30" id="R2b-z7-ytV"/>
                             <constraint firstItem="jGr-Js-8O6" firstAttribute="centerX" secondItem="Q46-WA-xlr" secondAttribute="centerX" id="UQ5-OO-ShY"/>
                             <constraint firstItem="Lsy-Zn-6ky" firstAttribute="leading" secondItem="THu-pT-Xa2" secondAttribute="trailing" constant="5" id="ajv-zt-Jq0"/>
                             <constraint firstItem="ZKZ-hA-8jj" firstAttribute="centerY" secondItem="THu-pT-Xa2" secondAttribute="centerY" id="bbT-wT-iFq"/>
                             <constraint firstItem="yTc-XF-vPr" firstAttribute="top" secondItem="LXu-qn-O5S" secondAttribute="top" constant="100" id="fSJ-o1-vGt"/>
-                            <constraint firstItem="jGr-Js-8O6" firstAttribute="leading" secondItem="LXu-qn-O5S" secondAttribute="leading" constant="30" id="kxe-uR-h6b"/>
-                            <constraint firstItem="jGr-Js-8O6" firstAttribute="leading" secondItem="LXu-qn-O5S" secondAttribute="leading" constant="30" id="lud-aW-UhD"/>
                             <constraint firstItem="hNj-Oe-G2i" firstAttribute="centerX" secondItem="Q46-WA-xlr" secondAttribute="centerX" id="p3L-BS-eBs"/>
                             <constraint firstItem="yTc-XF-vPr" firstAttribute="centerX" secondItem="Q46-WA-xlr" secondAttribute="centerX" id="pJG-0z-AuQ"/>
                             <constraint firstItem="ZKZ-hA-8jj" firstAttribute="top" secondItem="jGr-Js-8O6" secondAttribute="bottom" constant="20" id="tI9-hR-NDS"/>
@@ -857,7 +842,6 @@
                     </view>
                     <connections>
                         <outlet property="emailLoginBtn" destination="jGr-Js-8O6" id="LHn-Bz-6Vp"/>
-                        <outlet property="googleLoginBtn" destination="J3U-VQ-o8U" id="g3c-BC-mBr"/>
                         <outlet property="helpBtn" destination="Lsy-Zn-6ky" id="Iss-Xl-mT2"/>
                         <outlet property="kakaoLoginBtn" destination="DuI-e2-b20" id="tnr-tF-TMs"/>
                         <outlet property="logoImgView" destination="yTc-XF-vPr" id="fYD-gt-ISY"/>
@@ -1421,9 +1405,8 @@
         <image name="Konmechu" width="205" height="31"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
-        <image name="google" width="44" height="44"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
-        <image name="kakao" width="34" height="35"/>
+        <image name="kakao_login_medium_wide" width="300" height="45"/>
         <image name="person" catalog="system" width="32" height="32"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="98"/>
         <namedColor name="mainColor">
@@ -1442,7 +1425,7 @@
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
