@@ -115,7 +115,6 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         self.view.bringSubviewToFront(calendarStackView)
     }
     
-    
     //MARK: - Setting recommendation View
     private func setRecommendationViewUI() {
         
