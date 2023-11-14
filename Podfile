@@ -7,6 +7,9 @@ target 'konmechu' do
 
 
   # Pods for konmechu
+  pod 'KakaoSDKCommon'
+  pod 'KakaoSDKAuth'
+  pod 'KakaoSDKUser'
   pod 'FSCalendar'
   post_install do |installer|
     installer.generated_projects.each do |project|

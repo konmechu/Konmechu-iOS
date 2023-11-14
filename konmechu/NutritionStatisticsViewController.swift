@@ -66,16 +66,19 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var recommendationStackView: UIStackView!
     
     
-    @IBOutlet weak var lackOfNutriRecoImgView: UIImageView!
-    
-    
-    @IBOutlet weak var habitsRecoImgView: UIImageView!
-    
-    
     @IBOutlet weak var recoAppendBtn: UIButton!
     
     
+    @IBOutlet weak var recoTextView: UITextView!
+    
+    
+    private var recommendationSubViews: [UIView] = []
+    
+    
     //MARK: - menu list table view
+    
+    
+    @IBOutlet weak var tableBaseView: UIStackView!
     
     @IBOutlet weak var menuTableView: UITableView!
     
@@ -104,7 +107,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         edgesForExtendedLayout = [.bottom]
         
-        dayIdxBtn.setTitle(dateFormatter?.string(from: FSCalendarView.today!), for: .normal)
+        dayIdxBtn.setTitle("오늘", for: .normal)
         
         setNutritionInfoViewUI()
         setNutritionInfo()
@@ -114,6 +117,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         self.view.bringSubviewToFront(calendarStackView)
     }
+    
     
     //MARK: - Setting recommendation View
     private func setRecommendationViewUI() {
@@ -125,14 +129,71 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recommendationStackView.layer.shadowOpacity = 0.7
         
-        lackOfNutriRecoImgView.layer.cornerRadius = 20
-        habitsRecoImgView.layer.cornerRadius = 20
+//        lackOfNutriRecoImgView.layer.cornerRadius = 20
+//        habitsRecoImgView.layer.cornerRadius = 20
+//        
+//        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
+//        
+//        habitsRecoImgView.image = UIImage(named: "zzazang")
+//        
+//        recommendationSubViews.append(lackOfNutriRecoImgView)
+//        recommendationSubViews.append(habitsRecoImgView)
+//        recommendationSubViews.append(recoReasonView1)
+//        recommendationSubViews.append(recoReasonView2)
         
-        lackOfNutriRecoImgView.image = UIImage(named: "samgyup")
+        // 서버에서 받을 데이터를 위한 구조체
+        struct RecommendationResponse: Codable {
+            let recommend: String
+        }
+
+        // API endpoint
+        let urlString = "https://9e2a-121-130-156-219.ngrok.io/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        // URLSession을 사용한 HTTP 요청
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            // 에러 체크
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            // 응답 체크
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
+
+            do {
+                // JSON 데이터를 RecommendationResponse로 디코드
+                let responseData = try JSONDecoder().decode(RecommendationResponse.self, from: data)
+                // 디코드된 데이터를 사용하여 무언가를 수행합니다.
+                DispatchQueue.main.async {
+                    // UI 업데이트는 메인 스레드에서 수행해야 합니다.
+                    self.recoTextView.text = responseData.recommend
+                }
+            } catch {
+                print("Error: Decoding JSON failed: \(error)")
+            }
+        }
+
+        // 요청 시작
+        task.resume()
+
         
-        habitsRecoImgView.image = UIImage(named: "zzazang")
-        
-        recommendationStackView.isHidden = true
     }
     
     //MARK: - menuTableView
@@ -156,12 +217,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         menuTableView.dataSource = self
         registerXib()
         
-        menuTableView.layer.cornerRadius = 20
+        tableBaseView.layer.cornerRadius = 20
+        tableBaseView.backgroundColor = tableBaseView.backgroundColor?.withAlphaComponent(0.2)
+    
         
-        menuTableView.backgroundColor = menuTableView.backgroundColor?.withAlphaComponent(0.2)
-        
-        menuTableView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        menuTableView.layer.shadowOpacity = 0.7
+        tableBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        tableBaseView.layer.shadowOpacity = 0.7
         
         menuTableView.separatorStyle = .none
     }
@@ -279,15 +340,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             view.layer.borderColor = view.backgroundColor?.withAlphaComponent(1).cgColor
         }
 
+
     }
-    
-    func setNutritionInfo() {
-        kcalLabel.text = "\(nutritionData.caloties ?? 0)kcal"
-        proteinLabel.text = "\(nutritionData.protein ?? 0)g"
-        carbohydrateLabel.text = "\(nutritionData.carborhydrate ?? 0)g"
-        fatLabel.text = "\(nutritionData.fat ?? 0)g"
-        sugarsLabel.text = "\(nutritionData.sugars ?? 0)g"
-    }
+
     
     //MARK: - calendar setting
     
@@ -331,6 +386,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
         if date.compare(FSCalendarView.today!).rawValue == 0 {
+            dayIdxBtn.setTitle("오늘", for: .normal)
             menuList = MenuData.todayData
             nutritionData = NutritionData.todayNutritionData
         } else {
@@ -347,53 +403,53 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBAction func dayBtnDidTap(_ sender: Any) {
 
         if let overlayView = self.view.viewWithTag(100) {
-                UIView.animate(withDuration: 0.3, animations: {
-                    self.FSCalendarView.alpha = 0
-                    overlayView.alpha = 0
-                }) { _ in
-                    self.FSCalendarView.isHidden = true
-                    overlayView.removeFromSuperview()
-                }
+                hideCalendarAndOverlay()
                 return
             }
 
             // 새로운 오버레이 뷰를 생성합니다.
             let overlayView = UIView(frame: self.view.bounds)
-            overlayView.backgroundColor = UIColor(named: "mainColor") // 투명도를 50%로 설정
+        overlayView.backgroundColor = UIColor(named: "mainColor")?.withAlphaComponent(0.5) // 투명도를 50%로 설정
             overlayView.tag = 100 // 나중에 오버레이 뷰를 쉽게 찾기 위한 태그
             overlayView.alpha = 0 // 초기 알파 값을 0으로 설정하여 뷰가 보이지 않게 합니다.
-            overlayView.isUserInteractionEnabled = false // 오버레이 뷰가 이벤트를 받지 않도록 설정합니다.
+            
+            // 탭 제스처 인식기를 오버레이 뷰에 추가합니다.
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideCalendarAndOverlay))
+            overlayView.addGestureRecognizer(tapGesture)
+            overlayView.isUserInteractionEnabled = true // 오버레이 뷰가 이벤트를 받도록 설정합니다.
 
             // 오버레이 뷰를 현재 뷰 컨트롤러의 뷰에 추가합니다.
             self.view.addSubview(overlayView)
             self.view.bringSubviewToFront(self.calendarStackView)
 
             // 애니메이션을 사용하여 오버레이 뷰와 캘린더 뷰를 서서히 표시합니다.
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.2) {
                 self.FSCalendarView.isHidden = false
                 self.FSCalendarView.alpha = 1
-                overlayView.alpha = 1 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
-            })
+                overlayView.alpha = 0.5 // 오버레이 뷰를 투명도 50%로 설정하여 부분적으로 보이게 합니다.
+            }
         
+    }
+    
+    @objc func hideCalendarAndOverlay() {
+        if let overlayView = self.view.viewWithTag(100) {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.FSCalendarView.alpha = 0
+                overlayView.alpha = 0
+            }) { _ in
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.FSCalendarView.isHidden = true
+                    overlayView.removeFromSuperview()
+                })
+            }
+        }
     }
     
     
     @IBAction func recoAppendDidTap(_ sender: Any) {
+        
         UIView.animate(withDuration: 0.2, animations: {
-            UIView.animate(withDuration: 0.2, animations: {
-                    // 뷰가 현재 보이는 상태라면 페이드 아웃
-                    if self.recommendationStackView.alpha == 1 {
-                        self.recommendationStackView.alpha = 0
-                    } else { // 그렇지 않다면 페이드 인
-                        self.recommendationStackView.isHidden = false
-                        self.recommendationStackView.alpha = 1
-                    }
-                }) { _ in
-                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
-                    if self.recommendationStackView.alpha == 0 {
-                        self.recommendationStackView.isHidden = true
-                    }
-                }
+            self.recoTextView.isHidden = !self.recoTextView.isHidden
         })
     }
     
@@ -409,10 +465,14 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         self.menuTableView.alpha = 1
                     }
                 }) { _ in
-                    // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
-                    if self.menuTableView.alpha == 0 {
-                        self.menuTableView.isHidden = true
-                    }
+                    
+                    UIView.animate(withDuration: 0.2, animations: {
+                        // 애니메이션이 완료되고 뷰가 페이드 아웃된 경우 숨김 처리
+                        if self.menuTableView.alpha == 0 {
+                            self.menuTableView.isHidden = true
+                        }
+                    })
+                    
                 }
 
         })

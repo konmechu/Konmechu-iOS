@@ -28,15 +28,20 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var captureImageBtn: UIButton!
     
+    @IBOutlet weak var selectImgFromAlbum: UIButton!
+    let imagePickerController = UIImagePickerController()
+    
     
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-
+        
+        imagePickerController.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(restartCaptureSession), name: NSNotification.Name("DidDismissCaptureImgViewController"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -178,12 +183,36 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
 
     }
     
+    func startCaptureSession() {
+        guard let captureSession = self.captureSession, !captureSession.isRunning else { return }
+        DispatchQueue.global(qos: .userInitiated).async {
+            captureSession.startRunning()
+        }
+    }
+
+    func stopCaptureSession() {
+        guard let captureSession = self.captureSession, captureSession.isRunning else { return }
+        DispatchQueue.global(qos: .userInitiated).async {
+            captureSession.stopRunning()
+        }
+    }
+    
+    @objc func restartCaptureSession() {
+        startCaptureSession()
+    }
+    
     //MARK: - Button Actions
     
     @IBAction func captureImageBtnDidTap(_ sender: Any) {
         isTakePicture = true
     }
     
+    
+    @IBAction func selectImgFromAlbumBtnDidTap(_ sender: Any) {
+        self.imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
+        stopCaptureSession()
+    }
     
     @IBAction func backBtnDidTap(_ sender: Any) {
         dismiss(animated: true)
@@ -192,6 +221,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     @IBAction func infoBtnDidTap(_ sender: Any) {
     }
+    
+    
     
     
     @objc func switchCamera(_ sender: UIButton?) {
@@ -216,9 +247,11 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         imgToSend = uiImage
         
+        self.isTakePicture = false
+        stopCaptureSession()
+        
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
-            self.isTakePicture = false
         }
     }
     
@@ -255,4 +288,20 @@ extension UIViewController {
         }
 }
 
+extension SmartlensViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage]{
+            imgToSend = image as! UIImage
+        }
+        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        restartCaptureSession()
+        dismiss(animated: true)
+    }
+}
 
