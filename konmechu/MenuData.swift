@@ -35,6 +35,6 @@ extension MenuData {
 }
 
 struct MenuSection {
-    var mealTime: MealTime
-    var menus: [MenuData]
+    var mealTime: String
+    var menus: [MenuResponseDto]
 }

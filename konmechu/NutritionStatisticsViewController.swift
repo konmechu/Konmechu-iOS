@@ -11,7 +11,6 @@ import FSCalendar
 class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Table view Data var
-    var menuList = MenuData.todayData
     
     var menuSections : [MenuSection] = []
         
@@ -58,6 +57,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     private var nutritionViews: [UIView] = []
     
+    private var totalNutritionInfo : TotalNutritionResponseDto?
+    
     //MARK: - menu Recommendation View
     
     
@@ -89,12 +90,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var menulistAppendTextLabel: UILabel!
     
+    private var menuList : [MenuResponseDto] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setCalendar()
         setUI()
+        
+        /*updateNutritionInfo*/()
+        getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
 
     }
     
@@ -102,6 +108,61 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         setTableViewHeight()
     }
     
+    //MARK: - API function
+    
+    func getTodayNutriInfo(completion: @escaping (Result<[String: Any], Error>) -> Void) {
+        // URL 설정, 여기서는 예시 URL을 사용합니다.
+        // 실제 요청할 서버의 URL로 교체해야 합니다.
+        let url = URL(string: "https://d6f7-121-130-156-219.ngrok-free.app/app/menus")!
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        // URLSession을 사용한 HTTP 요청
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { [self] data, response, error in
+            // 에러 체크
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            // 응답 체크
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
+
+            do {
+                // JSON 데이터를 NutritionInfoResponse로 디코드
+                let responseWrapper = try JSONDecoder().decode(ResponseWrapper.self, from: data)
+                    let nutritionInfo = responseWrapper.result
+                
+                //menuTableView 업데이트
+                menuList = nutritionInfo.menuResponseDtos
+                updateMenuTableView()
+                print("서버로부터 오늘의 메뉴를 받아와 표시에 성공 했습니다.")
+                
+                //nutrition
+                totalNutritionInfo = nutritionInfo.totalNutritionResponseDto
+                updateNutritionInfo()
+                print("서버로부터 오늘의 총 영양정보를 받아와 표시에 성공 했습니다.")
+
+                
+            } catch {
+                print("Error: Decoding JSON failed: \(error)")
+            }
+        }
+        // 요청 시작
+        task.resume()
+    }
+
     
     
     //MARK: - initial UI setting func
@@ -115,7 +176,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         setNutritionInfoViewUI()
         setRecommendationViewUI()
         setMenuTableViewUI()
-        setMenuTableView()
+        updateMenuTableView()
         
         self.view.bringSubviewToFront(calendarStackView)
     }
@@ -216,12 +277,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         menuTableView.separatorStyle = .none
     }
     
-    private func setMenuTableView() {
+    private func updateMenuTableView() {
         
         menuSections.removeAll()
         
-        for mealTime in MealTime.allCases {
-            let filteredMenus = menuList.filter { $0.mealTime == mealTime }
+        // MealTime.allCases 대신 실제 meal 문자열 값의 유니크한 리스트를 사용합니다.
+        let mealTimes = Set(menuList.map { $0.meal }).sorted()
+        
+        for mealTime in mealTimes {
+            // menuList에서 현재 mealTime 문자열과 일치하는 메뉴들만 필터링합니다.
+            let filteredMenus = menuList.filter { $0.meal == mealTime }
+            // MenuSection을 생성할 때 MealTime 대신 문자열을 직접 사용합니다.
             let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
             menuSections.append(section)
         }
@@ -255,15 +321,38 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         let target = menuSections[indexPath.section].menus[indexPath.row]
         
-        var img : UIImage?
-        if target.uiImage == nil {
-            img = UIImage(named: "\(target.image).png")
-        } else {
-            img = target.uiImage
+//        var img : UIImage?
+//        if target.uiImage == nil {
+//            img = UIImage(named: "\(target.image).png")
+//        } else {
+//            img = target.uiImage
+//        }
+        
+//        cell.menuImgView?.image = img
+        
+        if let menuImgURL = URL(string: target.menuImageUrls.first!) {
+            
+            // URLSession을 사용하여 이미지를 다운로드합니다.
+            let task = URLSession.shared.dataTask(with: menuImgURL) { (data, response, error) in
+                if let data = data, let image = UIImage(data: data) {
+                    
+//                        let imageSize = CGSize(width: 100, height: 100)
+//                        let resizedImage = image.resize(targetSize: imageSize)
+                    
+                    DispatchQueue.main.async {
+                        cell.menuImgView?.image = image
+                        self.view.layoutIfNeeded()
+                    }
+                    
+                } else {
+                    print("Error downloading image: \(String(describing: error))")
+                }
+            }
+            
+            task.resume()
         }
         
-        cell.menuImgView?.image = img
-        cell.mealTimeLabel?.text = target.title
+        cell.mealTimeLabel?.text = target.food
         cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
         
                 
@@ -286,7 +375,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         headerLabel.font = UIFont.boldSystemFont(ofSize: 16) // 글꼴 크기 설정
         headerLabel.textColor = UIColor.white // 글자색 설정
         
-        let sectionTitle = menuSections[section].mealTime.rawValue
+        let sectionTitle = menuSections[section].mealTime
         headerLabel.text = sectionTitle // 섹션 타이틀 설정
         
            headerLabel.textAlignment = .center // 텍스트 정렬 설정
@@ -330,6 +419,16 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         }
 
 
+    }
+    
+    func updateNutritionInfo() {
+        DispatchQueue.main.async {
+            self.kcalLabel.text = "\(self.totalNutritionInfo!.totalCalories)kcal"
+            self.carbohydrateLabel.text = "\(self.totalNutritionInfo!.totalCarbs)g"
+            self.proteinLabel.text = "\(self.totalNutritionInfo!.totalProtein)g"
+            self.fatLabel.text = "\(self.totalNutritionInfo!.totalFat)g"
+            self.sugarsLabel.text = "\(self.totalNutritionInfo!.totalFiber)g"
+        }
     }
 
     
@@ -376,11 +475,14 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
         if date.compare(FSCalendarView.today!).rawValue == 0 {
             dayIdxBtn.setTitle("오늘", for: .normal)
-            menuList = MenuData.todayData
+            
+            getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
         } else {
-            menuList = MenuData.yesterdayData
+            
+            getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
+            
         }
-        setMenuTableView()
+        
     }
     
     //MARK: - btn acction func
