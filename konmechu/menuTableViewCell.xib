@@ -25,16 +25,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h32-MB-4a9">
-                        <rect key="frame" x="289.66666666666669" y="60" width="48.666666666666686" height="17"/>
+                        <rect key="frame" x="275" y="59" width="48.666666666666686" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-30" id="1m0-CM-W08"/>
+                    <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-31" id="2bL-Nf-Xnu"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
-                    <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-60" id="CLE-6g-1iM"/>
+                    <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-74.666666666666629" id="UA4-y4-YNc"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
                 </constraints>
             </tableViewCellContentView>

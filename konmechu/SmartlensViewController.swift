@@ -57,6 +57,9 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         captureImageBtn.layer.shadowOpacity = 0.8
         previewView.layer.cornerRadius = 35
         previewView.clipsToBounds = true
+        
+        selectImgFromAlbum.layer.cornerRadius = 10
+        selectImgFromAlbum.layer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
     }
     
     //MARK: - Camera Setup
