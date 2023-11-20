@@ -128,7 +128,7 @@ class LoginViewController: UIViewController {
                 print("me() success.")
                 
                 let emailAddress = user?.kakaoAccount?.email
-                let fullName = user?.kakaoAccount?.name
+                let fullName = user?.kakaoAccount?.legalName
                 let profilePicUrl = user?.kakaoAccount?.profile?.profileImageUrl
                 
                 let defaults = UserDefaults.standard

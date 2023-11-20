@@ -25,7 +25,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var FSCalendarView: FSCalendar!
     
     private var dateFormatter : DateFormatter?
-    
+        
     
     //MARK: - Nutritioin info var
         
@@ -44,6 +44,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var sugarsView: UIView!
     
     
+    @IBOutlet weak var isKcalProperLabel: UILabel!
+    
+    @IBOutlet weak var isCarboProperLabel: UILabel!
+    
+    @IBOutlet weak var isProteinProperLabel: UILabel!
+    
+    @IBOutlet weak var isFatProperLabel: UILabel!
+    
+    @IBOutlet weak var isSugarsProperLabel: UILabel!
+    
+    
     
     @IBOutlet weak var kcalLabel: UILabel!
     
@@ -59,6 +70,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     private var totalNutritionInfo : TotalNutritionResponseDto?
     
+    
+    var nutritionStatusManager: NutritionStatusManager?
+        
     //MARK: - menu Recommendation View
     
     
@@ -96,24 +110,32 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getTodayNutriInfo(for: Date(), completion: {_ in })
+
+        
         setCalendar()
         setUI()
         
-        /*updateNutritionInfo*/()
-        getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getTodayNutriInfo(for: Date(), completion: {_ in })
+
         setTableViewHeight()
     }
     
     //MARK: - API function
     
-    func getTodayNutriInfo(completion: @escaping (Result<[String: Any], Error>) -> Void) {
+    func getTodayNutriInfo(for date: Date, completion: @escaping (Result<[String: Any], Error>) -> Void) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        
         // URL 설정, 여기서는 예시 URL을 사용합니다.
         // 실제 요청할 서버의 URL로 교체해야 합니다.
-        let url = URL(string: "https://d6f7-121-130-156-219.ngrok-free.app/app/menus")!
+        let url = URL(string: "https://05d4-115-140-206-21.ngrok-free.app/app/menus?startDate=\(dateString)&endDate=\(dateString)")!
 
         // URLRequest 생성
         var request = URLRequest(url: url)
@@ -197,7 +219,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         }
 
         // API endpoint
-        let urlString = "https://9e2a-121-130-156-219.ngrok.io/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        let urlString = "https://364a-210-106-232-73.ngrok-free.app/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
         guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
@@ -276,18 +298,44 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         menuTableView.separatorStyle = .none
     }
+
+    
+    //아침, 점심, 저녁 순으로 정렬되지 않는 문제가 있음
+//    private func updateMenuTableView() {
+//        
+//        menuSections.removeAll()
+//        
+//        // MealTime.allCases 대신 실제 meal 문자열 값의 유니크한 리스트를 사용합니다.
+//        let mealTimes = Set(menuList.map { $0.meal }).sorted()
+//        
+//        for mealTime in mealTimes {
+//            // menuList에서 현재 mealTime 문자열과 일치하는 메뉴들만 필터링합니다.
+//            let filteredMenus = menuList.filter { $0.meal == mealTime }
+//            // MenuSection을 생성할 때 MealTime 대신 문자열을 직접 사용합니다.
+//            let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
+//            menuSections.append(section)
+//        }
+//        
+//        DispatchQueue.main.async {
+//            self.menuTableView.reloadData()
+//            self.setTableViewHeight()
+//        }
+//        
+//    }
     
     private func updateMenuTableView() {
-        
         menuSections.removeAll()
         
-        // MealTime.allCases 대신 실제 meal 문자열 값의 유니크한 리스트를 사용합니다.
-        let mealTimes = Set(menuList.map { $0.meal }).sorted()
+        // 식사 시간별로 정렬 우선순위를 정합니다.
+        let mealOrder: [String: Int] = ["아침": 1, "점심": 2, "저녁": 3]
+
+        // 식사 시간을 정렬 우선순위에 따라 정렬합니다.
+        let mealTimes = Array(Set(menuList.map { $0.meal })).sorted {
+            mealOrder[$0, default: 4] < mealOrder[$1, default: 4]
+        }
         
         for mealTime in mealTimes {
-            // menuList에서 현재 mealTime 문자열과 일치하는 메뉴들만 필터링합니다.
             let filteredMenus = menuList.filter { $0.meal == mealTime }
-            // MenuSection을 생성할 때 MealTime 대신 문자열을 직접 사용합니다.
             let section = MenuSection(mealTime: mealTime, menus: filteredMenus)
             menuSections.append(section)
         }
@@ -296,8 +344,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             self.menuTableView.reloadData()
             self.setTableViewHeight()
         }
-        
     }
+
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuSections[section].menus.count
@@ -321,23 +370,14 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         let target = menuSections[indexPath.section].menus[indexPath.row]
         
-//        var img : UIImage?
-//        if target.uiImage == nil {
-//            img = UIImage(named: "\(target.image).png")
-//        } else {
-//            img = target.uiImage
-//        }
         
-//        cell.menuImgView?.image = img
-        
-        if let menuImgURL = URL(string: target.menuImageUrls.first!) {
+        let menuImgUrl = target.menuImageUrls.first ?? ""
+        if let menuImgURL = URL(string: menuImgUrl) {
             
             // URLSession을 사용하여 이미지를 다운로드합니다.
             let task = URLSession.shared.dataTask(with: menuImgURL) { (data, response, error) in
                 if let data = data, let image = UIImage(data: data) {
                     
-//                        let imageSize = CGSize(width: 100, height: 100)
-//                        let resizedImage = image.resize(targetSize: imageSize)
                     
                     DispatchQueue.main.async {
                         cell.menuImgView?.image = image
@@ -345,7 +385,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                     }
                     
                 } else {
-                    print("Error downloading image: \(String(describing: error))")
+                    print("메뉴의 이미지를 불러오는데 실패했습니다: \(String(describing: error))")
+                    
+                    DispatchQueue.main.async {
+                        cell.menuImgView?.image = nil
+                        self.view.layoutIfNeeded()
+                    }
+                    
                 }
             }
             
@@ -423,12 +469,31 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func updateNutritionInfo() {
         DispatchQueue.main.async {
-            self.kcalLabel.text = "\(self.totalNutritionInfo!.totalCalories)kcal"
-            self.carbohydrateLabel.text = "\(self.totalNutritionInfo!.totalCarbs)g"
-            self.proteinLabel.text = "\(self.totalNutritionInfo!.totalProtein)g"
-            self.fatLabel.text = "\(self.totalNutritionInfo!.totalFat)g"
-            self.sugarsLabel.text = "\(self.totalNutritionInfo!.totalFiber)g"
+            self.kcalLabel.text = "\(self.totalNutritionInfo!.totalCalories * 4)kcal"
+            self.carbohydrateLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCarbs * 4))g"
+            self.proteinLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalProtein * 4))g"
+            self.fatLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFat * 4))g"
+            self.sugarsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFiber * 4))g"
         }
+        
+        if let totalNutritionInfo = totalNutritionInfo {
+                    nutritionStatusManager = NutritionStatusManager(
+                        totalNutritionInfo: totalNutritionInfo,
+                        kcalView: kcalView,
+                        carbohydrateView: carbohydrateView,
+                        proteinView: proteinView,
+                        fatView: fatView,
+                        sugarsView: sugarsView,
+                        isKcalProperLabel: isKcalProperLabel,
+                        isCarboProperLabel: isCarboProperLabel,
+                        isProteinProperLabel: isProteinProperLabel,
+                        isFatProperLabel: isFatProperLabel,
+                        isSugarsProperLabel: isSugarsProperLabel
+                    )
+        }
+        
+        nutritionStatusManager?.updateNutritionStatus()
+        
     }
 
     
@@ -476,10 +541,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         if date.compare(FSCalendarView.today!).rawValue == 0 {
             dayIdxBtn.setTitle("오늘", for: .normal)
             
-            getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
+            getTodayNutriInfo(for: date, completion: {_ in print("get Success \n\n\n")})
         } else {
             
-            getTodayNutriInfo(completion: {_ in print("get Success \n\n\n")})
+            getTodayNutriInfo(for: date, completion: {_ in print("get Success \n\n\n")})
             
         }
         
@@ -536,11 +601,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBAction func recoAppendDidTap(_ sender: Any) {
         
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.recoTextView.isHidden = !self.recoTextView.isHidden
             if self.recoTextView.isHidden {
                 self.recoAppendTextLabel.text = "펼치기"
             } else {
+                self.setRecommendationViewUI()
                 self.recoAppendTextLabel.text = "접기"
             }
         })
@@ -555,6 +622,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         self.menuTableView.alpha = 0
                         self.menulistAppendTextLabel.text = "펼치기"
                     } else { // 그렇지 않다면 페이드 인
+                        self.getTodayNutriInfo(for: Date(), completion: {_ in })
+
                         self.menuTableView.isHidden = false
                         self.menuTableView.alpha = 1
                         self.menulistAppendTextLabel.text = "접기"
@@ -576,8 +645,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     //MARK: - unwined Segue
     @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
+        
+        print("unwindToMainViewController\n\n\n\n\n")
+        
         if let sourceViewController = segue.source as? NutritionResultViewController {
-            let data = sourceViewController.tempMenuData // 데이터를 가져옴
+            
         }
     }
 
