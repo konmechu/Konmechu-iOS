@@ -29,23 +29,21 @@ class TabBarController: UITabBarController {
         menuButton.layer.borderWidth = 2
         menuButton.layer.borderColor = UIColor.white.cgColor
         
-//            menuButton.layer.shadowOpacity = 1
-//            menuButton.layer.shadowOffset = CGSize(width: 0, height: 0)
-//            menuButton.layer.shadowRadius = 0.5
+
         
         view.addSubview(menuButton)
         view.bringSubviewToFront(menuButton)
         
         
-        if let image = UIImage(systemName: "plus.viewfinder") { // "heart.fill"은 예시입니다. 원하는 system 이미지 이름으로 변경하세요.
+        if let image = UIImage(systemName: "plus.viewfinder") {
 
-            // 색상 변경
+           
             let tintedImage = image.withTintColor(.black, renderingMode: .alwaysOriginal)
-            // 이미지 크기 조절
-            let largeConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .medium, scale: .default) // 여기에서 원하는 크기와 무게, 스케일을 설정하세요.
+            
+            let largeConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .medium, scale: .default)
             let largeImage = tintedImage.applyingSymbolConfiguration(largeConfig)
 
-            // UIButton에 이미지 설정
+            
             menuButton.setImage(largeImage, for: .normal)
         }
 

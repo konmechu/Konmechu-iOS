@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
             }
 
             // API endpoint
-            let urlString = "https://d6f7-121-130-156-219.ngrok-free.app/app/oauth/kakao" // '???'를 실제 엔드포인트 주소로 대체해야 합니다.
+            let urlString = "https://ea70-210-106-232-51.ngrok-free.app/app/oauth/kakao" // '???'를 실제 엔드포인트 주소로 대체해야 합니다.
             guard let url = URL(string: urlString) else {
                 print("Error: cannot create URL")
                 return

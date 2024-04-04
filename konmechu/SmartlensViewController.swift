@@ -67,39 +67,34 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
             //세션 초기화
             captureSession = AVCaptureSession()
-            //구성 (configuration) 시작
+            //구성 시작
             captureSession.beginConfiguration()
             
             //session specific configuration
-            //세션 프리셋을 설정하기 전에 지원여부를 확인해야 합니다.
+            //세션 프리셋 설정 전, 지원여부를 확인
             if captureSession.canSetSessionPreset(.photo) {
                 captureSession.sessionPreset = .photo
             }
             
-            //사용가능한 경우 세션이 자동으로 광역 색상을 사용해야 하는지 여부를 지정합니다.
+            //세션이 자동으로 광역 색상을 사용 할지 여부를 지정
             captureSession.automaticallyConfiguresCaptureDeviceForWideColor =  true
             
             //setup inputs
             setupInputs()
             
-            //UI 관련 부분은 메인 스레드에서 실행되어야 한다.
             DispatchQueue.main.async {
-                //미리보기 레이어 셋업
                 self.setupPreviewLayer()
             }
             
             setupOutput()
             
-            //commit configuration: 단일 atomic 업데이트에서 실행중인 캡처 세션의 구성에 대한 하나 이상의 변경 사항을 커밋합니디.
             self.captureSession.commitConfiguration()
             
-            //캡처 세션 실행
             captureSession.startRunning()
         }
     }
     
     func setupInputs() {
-        //후면 back 및 전면 front 카메라
         if let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back),
            let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
             self.backCamera = backCamera
@@ -108,7 +103,6 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
             fatalError("No cameras. ")
         }
         
-        //기기로부터 입력 오브젝트 만들기
         guard let backInput = try? AVCaptureDeviceInput(device: self.backCamera) else {
             fatalError("Could not create input device from back camera")
         }
@@ -127,7 +121,6 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
             fatalError("could not add front camera input to capture session")
         }
         
-        //후면 카메라 입력을 세션에 연결
         captureSession.addInput(backInput)
     }
     

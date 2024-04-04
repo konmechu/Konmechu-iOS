@@ -135,7 +135,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         // URL 설정, 여기서는 예시 URL을 사용합니다.
         // 실제 요청할 서버의 URL로 교체해야 합니다.
-        let url = URL(string: "https://05d4-115-140-206-21.ngrok-free.app/app/menus?startDate=\(dateString)&endDate=\(dateString)")!
+        let url = URL(string: "https://ea70-210-106-232-51.ngrok-free.app/app/menus?startDate=\(dateString)&endDate=\(dateString)")!
 
         // URLRequest 생성
         var request = URLRequest(url: url)
@@ -219,7 +219,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         }
 
         // API endpoint
-        let urlString = "https://364a-210-106-232-73.ngrok-free.app/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        let urlString = "https://dbe9-210-106-232-170.ngrok-free.app/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
         guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
