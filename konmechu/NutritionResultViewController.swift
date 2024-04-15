@@ -126,7 +126,8 @@ class NutritionResultViewController: UIViewController {
                 return
             }
             
-            let urlString = "https://ea70-210-106-232-51.ngrok-free.app/app/menus" // 실제 엔드포인트 URL로 변경해야 합니다.
+            let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String
+        let urlString = "\(String(describing: endPointURL))/app/menus" // 실제 엔드포인트 URL로 변경해야 합니다.
             guard let url = URL(string: urlString) else {
                 print("Invalid URL.")
                 return
@@ -182,7 +183,12 @@ class NutritionResultViewController: UIViewController {
         }
         
 
-        let urlString = "https://dbe9-210-106-232-170.ngrok-free.app/api/infer"
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+            print("Error: cannot find key ServerURL in info.plist")
+            return
+        }
+        
+        let urlString = "\(endPointURL)/api/infer"
 
         guard let url = URL(string: urlString) else {
             completion("Invalid URL.")
