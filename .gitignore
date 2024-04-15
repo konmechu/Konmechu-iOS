@@ -1,2 +1,8 @@
 Pods/
 .DS_Store
+konmechu/Config.xcconfig
+konmechu.xcworkspace/xcshareddate/
+konmechu.xcworkspace/xcuserdata/
+konmechu.xcodeproj/xcshareddata/
+konmechu.xcodeproj/xcuserdata/
+
