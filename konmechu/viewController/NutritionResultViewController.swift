@@ -120,57 +120,60 @@ class NutritionResultViewController: UIViewController {
     
     @IBAction func saveMealBtnDidTap(_ sender: Any) {
         // 데이터와 이미지를 서버에 업로드하는 코드 작성
-            guard let imageData = menuImg?.jpegData(compressionQuality: 0.9),
-                  let requestDto = createRequestDto() else {
-                print("Invalid data or image")
-                return
-            }
-            
-            let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String
+        guard let imageData = menuImg?.jpegData(compressionQuality: 0.9),
+              let requestDto = createRequestDto() else {
+            print("Invalid data or image")
+            return
+        }
+        
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+            print("Error: cannot find key ServerURL in info.plist")
+            return
+        }
         let urlString = "\(String(describing: endPointURL))/app/menus" // 실제 엔드포인트 URL로 변경해야 합니다.
-            guard let url = URL(string: urlString) else {
-                print("Invalid URL.")
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL.")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // Multipart/form-data boundary and header 설정
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        // Create multipart/form-data body
+        var body = Data()
+        
+        // 이미지 부분
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"menuImages\"; filename=\"menu.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n".data(using: .utf8)!)
+        
+        // JSON 데이터 부분
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"requestDto\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+        body.append(requestDto)
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        // Attach body to request
+        request.httpBody = body
+        
+        // Send the request
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
                 return
             }
             
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // Multipart/form-data boundary and header 설정
-            let boundary = "Boundary-\(UUID().uuidString)"
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
-            // Create multipart/form-data body
-            var body = Data()
-            
-            // 이미지 부분
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"menuImages\"; filename=\"menu.jpg\"\r\n".data(using: .utf8)!)
-            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-            body.append(imageData)
-            body.append("\r\n".data(using: .utf8)!)
-            
-            // JSON 데이터 부분
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"requestDto\"\r\n".data(using: .utf8)!)
-            body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
-            body.append(requestDto)
-            body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-            
-            // Attach body to request
-            request.httpBody = body
-            
-            // Send the request
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                
-                // Check for successful response, etc...
-                // ...
-            }
-            task.resume()
+            // Check for successful response, etc...
+            // ...
+        }
+        task.resume()
     }
     
     
