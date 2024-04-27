@@ -27,9 +27,13 @@ class CaptureImgViewController: UIViewController {
     
     @IBOutlet weak private var dinnerBtn: UIButton!
     
+    
+    @IBOutlet weak var captureTypeInfoLabel: UILabel!
+    
     private var buttons: [UIButton] = []
 
     public var capturedImg : UIImage?
+    public var captureType : CaptureType?
     
     private var mealTime : String?
     
@@ -58,6 +62,13 @@ class CaptureImgViewController: UIViewController {
         capturedImgView.layer.cornerRadius = 35
         
         capturedImgView.image = capturedImg
+        
+        if captureType == .FOODIMG {
+            captureTypeInfoLabel.text = "음식의 사진이 맞나요?"
+        } else {
+            captureTypeInfoLabel.text = "영양성분표의 사진이 맞나요?"
+        }
+        
     }
     
     private func addAction() {

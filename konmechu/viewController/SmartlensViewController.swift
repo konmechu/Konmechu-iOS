@@ -53,6 +53,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
+    var captureType :CaptureType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +68,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        checkPermissions()
-//        setupAndStartCaptureSession()
+        checkPermissions()
+        setupAndStartCaptureSession()
     }
     
     //MARK: - UI setup
@@ -283,12 +284,13 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         if sender.isOn {
             self.captureTypeLabel.text = "음식 사진 인식"
             captureTypeLabel.font = .boldSystemFont(ofSize: 18)
-
+            captureType = .FOODIMG
         }
         
         if !sender.isOn {
             self.captureTypeLabel.text = "영양성분표 인식"
             captureTypeLabel.font = .boldSystemFont(ofSize: 18)
+            captureType = .OCR
         }
     }
     
@@ -297,6 +299,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         if segue.identifier == "CaptureImgSG" {
             let destinationVC = segue.destination as! CaptureImgViewController
             destinationVC.capturedImg = imgToSend
+            destinationVC.captureType = captureType
         }
     }
 
