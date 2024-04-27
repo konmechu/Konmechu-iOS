@@ -11,6 +11,7 @@ target 'konmechu' do
   pod 'KakaoSDKAuth'
   pod 'KakaoSDKUser'
   pod 'FSCalendar'
+  pod 'Switches'
   post_install do |installer|
     installer.generated_projects.each do |project|
         project.targets.each do |target|
