@@ -109,6 +109,15 @@
 			path = konmechu;
 			sourceTree = "<group>";
 		};
+		0A37EF502BFF1DC500ACE0C5 /* type */ = {
+			isa = PBXGroup;
+			children = (
+				0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */,
+				0A3BD7C32BDCC96100913A7B /* CaptureType.swift */,
+			);
+			name = type;
+			sourceTree = "<group>";
+		};
 		0A953E6A2B034EC300FDF032 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,10 +142,9 @@
 		0AAC30402BCCF01800D4B9D3 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				0A37EF502BFF1DC500ACE0C5 /* type */,
 				0AAC30432BCCF11200D4B9D3 /* dto */,
 				0AAC30422BCCF0BC00D4B9D3 /* utils */,
-				0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */,
-				0A3BD7C32BDCC96100913A7B /* CaptureType.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -463,7 +471,7 @@
 		};
 		0A32579E2AE8DED90055CE6F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9052022BBC9AB9955249CC34 /* Pods-konmechu.debug.xcconfig */;
+			baseConfigurationReference = 0A376A512BCCD1F800AEF3EF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -495,7 +503,7 @@
 		};
 		0A32579F2AE8DED90055CE6F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 275EE35FBD15DDEB033E5C3C /* Pods-konmechu.release.xcconfig */;
+			baseConfigurationReference = 0A376A512BCCD1F800AEF3EF /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

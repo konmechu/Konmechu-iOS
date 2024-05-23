@@ -57,6 +57,8 @@ class NutritionResultViewController: UIViewController {
     
     public var menuImg : UIImage?
     
+    public var captureType : CaptureType?
+    
     public var mealTime : MealTime?
     
     private var nutritionViews: [UIView] = []
@@ -90,8 +92,14 @@ class NutritionResultViewController: UIViewController {
         menuImgView.image = menuImg
         tempMenuData = MenuData(title: "베이글", image: "nil", mealTime: mealTime!, uiImage: menuImg)
         
-        uploadImage(image: menuImg!) { response in
-            print(response ?? "No response received.")
+        if captureType == CaptureType.FOODIMG {
+            analysisFoodImage(image: menuImg!) { response in
+                print(response ?? "No response received from Ai service server")
+            }
+        }else {
+            analysisOCRImage(image: menuImg!) { response in
+                    print(response ?? "No response received from GPT")
+            }
         }
         
         
@@ -179,7 +187,7 @@ class NutritionResultViewController: UIViewController {
     
     
     //MARK: - API function
-    func uploadImage(image: UIImage, completion: @escaping (String?) -> Void) {
+    func analysisFoodImage(image: UIImage, completion: @escaping (String?) -> Void) {
         guard let imageData = image.jpegData(compressionQuality: 0.9) else {
             completion("Image data could not be converted to JPEG format.")
             return
@@ -237,6 +245,130 @@ class NutritionResultViewController: UIViewController {
                 }
             }
             task.resume()
+    }
+    
+    
+    func analysisOCRImage(image: UIImage, completion: @escaping (String?) -> Void) {
+                
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "GptKey") as? String else {
+            print("Error: cannot find key GptKey in info.plist")
+            return
+        }
+        
+        guard let apiURL = Bundle.main.object(forInfoDictionaryKey: "GptURL") as? String else {
+            print("Error: cannot find key GptKey in info.plist")
+            return
+        }
+                        
+        var prompt = "영양성분표에 있는 영양성분을 json형태의 데이터로 나타내. 다음과 같은 키값에: 열량(kcal), 탄수화물(g), 단백질(g), 지방(g), 당류(g) int형식의 value를 넣어 json 형태 데이터로 응답받을거야 키값은 항상 내가 적은 것과 동일해야해 ()포함, 모든 영양성분과 열량(kcal)은 1회 제공량 기준이야. json데이터 외에 다른 말은 하지 마"
+        
+        guard let base64Image = encodeImage(image: image) else {
+            print("failed to encode image to base64")
+            return
+        }
+        
+    
+        let headers = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer \(apiKey)"
+        ]
+
+        let payload: [String: Any] = [
+            "model": "gpt-4o",
+            "messages": [
+                [
+                    "role": "user",
+                    "content": [
+                        [
+                            "type": "text",
+                            "text": "\(prompt)"
+                        ],
+                        [
+                            "type": "image_url",
+                            "image_url": [
+                                "url": "data:image/jpeg;base64,\(base64Image)"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "max_tokens": 300
+        ]
+
+        guard let url = URL(string: apiURL) else {
+            print("Invalid URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            guard let data = data else {
+                print("No data")
+                return
+            }
+            
+            if let nutrientInfo = self.parseContentFromResponse(data) {
+                DispatchQueue.main.async{
+                    self.updateLabels(with: nutrientInfo)
+                    
+                }
+                
+                } else {
+                    print("Failed to parse and update labels")
+                    
+                }
+        }
+
+        task.resume()
+    }
+    
+    //MARK: - util functions for api
+    
+    func encodeImage(image: UIImage) -> String? {
+        guard let imageData = image.jpegData(compressionQuality: 0.9) else {
+            print("Image data could not be converted to JPEG format.")
+            return nil
+        }
+        return imageData.base64EncodedString()
+    }
+    
+    func parseContentFromResponse(_ data: Data) -> [String: String]? {
+        do {
+            if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let choices = jsonObject["choices"] as? [[String: Any]],
+               let message = choices.first?["message"] as? [String: Any],
+               let content = message["content"] as? String {
+                
+                let jsonString = content
+                    .replacingOccurrences(of: "```json", with: "")
+                    .replacingOccurrences(of: "```", with: "")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                if let nutrientData = jsonString.data(using: .utf8),
+                   let nutrientObject = try JSONSerialization.jsonObject(with: nutrientData, options: []) as? [String: Any] {
+                    
+                    var stringDictionary = [String: String]()
+                    for (key, value) in nutrientObject {
+                        stringDictionary[key] = "\(value)"
+                    }
+                    print(stringDictionary)
+                    return stringDictionary
+                }
+            }
+        } catch {
+            print("Failed to parse JSON: \(error.localizedDescription)")
+        }
+        
+        return nil
     }
     
     func updateLabels(with json: [String: String]) {

@@ -110,6 +110,7 @@ class CaptureImgViewController: UIViewController {
         if segue.identifier == "showNutirtionSG" {
             let destinationVC = segue.destination as! NutritionResultViewController
             destinationVC.menuImg = capturedImg
+            destinationVC.captureType = captureType
             destinationVC.mealTime = MealTime(rawValue: mealTime!)
         }
     }
