@@ -12,12 +12,14 @@ PODS:
     - KakaoSDKCommon/Common (= 2.18.2)
   - KakaoSDKUser (2.18.2):
     - KakaoSDKAuth (= 2.18.2)
+  - Switches (3.0.0)
 
 DEPENDENCIES:
   - FSCalendar
   - KakaoSDKAuth
   - KakaoSDKCommon
   - KakaoSDKUser
+  - Switches
 
 SPEC REPOS:
   trunk:
@@ -26,6 +28,7 @@ SPEC REPOS:
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
+    - Switches
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
@@ -33,7 +36,8 @@ SPEC CHECKSUMS:
   KakaoSDKAuth: 3daf72ec463876e0fe6d0d37c7d6b0b2729169f1
   KakaoSDKCommon: 516f68bc6b223ed502c34a362d6ecc9145e0dcc0
   KakaoSDKUser: 5b0826033381d314f550dd90fbf70d3612044ad6
+  Switches: 6d54f7cafb1b7d7c405b19cf7b3de925742d0a55
 
-PODFILE CHECKSUM: cbb3780a10423c8960a4e000896193207d0e30d0
+PODFILE CHECKSUM: 6ba3ff32814090876246f5687424b4d1cb23b360
 
 COCOAPODS: 1.12.1

@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  konmechu
+//
+//  Created by 정재연 on 4/14/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+SERVER_URL = https://example.com/api

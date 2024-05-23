@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import Switches
 
 class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
@@ -32,12 +33,33 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     let imagePickerController = UIImagePickerController()
     
     
+    @IBOutlet weak var captureTypeLabel: UILabel!
+    
+    @IBOutlet weak var switchCaptureType: YapSwitch! {
+        didSet {
+            switchCaptureType.onText = "사진"
+            switchCaptureType.offText = "OCR"
+            switchCaptureType.onTextColor = .white
+            switchCaptureType.offTextColor = .white
+            switchCaptureType.onTintColor = .black.withAlphaComponent(0.5)
+            switchCaptureType.offTintColor = .black.withAlphaComponent(0.5)
+            switchCaptureType.offThumbTintColor = .white
+            switchCaptureType.onThumbTintColor = .white
+        }
+    }
+    
+    
+    @IBOutlet weak var textButton: UIButton!
+    
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
+    var captureType :CaptureType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        switchCaptureType.addTarget(self, action: #selector(switchToogle(_:)), for: .valueChanged)
+        switchCaptureType.isOn = true
         
         imagePickerController.delegate = self
         
@@ -52,6 +74,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     //MARK: - UI setup
     func setupView() {
+        
+        textButton.setTitle("음식이름 직접 입력하기", for: .normal)
+        
+        captureTypeLabel.font = .boldSystemFont(ofSize: 18)
         captureImageBtn.layer.cornerRadius = captureImageBtn.frame.width / 2
         captureImageBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
         captureImageBtn.layer.shadowOpacity = 0.8
@@ -251,11 +277,29 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         }
     }
     
+    //MARK: - Switches function
+    
+    @objc func switchToogle(_ sender: YapSwitch) {
+        
+        if sender.isOn {
+            self.captureTypeLabel.text = "음식 사진 인식"
+            captureTypeLabel.font = .boldSystemFont(ofSize: 18)
+            captureType = .FOODIMG
+        }
+        
+        if !sender.isOn {
+            self.captureTypeLabel.text = "영양성분표 인식"
+            captureTypeLabel.font = .boldSystemFont(ofSize: 18)
+            captureType = .OCR
+        }
+    }
+    
     //MARK: - Segue Prepare function
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CaptureImgSG" {
             let destinationVC = segue.destination as! CaptureImgViewController
             destinationVC.capturedImg = imgToSend
+            destinationVC.captureType = captureType
         }
     }
 
