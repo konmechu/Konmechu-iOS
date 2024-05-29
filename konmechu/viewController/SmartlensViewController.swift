@@ -51,12 +51,22 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     @IBOutlet weak var textButton: UIButton!
     
+    @IBOutlet weak var mealNameTextField: UITextField!
+    
+    @IBOutlet weak var textMainView: UIView!
+    
+    @IBOutlet weak var dismissTextMainViewBtn: UIButton!
+    
+    @IBOutlet weak var calculateNutritionByTextBtn: UIButton!
+    
     //let capturedImageView = CapturedImageView()
     var imgToSend :UIImage?
-    var captureType :CaptureType?
+    var captureType :CaptureType? = .FOODIMG
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.hideKeyboardWhenTappedAround()
+        
         setupView()
         switchCaptureType.addTarget(self, action: #selector(switchToogle(_:)), for: .valueChanged)
         switchCaptureType.isOn = true
@@ -86,6 +96,8 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         selectImgFromAlbum.layer.cornerRadius = 10
         selectImgFromAlbum.layer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
+        
+        textButton.addTarget(self, action: #selector(activateTextField), for: .touchUpInside)
     }
     
     //MARK: - Camera Setup
@@ -175,7 +187,6 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     func switchCameraInput() {
         // 스위치되는 동안 사용자가 버튼을 스팸처럼 연타하지 못하도록 합니다.
-        // 사용자에게는 재미가 있지만 성능에는 재미가 없습니다.
         //switchCameraButton.isUserInteractionEnabled = false
 
         //input 재설정
@@ -245,6 +256,31 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     }
     
     
+    @IBAction func textBtnDidTap(_ sender: Any) {
+        textMainView.isHidden = false
+        stopCaptureSession()
+    }
+    
+    
+    @IBAction func calculateNutritionByTextBtnDidTap(_ sender: Any) {
+        imgToSend = nil
+        captureType = .FOODNAME
+        
+        self.isTakePicture = false
+        
+        textMainView.isHidden = true
+        
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "CaptureImgSG", sender: nil)
+        }
+    }
+    
+    
+    @IBAction func dismissTextMainViewBtnDidTap(_ sender: Any) {
+        textMainView.isHidden = true
+        restartCaptureSession()
+    }
+    
     
     
     @objc func switchCamera(_ sender: UIButton?) {
@@ -277,6 +313,11 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         }
     }
     
+    //MARK: - util functions
+    @objc func activateTextField() {
+            mealNameTextField.becomeFirstResponder()
+        }
+    
     //MARK: - Switches function
     
     @objc func switchToogle(_ sender: YapSwitch) {
@@ -300,6 +341,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
             let destinationVC = segue.destination as! CaptureImgViewController
             destinationVC.capturedImg = imgToSend
             destinationVC.captureType = captureType
+            destinationVC.mealText = mealNameTextField.text
         }
     }
 

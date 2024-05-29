@@ -34,6 +34,7 @@ class CaptureImgViewController: UIViewController {
 
     public var capturedImg : UIImage?
     public var captureType : CaptureType?
+    public var mealText : String?
     
     private var mealTime : String?
     
@@ -61,13 +62,22 @@ class CaptureImgViewController: UIViewController {
         
         capturedImgView.layer.cornerRadius = 35
         
-        capturedImgView.image = capturedImg
-        
-        if captureType == .FOODIMG {
-            captureTypeInfoLabel.text = "음식의 사진이 맞나요?"
+        if capturedImg == nil {
+            captureTypeInfoLabel.text = mealText
+            capturedImgView.image = UIImage(systemName: "photo")?.withTintColor(.black.withAlphaComponent(0.5))
+            
         } else {
-            captureTypeInfoLabel.text = "영양성분표의 사진이 맞나요?"
+            
+            capturedImgView.image = capturedImg
+            
+            if captureType == .FOODIMG {
+                captureTypeInfoLabel.text = "음식의 사진이 맞나요?"
+            } else {
+                captureTypeInfoLabel.text = "영양성분표의 사진이 맞나요?"
+            }
         }
+        
+        
         
     }
     

@@ -96,11 +96,14 @@ class NutritionResultViewController: UIViewController {
             analysisFoodImage(image: menuImg!) { response in
                 print(response ?? "No response received from Ai service server")
             }
-        }else {
+        } else if captureType == CaptureType.OCR {
             analysisOCRImage(image: menuImg!) { response in
                     print(response ?? "No response received from GPT")
             }
+        } else {
+            //음식이름으로 영양성분 분석
         }
+        
         
         
         nutritionViews.append(kcalView)
