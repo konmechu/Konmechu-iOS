@@ -28,9 +28,17 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
     
     //MARK: - Nutritioin info var
-        
+    
+    
+    @IBOutlet weak var nutritionBaseStackView: UIStackView!
+    
     @IBOutlet weak var nutritionBaseView: UIView!
     
+    
+    
+    @IBOutlet weak var nutritionAppendBtn: UIButton!
+    
+    @IBOutlet weak var nutritionAppendStatusLabel: UILabel!
     
     
     @IBOutlet weak var kcalView: UIView!
@@ -41,7 +49,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var fatView: UIView!
     
-    @IBOutlet weak var sugarsView: UIView!
+    @IBOutlet weak var natriumView: UIView!
     
     
     @IBOutlet weak var isKcalProperLabel: UILabel!
@@ -52,7 +60,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var isFatProperLabel: UILabel!
     
-    @IBOutlet weak var isSugarsProperLabel: UILabel!
+    @IBOutlet weak var isNatriumProperLabel: UILabel!
     
     
     
@@ -64,7 +72,30 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var fatLabel: UILabel!
     
-    @IBOutlet weak var sugarsLabel: UILabel!
+    @IBOutlet weak var natriumLabel: UILabel!
+    
+    
+    
+    
+    
+    @IBOutlet weak var nutritionDetailView: UIView!
+    
+    
+    @IBOutlet weak var cholesterolTitleLabel: UILabel!
+    
+    @IBOutlet weak var totalSaturatedFattyAcidsTitleLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsTitleLabel: UILabel!
+    
+    
+    @IBOutlet weak var cholesterolLabel: UILabel!
+    
+    @IBOutlet weak var totalSaturatedFattyAcidsLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsLabel: UILabel!
+    
+    private var nutritionDetailViews: [UILabel] = []
+    
     
     private var nutritionViews: [UIView] = []
     
@@ -457,18 +488,37 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - NutritionInfoView
     func setNutritionInfoViewUI() {
         
-        nutritionBaseView.layer.cornerRadius = 20
+        nutritionAppendBtn.contentHorizontalAlignment = .left
         
-        nutritionBaseView.backgroundColor = nutritionBaseView.backgroundColor?.withAlphaComponent(0.2)
+        nutritionDetailViews.append(cholesterolLabel)
+        nutritionDetailViews.append(totalSaturatedFattyAcidsLabel)
+        nutritionDetailViews.append(totalSugarsLabel)
         
-        nutritionBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        nutritionBaseView.layer.shadowOpacity = 0.7
+        nutritionDetailViews.append(cholesterolTitleLabel)
+        nutritionDetailViews.append(totalSaturatedFattyAcidsTitleLabel)
+        nutritionDetailViews.append(totalSugarsTitleLabel)
+        
+        for view in nutritionDetailViews {
+            view.alpha = 0
+        }
+
+
+        
+        nutritionBaseStackView.backgroundColor = nutritionBaseStackView.backgroundColor?.withAlphaComponent(0.2)
+        
+        nutritionBaseStackView.layer.cornerRadius = 20
+        
+        nutritionBaseStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        nutritionBaseStackView.layer.shadowOpacity = 0.7
+        
+        nutritionBaseStackView.layer.cornerRadius = 20
+
         
         nutritionViews.append(kcalView)
         nutritionViews.append(carbohydrateView)
         nutritionViews.append(proteinView)
         nutritionViews.append(fatView)
-        nutritionViews.append(sugarsView)
+        nutritionViews.append(natriumView)
         
         for view in nutritionViews {
             view.layer.cornerRadius = view.layer.bounds.width / 2
@@ -486,7 +536,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             self.carbohydrateLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCarbs * 4))g"
             self.proteinLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalProtein * 4))g"
             self.fatLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFat * 4))g"
-            self.sugarsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFiber * 4))g"
+            self.natriumLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFiber * 4))g"
         }
         
         if let totalNutritionInfo = totalNutritionInfo {
@@ -496,12 +546,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         carbohydrateView: carbohydrateView,
                         proteinView: proteinView,
                         fatView: fatView,
-                        sugarsView: sugarsView,
+                        sugarsView: natriumView,
                         isKcalProperLabel: isKcalProperLabel,
                         isCarboProperLabel: isCarboProperLabel,
                         isProteinProperLabel: isProteinProperLabel,
                         isFatProperLabel: isFatProperLabel,
-                        isSugarsProperLabel: isSugarsProperLabel
+                        isSugarsProperLabel: isNatriumProperLabel
                     )
         }
         
@@ -609,6 +659,28 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                 })
             }
         }
+    }
+    
+    
+    @IBAction func nutritionAppendBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.nutritionDetailView.isHidden = !self.nutritionDetailView.isHidden
+        })
+        
+        if self.nutritionDetailView.isHidden {
+            self.nutritionAppendStatusLabel.text = "상세보기"
+            for view in self.nutritionDetailViews {
+                view.alpha = 0
+            }
+        } else {
+            UIView.animate(withDuration: 0.9, animations: {
+                self.nutritionAppendStatusLabel.text = "접기"
+                for view in self.nutritionDetailViews {
+                    view.alpha = 1
+                }
+            })
+        }
+        
     }
     
     

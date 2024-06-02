@@ -14,6 +14,7 @@ class NutritionResultViewController: UIViewController {
     
     
     
+    
     @IBOutlet weak var kcalView: UIView!
     
     @IBOutlet weak var carbohydrateView: UIView!
