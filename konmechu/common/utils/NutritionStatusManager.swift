@@ -56,7 +56,7 @@ class NutritionStatusManager {
             self.updateView(self.carbohydrateView, andLabel: self.isCarboProperLabel, withValue: self.totalNutritionInfo.totalCarbs * 4, properRange: NutritionLimits.carbsProper)
             self.updateView(self.proteinView, andLabel: self.isProteinProperLabel, withValue: self.totalNutritionInfo.totalProtein * 4, properRange: NutritionLimits.proteinProper)
             self.updateView(self.fatView, andLabel: self.isFatProperLabel, withValue: self.totalNutritionInfo.totalFat * 4, properRange: NutritionLimits.fatProper)
-            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalFiber * 4, properRange: NutritionLimits.sugarsProper)
+            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalNatrium * 4, properRange: NutritionLimits.sugarsProper)
         }
     }
     

@@ -23,7 +23,7 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var fatView: UIView!
     
-    @IBOutlet weak var sugarsView: UIView!
+    @IBOutlet weak var natriumView: UIView!
     
     
     
@@ -35,11 +35,27 @@ class NutritionResultViewController: UIViewController {
     
     @IBOutlet weak var fatLabel: UILabel!
     
-    @IBOutlet weak var sugarsLabel: UILabel!
+    @IBOutlet weak var natritumLabel: UILabel!
     
     
     
+    @IBOutlet weak var cholesterolTitleLabel: UILabel!
     
+    @IBOutlet weak var totalSaturatedFattyAcidsTitleLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsTitleLabel: UILabel!
+    
+    @IBOutlet weak var servingSizeTitleLabel: UILabel!
+    
+    
+    
+    @IBOutlet weak var cholesterolLabel: UILabel!
+    
+    @IBOutlet weak var totalSaturatedFattyAcidsLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsLabel: UILabel!
+    
+    @IBOutlet weak var servingSizeLabel: UILabel!
     
     
     @IBOutlet weak var menuImgView: UIImageView!
@@ -111,7 +127,7 @@ class NutritionResultViewController: UIViewController {
         nutritionViews.append(carbohydrateView)
         nutritionViews.append(proteinView)
         nutritionViews.append(fatView)
-        nutritionViews.append(sugarsView)
+        nutritionViews.append(natriumView)
         
         for view in nutritionViews {
             view.layer.cornerRadius = view.layer.bounds.width / 2
@@ -264,7 +280,7 @@ class NutritionResultViewController: UIViewController {
             return
         }
                         
-        var prompt = "영양성분표에 있는 영양성분을 json형태의 데이터로 나타내. 다음과 같은 키값에: 열량(kcal), 탄수화물(g), 단백질(g), 지방(g), 당류(g) int형식의 value를 넣어 json 형태 데이터로 응답받을거야 키값은 항상 내가 적은 것과 동일해야해 ()포함, 모든 영양성분과 열량(kcal)은 1회 제공량 기준이야. json데이터 외에 다른 말은 하지 마"
+        var prompt = "영양성분표에 있는 영양성분을 json형태의 데이터로 나타내. 다음과 같은 키값에: 열량(kcal), 탄수화물(g), 단백질(g), 지방(g), 나트륨(mg), 콜레스테롤(mg), 총포화지방산(g), 총당류(g), 1회제공량(g) Float형식의 value를 넣어 json 형태 데이터로 응답받을거야 키값은 항상 내가 적은 것과 동일해야해 ()포함, 모든 영양성분과 열량(kcal)은 1회 제공량 기준이야. json데이터 외에 다른 말은 하지 마"
         
         guard let base64Image = encodeImage(image: image) else {
             print("failed to encode image to base64")
@@ -382,8 +398,13 @@ class NutritionResultViewController: UIViewController {
         carbohydrateLabel.text = (json["탄수화물(g)"]?.isEmpty ?? true) ? "0g" : json["탄수화물(g)"]! + "g"
         proteinLabel.text = (json["단백질(g)"]?.isEmpty ?? true) ? "0g" : json["단백질(g)"]! + "g"
         fatLabel.text = (json["지방(g)"]?.isEmpty ?? true) ? "0g" : json["지방(g)"]! + "g"
-        sugarsLabel.text = (json["당류(g)"]?.isEmpty ?? true) ? "0g" : json["당류(g)"]! + "g"
+        natritumLabel.text = (json["나트륨(mg)"]?.isEmpty ?? true) ? "0mg" : json["나트륨(mg)"]! + "mg"
         
+        cholesterolLabel.text = (json["콜레스테롤(mg)"]?.isEmpty ?? true) ? "0mg" : json["콜레스테롤(mg)"]! + "mg"
+        totalSaturatedFattyAcidsLabel.text = (json["총포화지방산(g)"]?.isEmpty ?? true) ? "0g" : json["총포화지방산(g)"]! + "g"
+        totalSugarsLabel.text = (json["총당류(g)"]?.isEmpty ?? true) ? "0g" : json["총당류(g)"]! + "g"
+        servingSizeLabel.text = (json["1회제공량(g)"]?.isEmpty ?? true) ? "0g" : json["1회제공량(g)"]! + "g"
+
     }
     
     // app server 에 저장할 RequestDto JSON 데이터 생성
@@ -395,7 +416,13 @@ class NutritionResultViewController: UIViewController {
         let protein = Float(proteinLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
         let fat = Float(fatLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
         let carbs = Float(carbohydrateLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
-        let fiber = Float(sugarsLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let natrium = Float(natritumLabel.text?.replacingOccurrences(of: "mg", with: "") ?? "0") ?? 0
+        
+        let cholesterol = Float(cholesterolLabel.text?.replacingOccurrences(of: "mg", with: "") ?? "0") ?? 0
+        let totalSaturatedFattyAcids = Float(totalSaturatedFattyAcidsLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let totalSugar = Float(totalSugarsLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+        let servingSize = Float(servingSizeLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
+
         
         // Dictionary로 메뉴 세부 정보 구성
         let menuDetails: [String: Any] = [
@@ -405,7 +432,11 @@ class NutritionResultViewController: UIViewController {
             "protein": protein,
             "fat": fat,
             "carbs": carbs,
-            "fiber": fiber
+            "natrium": natrium,
+            "cholesterol": cholesterol,
+            "totalSaturatedFattyAcids" : totalSaturatedFattyAcids,
+            "totalSugar": totalSugar,
+            "servingSize": servingSize
         ]
         
         // Dictionary를 JSON Data로 변환

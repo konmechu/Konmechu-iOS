@@ -536,7 +536,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             self.carbohydrateLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCarbs * 4))g"
             self.proteinLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalProtein * 4))g"
             self.fatLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFat * 4))g"
-            self.natriumLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFiber * 4))g"
+            self.natriumLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalNatrium * 4))g"
         }
         
         if let totalNutritionInfo = totalNutritionInfo {

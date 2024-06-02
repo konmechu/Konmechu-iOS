@@ -13,14 +13,23 @@ class TotalNutritionResponseDto: Codable {
     var totalProtein: Double
     var totalFat: Double
     var totalCarbs: Double
-    var totalFiber: Double
+    var totalNatrium: Double
+    
+    var totalCholesterol: Double
+    var totalSaturatedFattyAcids: Double
+    var totalSugars: Double
     
     enum CodingKeys: String, CodingKey {
         case totalCalories = "totalCalories"
         case totalProtein = "totalProtein"
         case totalFat = "totalFat"
         case totalCarbs = "totalCarbs"
-        case totalFiber = "totalFiber"
+        case totalNatrium = "totalNatrium"
+        
+        case totalCholesterol = "totalCholesterol"
+        case totalSaturatedFattyAcids = "totalSaturatedFattyAcids"
+        case totalSugars = "totalSugars"
+
     }
 }
 
