@@ -252,18 +252,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recommendationStackView.layer.shadowOpacity = 0.7
-        
-        // 서버에서 받을 데이터를 위한 구조체
-        struct RecommendationResponse: Codable {
-            let recommend: String
-        }
 
         // API endpoint
-        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
             print("Error: cannot find key ServerURL in info.plist")
             return
         }
-        let urlString = "\(endPointURL)/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        let urlString = "\(endPointURL)/food_recommendation" // 실제 엔드포인트 URL로 변경해야 합니다.
         guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
@@ -274,16 +269,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         request.httpMethod = "GET"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 
-        // URLSession을 사용한 HTTP 요청
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            // 에러 체크
             if let error = error {
                 print("Error: \(error)")
                 return
             }
 
-            // 응답 체크
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode),
                   let mimeType = httpResponse.mimeType,
@@ -294,12 +286,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             }
 
             do {
-                // JSON 데이터를 RecommendationResponse로 디코드
-                let responseData = try JSONDecoder().decode(RecommendationResponse.self, from: data)
-                // 디코드된 데이터를 사용하여 무언가를 수행합니다.
+                let responseData = try JSONDecoder().decode(Root.self, from: data)
                 DispatchQueue.main.async {
-                    // UI 업데이트는 메인 스레드에서 수행해야 합니다.
-                    self.recoTextView.text = responseData.recommend
+                    self.recoTextView.text = responseData.recommendedFood.foodName
                 }
             } catch {
                 print("Error: Decoding JSON failed: \(error)")
