@@ -257,6 +257,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     
     @IBAction func textBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0.8
+        })
+
         textMainView.isHidden = false
         stopCaptureSession()
     }
@@ -277,6 +281,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     
     @IBAction func dismissTextMainViewBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0
+        })
+        
         textMainView.isHidden = true
         restartCaptureSession()
     }
