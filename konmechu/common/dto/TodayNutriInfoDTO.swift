@@ -39,12 +39,14 @@ class MenuResponseDto: Codable {
     var food: String
     var meal: String
     var menuImageUrls: [String]
+    var isThumbsUp: Bool
     
     enum CodingKeys: String, CodingKey {
         case menuId = "menuId"
         case food = "food"
         case meal = "meal"
         case menuImageUrls = "menuImageUrls"
+        case isThumbsUp = "isThumbsUp"
     }
 }
 

@@ -14,6 +14,8 @@ class menuTableViewCell: UITableViewCell {
     
     @IBOutlet weak var mealTimeLabel: UILabel!
     
+    @IBOutlet weak var thumbsUpBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

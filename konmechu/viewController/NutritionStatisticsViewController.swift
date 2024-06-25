@@ -432,9 +432,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         }
         
         cell.mealTimeLabel?.text = target.food
-        cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+        cell.thumbsUpBtn.setImage((target.isThumbsUp == true ? UIImage(systemName: "hand.thumbsup.fill") : UIImage(systemName: "hand.thumbsup")), for: .normal)
         
-                
+        cell.thumbsUpBtn.tag = indexPath.row
+        cell.thumbsUpBtn.addTarget(self, action: #selector(thumbsUpButtonTapped(sender:)), for: .touchUpInside)
+        
+        
+        cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
         cell.selectionStyle = .none
 
                
@@ -467,6 +471,21 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     let cellName = "menuTableViewCell"
     let cellReuseIdentifier = "menuCell"
+    
+    @objc func thumbsUpButtonTapped(sender: UIButton) {
+        
+        DispatchQueue.main.async {
+            if sender.image(for: .normal)!.isEqual(UIImage(named: "hand.thumbsup.fill")) {
+                sender.setImage(UIImage(named: "hand.thumbsup"), for: .normal)
+            } else {
+                sender.setImage(UIImage(named: "hand.thumbsup.fill"), for: .normal)
+            }
+        }
+        
+        print("\(sender.tag) 버튼의 Tag로 index값을 받아서 해당 식사id를 요청에 포함시켜 좋아요 기능 구현")
+
+        
+    }
     
     private func registerXib() {
         let nibName = UINib(nibName: cellName, bundle: nil)

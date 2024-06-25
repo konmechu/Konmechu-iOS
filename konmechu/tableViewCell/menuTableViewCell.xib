@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,20 +30,32 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-5f-De8" userLabel="이">
+                        <rect key="frame" x="0.0" y="50.333333333333329" width="49.333333333333336" height="34.333333333333329"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup" catalog="system"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-31" id="2bL-Nf-Xnu"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-74.666666666666629" id="UA4-y4-YNc"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
+                    <constraint firstItem="SiV-5f-De8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tHM-g2-CSI"/>
+                    <constraint firstItem="SiV-5f-De8" firstAttribute="centerY" secondItem="h32-MB-4a9" secondAttribute="centerY" id="ybf-1C-aqL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="mealTimeLabel" destination="h32-MB-4a9" id="4pI-WG-lYd"/>
                 <outlet property="menuImgView" destination="reu-2l-kll" id="Eek-zf-7FJ"/>
+                <outlet property="thumbsUpBtn" destination="SiV-5f-De8" id="uig-Nn-mSU"/>
             </connections>
             <point key="canvasLocation" x="257.25190839694653" y="20.422535211267608"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="hand.thumbsup" catalog="system" width="123" height="128"/>
+    </resources>
 </document>
