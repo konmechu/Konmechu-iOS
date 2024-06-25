@@ -15,7 +15,7 @@ class NutritionStatusManager {
         static let carbsProper = (104.0...140.0)      // 80-120% of 55-65% of daily intake
         static let proteinProper = (56.0...90.0)     // 80-120% of 10-20% of daily intake
         static let fatProper = (41.0...61.0)      // 80-120% of 20-30% of daily intake
-        static let sugarsProper = (0.0...65.0)       // Up to 10% of daily intake
+        static let natriumProper = (0.0...2.0)
     }
     
     private var totalNutritionInfo: TotalNutritionResponseDto
@@ -52,11 +52,11 @@ class NutritionStatusManager {
     func updateNutritionStatus() {
         DispatchQueue.main.async {
             // Update the views and labels based on the nutritional info
-            self.updateView(self.kcalView, andLabel: self.isKcalProperLabel, withValue: self.totalNutritionInfo.totalCalories * 4, properRange: NutritionLimits.caloriesProper)
-            self.updateView(self.carbohydrateView, andLabel: self.isCarboProperLabel, withValue: self.totalNutritionInfo.totalCarbs * 4, properRange: NutritionLimits.carbsProper)
-            self.updateView(self.proteinView, andLabel: self.isProteinProperLabel, withValue: self.totalNutritionInfo.totalProtein * 4, properRange: NutritionLimits.proteinProper)
-            self.updateView(self.fatView, andLabel: self.isFatProperLabel, withValue: self.totalNutritionInfo.totalFat * 4, properRange: NutritionLimits.fatProper)
-            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalNatrium * 4, properRange: NutritionLimits.sugarsProper)
+            self.updateView(self.kcalView, andLabel: self.isKcalProperLabel, withValue: self.totalNutritionInfo.totalCalories, properRange: NutritionLimits.caloriesProper)
+            self.updateView(self.carbohydrateView, andLabel: self.isCarboProperLabel, withValue: self.totalNutritionInfo.totalCarbs, properRange: NutritionLimits.carbsProper)
+            self.updateView(self.proteinView, andLabel: self.isProteinProperLabel, withValue: self.totalNutritionInfo.totalProtein, properRange: NutritionLimits.proteinProper)
+            self.updateView(self.fatView, andLabel: self.isFatProperLabel, withValue: self.totalNutritionInfo.totalFat, properRange: NutritionLimits.fatProper)
+            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalNatrium, properRange: NutritionLimits.natriumProper)
         }
     }
     

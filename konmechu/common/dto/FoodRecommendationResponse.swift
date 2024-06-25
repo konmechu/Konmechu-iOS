@@ -35,3 +35,14 @@ struct Root: Decodable {
         case recommendedFood = "recommended_food"
     }
 }
+
+let dummyRecoData = """
+{
+  "recommended_food": {
+    "식품명": "비빔밥",
+    "ingredients": {
+      "식품명": "비빔밥"
+    }
+  }
+}
+"""
