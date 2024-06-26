@@ -554,7 +554,7 @@ class NutritionResultViewController: UIViewController {
         // 라벨에서 텍스트를 추출하고 적절한 타입으로 변환합니다.
         let food = menuNameLabel.text ?? "Unknown"
         let meal = mealTime?.rawValue ?? "아침" // mealTime을 기반으로 "아침", "점심", "저녁" 중 하나를 설정해야 할 수도 있습니다.
-        let calories = Float(kcalLabel.text?.replacingOccurrences(of: "kcal", with: "") ?? "0") ?? 0
+        let calories = Float(kcalLabel.text?.replacingOccurrences(of: "Kcal", with: "") ?? "0") ?? 0
         let protein = Float(proteinLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
         let fat = Float(fatLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
         let carbs = Float(carbohydrateLabel.text?.replacingOccurrences(of: "g", with: "") ?? "0") ?? 0
