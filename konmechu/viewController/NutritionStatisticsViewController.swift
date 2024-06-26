@@ -203,7 +203,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
 
             do {
                 // JSON 데이터를 NutritionInfoResponse로 디코드
-                let responseWrapper = try JSONDecoder().decode(ResponseWrapper.self, from: nutritionJsonString.data(using: .utf8)!)
+                let responseWrapper = try JSONDecoder().decode(ResponseWrapper.self, from: dummyNutritionJsonString.data(using: .utf8)!)
                     let nutritionInfo = responseWrapper.result
                 
                 //menuTableView 업데이트

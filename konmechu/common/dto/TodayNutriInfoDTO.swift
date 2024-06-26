@@ -66,7 +66,7 @@ struct ResponseWrapper: Codable {
     // 필요한 경우 여기에 다른 최상위 레벨 키를 추가할 수 있습니다.
 }
 
-let nutritionJsonString = """
+let dummyNutritionJsonString = """
 {
   "result": {
     "totalNutritionResponseDto": {

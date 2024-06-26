@@ -15,7 +15,7 @@ class NutritionStatusManager {
         static let carbsProper = (104.0...140.0)      // 80-120% of 55-65% of daily intake
         static let proteinProper = (56.0...90.0)     // 80-120% of 10-20% of daily intake
         static let fatProper = (41.0...61.0)      // 80-120% of 20-30% of daily intake
-        static let natriumProper = (0.0...2.0)
+        static let natriumProper = (0.0...2.0) // 2000mg 이하 섭취 권장
     }
     
     private var totalNutritionInfo: TotalNutritionResponseDto
