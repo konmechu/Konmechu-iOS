@@ -254,49 +254,51 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         recommendationStackView.layer.shadowOpacity = 0.7
 
 //        // API endpoint
-//        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
-//            print("Error: cannot find key ServerURL in info.plist")
-//            return
-//        }
-//        let urlString = "\(endPointURL)/food_recommendation" // 실제 엔드포인트 URL로 변경해야 합니다.
-//        guard let url = URL(string: urlString) else {
-//            print("Error: cannot create URL")
-//            return
-//        }
-//
-//        // URLRequest 생성
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-//
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print("Error: \(error)")
-//                return
-//            }
-//
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode),
-//                  let mimeType = httpResponse.mimeType,
-//                  mimeType == "application/json",
-//                  let data = data else {
-//                print("Error: invalid HTTP response")
-//                return
-//            }
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
+            print("Error: cannot find key ServerURL in info.plist")
+            return
+        }
+        let urlString = "\(endPointURL)/food_recommendation" // 실제 엔드포인트 URL로 변경해야 합니다.
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
 
             do {
-                let responseData = try JSONDecoder().decode(Root.self, from: dummyRecoData.data(using: .utf8)!)
+                let responseData = try JSONDecoder().decode(Root.self, from: data)
                 DispatchQueue.main.async {
-                    self.recoTextView.text = responseData.recommendedFood.foodName
+                    self.recoTextView.text = "1. " + responseData.recommendedFood.food1.name + "\n\n" + responseData.recommendedFood.food1.reason + "\n\n" +
+                    "2. " + responseData.recommendedFood.food2.name + "\n\n" + responseData.recommendedFood.food2.reason + "\n\n" +
+                    "3. " + responseData.recommendedFood.food3.name + "\n\n" + responseData.recommendedFood.food3.reason
                 }
             } catch {
                 print("Error: Decoding JSON failed: \(error)")
             }
-//        }
+        }
 
         // 요청 시작
-//        task.resume()
+        task.resume()
 
         
     }

@@ -65,11 +65,11 @@ class NutritionResultViewController: UIViewController {
     @IBOutlet weak var menuNameLabel: UILabel!
     
     
+    @IBOutlet weak var modifyFoodNameBtn: UIButton!
     
+    @IBOutlet weak var textMainView: UIView!
     
-    
-    
-    
+    @IBOutlet weak var foodNameTextField: UITextField!
     
     
     public var menuImg : UIImage?
@@ -85,8 +85,11 @@ class NutritionResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.hideKeyboardWhenTappedAround()
+
         setUI()
+        modifyFoodNameBtn.addTarget(self, action: #selector(activateTextField), for: .touchUpInside)
+
     }
     
     private func setUI() {
@@ -158,7 +161,9 @@ class NutritionResultViewController: UIViewController {
             print("Error: cannot find key ServerURL in info.plist")
             return
         }
-        let urlString = "\(String(describing: endPointURL))/app/menus" // 실제 엔드포인트 URL로 변경해야 합니다.
+        
+        let urlString = "\(String(describing: endPointURL))/app/foods/4" // 실제 엔드포인트 URL로 변경해야 합니다.
+        print(urlString)
         guard let url = URL(string: urlString) else {
             print("Invalid URL.")
             return
@@ -176,7 +181,7 @@ class NutritionResultViewController: UIViewController {
         
         // 이미지 부분
         body.append("--\(boundary)\r\n".data(using: .utf8)!)
-        body.append("Content-Disposition: form-data; name=\"menuImages\"; filename=\"menu.jpg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"mealImages\"; filename=\"menu.jpg\"\r\n".data(using: .utf8)!)
         body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
         body.append(imageData)
         body.append("\r\n".data(using: .utf8)!)
@@ -204,7 +209,28 @@ class NutritionResultViewController: UIViewController {
         task.resume()
     }
     
+    @IBAction func modifyFoodNameBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0.8
+            self.textMainView.isHidden = false
+        })
+    }
     
+    
+    @IBAction func confirmButtonDidTap(_ sender: Any) {
+        menuNameLabel.text = foodNameTextField.text
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0
+            self.textMainView.isHidden = true
+        })
+    }
+    
+    @IBAction func textViewDismissBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0
+            self.textMainView.isHidden = true
+        })
+    }
     
     //MARK: - API function
     func analysisFoodImage(image: UIImage, completion: @escaping (String?) -> Void) {
@@ -431,6 +457,11 @@ class NutritionResultViewController: UIViewController {
 
         task.resume()
     }
+    //MARK: - util function
+    
+    @objc func activateTextField() {
+            foodNameTextField.becomeFirstResponder()
+        }
     
     //MARK: - util functions for api
     
@@ -537,17 +568,18 @@ class NutritionResultViewController: UIViewController {
         
         // Dictionary로 메뉴 세부 정보 구성
         let menuDetails: [String: Any] = [
-            "food": food,
-            "meal": meal,
+            "name": food,
+            "meal_time": meal,
             "calories": calories,
             "protein": protein,
             "fat": fat,
-            "carbs": carbs,
-            "natrium": natrium,
-            "cholesterol": cholesterol,
-            "totalSaturatedFattyAcids" : totalSaturatedFattyAcids,
-            "totalSugar": totalSugar,
-            "servingSize": servingSize
+            "carbohydrate": carbs,
+            "sodium": natrium,
+            "total_cholesterol": cholesterol,
+            "total_saturated_fat" : totalSaturatedFattyAcids,
+            "total_sugar": totalSugar,
+            "serving_unit": servingSize,
+            "field": "OCR"
         ]
         
         // Dictionary를 JSON Data로 변환
@@ -558,7 +590,8 @@ class NutritionResultViewController: UIViewController {
             return nil
         }
     }
-
+   
+    
 
 }
 

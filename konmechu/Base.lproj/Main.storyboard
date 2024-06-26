@@ -1688,9 +1688,21 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJg-MH-4Up">
+                                        <rect key="frame" x="270" y="9.3333333333333286" width="83" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="음식 이름 수정하기">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="modifyFoodNameBtnDidTap:" destination="BQE-hS-6Xh" eventType="touchUpInside" id="0H2-uo-83r"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xJg-MH-4Up" secondAttribute="trailing" constant="20" id="4qz-Aa-1bs"/>
                                     <constraint firstAttribute="trailing" secondItem="hVf-5a-2tt" secondAttribute="trailing" constant="10" id="83L-8j-9p8"/>
                                     <constraint firstAttribute="height" constant="150" id="Bpm-HE-Yx5"/>
                                     <constraint firstItem="hVf-5a-2tt" firstAttribute="centerX" secondItem="avh-1e-znU" secondAttribute="centerX" id="DFD-98-p3w"/>
@@ -1700,6 +1712,7 @@
                                     <constraint firstItem="lJf-uJ-iD4" firstAttribute="leading" secondItem="avh-1e-znU" secondAttribute="leading" constant="20" id="hUY-bo-zpy"/>
                                     <constraint firstItem="lJf-uJ-iD4" firstAttribute="top" secondItem="avh-1e-znU" secondAttribute="top" constant="15" id="n2X-0c-tsl"/>
                                     <constraint firstAttribute="trailing" secondItem="mZA-v0-zsq" secondAttribute="trailing" constant="35" id="r74-92-eyh"/>
+                                    <constraint firstItem="xJg-MH-4Up" firstAttribute="centerY" secondItem="lJf-uJ-iD4" secondAttribute="centerY" id="vyT-2R-D19"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLv-DP-e7L">
@@ -1725,19 +1738,77 @@
                                     <action selector="calcelBtnDidTap:" destination="BQE-hS-6Xh" eventType="touchUpInside" id="heR-3Q-30c"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iF0-h4-1jj">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pKt-Hq-rfu">
+                                        <rect key="frame" x="96.666666666666686" y="300" width="200" height="23.333333333333314"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="TlY-qC-7DC"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoI-5K-f5S">
+                                        <rect key="frame" x="96.666666666666686" y="333.33333333333331" width="200" height="3"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="GV6-Ho-cFd"/>
+                                            <constraint firstAttribute="height" constant="3" id="oqC-n2-Ovv"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCH-mq-eXv">
+                                        <rect key="frame" x="174" y="361.33333333333331" width="45" height="27"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="수정 완료"/>
+                                        <connections>
+                                            <action selector="calculateNutritionByTextBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="e9P-zc-bju"/>
+                                            <action selector="confirmButtonDidTap:" destination="BQE-hS-6Xh" eventType="touchUpInside" id="9V7-Z7-ZeK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeC-su-jQg">
+                                        <rect key="frame" x="10.000000000000004" y="45" width="46.333333333333343" height="34.333333333333343"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="dismissTextMainViewBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="gIM-X1-3lr"/>
+                                            <action selector="textViewDismissBtnDidTap:" destination="BQE-hS-6Xh" eventType="touchUpInside" id="nW8-bs-0gh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstItem="MoI-5K-f5S" firstAttribute="top" secondItem="pKt-Hq-rfu" secondAttribute="bottom" constant="10" id="NFK-S0-aKX"/>
+                                    <constraint firstItem="AeC-su-jQg" firstAttribute="leading" secondItem="iF0-h4-1jj" secondAttribute="leading" constant="10" id="OfX-mU-xBz"/>
+                                    <constraint firstItem="pCH-mq-eXv" firstAttribute="centerX" secondItem="iF0-h4-1jj" secondAttribute="centerX" id="Phi-bN-1HE"/>
+                                    <constraint firstItem="pCH-mq-eXv" firstAttribute="top" secondItem="MoI-5K-f5S" secondAttribute="bottom" constant="25" id="b8d-JN-aCI"/>
+                                    <constraint firstItem="pKt-Hq-rfu" firstAttribute="centerX" secondItem="iF0-h4-1jj" secondAttribute="centerX" id="gMZ-vR-bjg"/>
+                                    <constraint firstItem="MoI-5K-f5S" firstAttribute="centerX" secondItem="iF0-h4-1jj" secondAttribute="centerX" id="rJC-aB-LYb"/>
+                                    <constraint firstItem="pKt-Hq-rfu" firstAttribute="top" secondItem="iF0-h4-1jj" secondAttribute="top" constant="300" id="vkJ-Ju-N91"/>
+                                    <constraint firstItem="AeC-su-jQg" firstAttribute="top" secondItem="iF0-h4-1jj" secondAttribute="top" constant="45" id="xbH-oa-EIj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tcT-dh-UnG"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
                             <constraint firstItem="qLv-DP-e7L" firstAttribute="leading" secondItem="tcT-dh-UnG" secondAttribute="leading" constant="20" id="3wM-Sf-Jac"/>
+                            <constraint firstItem="iF0-h4-1jj" firstAttribute="trailing" secondItem="tcT-dh-UnG" secondAttribute="trailing" id="66L-Ur-SaR"/>
                             <constraint firstItem="avh-1e-znU" firstAttribute="leading" secondItem="tcT-dh-UnG" secondAttribute="leading" constant="10" id="6Lw-43-y7F"/>
                             <constraint firstItem="tcT-dh-UnG" firstAttribute="trailing" secondItem="ZQk-A4-MHM" secondAttribute="trailing" constant="20" id="7tY-Ln-vnr"/>
                             <constraint firstItem="tcT-dh-UnG" firstAttribute="trailing" secondItem="avh-1e-znU" secondAttribute="trailing" constant="10" id="F92-KS-IFq"/>
                             <constraint firstItem="avh-1e-znU" firstAttribute="top" secondItem="qLv-DP-e7L" secondAttribute="bottom" constant="20" id="FwW-dK-Iw5"/>
+                            <constraint firstAttribute="bottom" secondItem="iF0-h4-1jj" secondAttribute="bottom" id="IXD-A7-tHD"/>
                             <constraint firstItem="tcT-dh-UnG" firstAttribute="trailing" secondItem="b70-Ed-77P" secondAttribute="trailing" constant="10" id="Jj6-66-iPf"/>
                             <constraint firstItem="ZQk-A4-MHM" firstAttribute="top" secondItem="tcT-dh-UnG" secondAttribute="top" constant="15" id="LVI-Xo-mmR"/>
+                            <constraint firstItem="iF0-h4-1jj" firstAttribute="top" secondItem="LAk-dp-prk" secondAttribute="top" id="SOh-DZ-M6V"/>
                             <constraint firstItem="qLv-DP-e7L" firstAttribute="top" secondItem="tcT-dh-UnG" secondAttribute="top" constant="15" id="Sod-NK-xlZ"/>
                             <constraint firstItem="b70-Ed-77P" firstAttribute="top" secondItem="avh-1e-znU" secondAttribute="bottom" constant="20" id="k7p-i2-vbq"/>
+                            <constraint firstItem="iF0-h4-1jj" firstAttribute="leading" secondItem="tcT-dh-UnG" secondAttribute="leading" id="sGu-up-nMy"/>
                             <constraint firstItem="b70-Ed-77P" firstAttribute="leading" secondItem="tcT-dh-UnG" secondAttribute="leading" constant="10" id="uZI-Zs-92J"/>
                         </constraints>
                     </view>
@@ -1749,11 +1820,13 @@
                         <outlet property="cholesterolTitleLabel" destination="GbS-xg-jhI" id="ThX-mq-f5a"/>
                         <outlet property="fatLabel" destination="U3E-lf-UXV" id="vUF-IB-jDb"/>
                         <outlet property="fatView" destination="DzY-Id-8jW" id="vi5-P6-201"/>
+                        <outlet property="foodNameTextField" destination="pKt-Hq-rfu" id="1PE-NC-YdW"/>
                         <outlet property="kcalLabel" destination="Lgn-8O-tm3" id="Nbx-YQ-n0m"/>
                         <outlet property="kcalView" destination="gFD-7l-yAS" id="y01-7e-1YU"/>
                         <outlet property="menuImgBaseView" destination="avh-1e-znU" id="2Gt-61-tSZ"/>
                         <outlet property="menuImgView" destination="hVf-5a-2tt" id="7xR-tN-6Ze"/>
                         <outlet property="menuNameLabel" destination="mZA-v0-zsq" id="XNC-xT-YBl"/>
+                        <outlet property="modifyFoodNameBtn" destination="xJg-MH-4Up" id="c5i-LO-xtm"/>
                         <outlet property="natritumLabel" destination="Ffh-g2-f5l" id="ezC-Iy-cKp"/>
                         <outlet property="natriumView" destination="LFp-5P-LCj" id="pMa-Aa-gqo"/>
                         <outlet property="nutritionBaseView" destination="b70-Ed-77P" id="gli-fa-XLt"/>
@@ -1761,6 +1834,7 @@
                         <outlet property="proteinView" destination="S0D-Lw-o3D" id="LB4-kB-7t8"/>
                         <outlet property="servingSizeLabel" destination="hEr-gR-2Sb" id="nPc-kC-s5S"/>
                         <outlet property="servingSizeTitleLabel" destination="q2X-rY-0hO" id="jRK-SS-Onf"/>
+                        <outlet property="textMainView" destination="iF0-h4-1jj" id="oCv-6m-mOu"/>
                         <outlet property="totalSaturatedFattyAcidsLabel" destination="Rys-zu-nBE" id="iNv-2Y-Wbn"/>
                         <outlet property="totalSaturatedFattyAcidsTitleLabel" destination="sgT-RE-IhO" id="q1u-cc-z4j"/>
                         <outlet property="totalSugarsLabel" destination="VtD-KM-doD" id="Pnx-U6-8yo"/>
