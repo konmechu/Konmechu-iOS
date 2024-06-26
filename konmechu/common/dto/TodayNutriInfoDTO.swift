@@ -13,21 +13,21 @@ class TotalNutritionResponseDto: Codable {
     var totalProtein: Double
     var totalFat: Double
     var totalCarbs: Double
-    var totalNatrium: Double
+    var totalSodium: Double
     
     var totalCholesterol: Double
-    var totalSaturatedFattyAcids: Double
+    var totalSaturatedFat: Double
     var totalSugars: Double
     
     enum CodingKeys: String, CodingKey {
         case totalCalories = "totalCalories"
         case totalProtein = "totalProtein"
         case totalFat = "totalFat"
-        case totalCarbs = "totalCarbs"
-        case totalNatrium = "totalNatrium"
+        case totalCarbs = "totalCarbohydrate"
+        case totalSodium = "totalSodium"
         
         case totalCholesterol = "totalCholesterol"
-        case totalSaturatedFattyAcids = "totalSaturatedFattyAcids"
+        case totalSaturatedFat = "totalSaturatedFat"
         case totalSugars = "totalSugars"
 
     }
@@ -38,14 +38,14 @@ class MenuResponseDto: Codable {
     var menuId: Int
     var food: String
     var meal: String
-    var menuImageUrls: [String]
-    var isThumbsUp: Bool
+    var mealImagesUrls: [String]
+    var isThumbsUp: String
     
     enum CodingKeys: String, CodingKey {
-        case menuId = "menuId"
+        case menuId = "mealId"
         case food = "food"
         case meal = "meal"
-        case menuImageUrls = "menuImageUrls"
+        case mealImagesUrls = "mealImagesUrls"
         case isThumbsUp = "isThumbsUp"
     }
 }
@@ -57,7 +57,7 @@ class NutritionInfoResponse: Codable {
     
     enum CodingKeys: String, CodingKey {
         case totalNutritionResponseDto = "totalNutritionResponseDto"
-        case menuResponseDtos = "menuResponseDtos"
+        case menuResponseDtos = "mealResponseDtos"
     }
 }
 
@@ -74,9 +74,9 @@ let dummyNutritionJsonString = """
       "totalProtein": 103.0,
       "totalFat": 50,
       "totalCarbs": 120,
-      "totalNatrium": 2,
+      "totalSodium": 2,
       "totalCholesterol": 0.2,
-      "totalSaturatedFattyAcids": 16.7,
+      "totalSaturatedFat": 16.7,
       "totalSugars": 120
     },
     "menuResponseDtos": [
@@ -84,7 +84,7 @@ let dummyNutritionJsonString = """
         "menuId": 1,
         "food": "치킨샐러드",
         "meal": "점심",
-        "menuImageUrls": [
+        "mealImagesUrls": [
           "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEyMjdfMTYx%2FMDAxNjQwNjEyNzU5NTcw.e52p3HPU4cLRtVpVVcCFaexgmxgKyChnCq9V1AzGJksg.VuN1RZm2G26dH3DJEzHLMB6Ccn49UZeDJMitiRI3xMog.JPEG.art_bunny%2Fpb06.jpg&type=sc960_832"
         ],
         "isThumbsUp": true
@@ -93,7 +93,7 @@ let dummyNutritionJsonString = """
         "menuId": 2,
         "food": "사과",
         "meal": "아침",
-        "menuImageUrls": [
+        "mealImagesUrls": [
           "https://img.freepik.com/free-photo/delicious-red-apples-in-studio_23-2150811013.jpg"
         ],
         "isThumbsUp": false
@@ -102,7 +102,7 @@ let dummyNutritionJsonString = """
         "menuId": 3,
         "food": "스테이크",
         "meal": "저녁",
-        "menuImageUrls": [
+        "mealImagesUrls": [
           "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA0MjFfMjA4%2FMDAxNzEzNjI3MzI5NjQw.lYf84doHgHVdLQ9jxLcgWWQ7syi4PU1agx2Nu80gkbEg.ST2k54zlJX2S2pwPu7vyHaD8paRuPbAQGFI4rHYi4Hsg.JPEG%2FIMG_20240418_194458.jpg&type=sc960_832"
         ],
         "isThumbsUp": false
@@ -111,7 +111,7 @@ let dummyNutritionJsonString = """
         "menuId": 4,
         "food": "펜케이크",
         "meal": "아침",
-        "menuImageUrls": [
+        "mealImagesUrls": [
           "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjEwMDZfMjI4%2FMDAxNjY1MDY3ODczNTI3.eObnxRYMsWly_gR-wzDS-jGsf5oLpBLKEyUplSmEkcYg.MxbBQhy77mPFJoSOvaDl6xxTdEiLmLlmsZEVDcxf9CEg.JPEG.ji2313go%2FScreenshot%25A3%25DF20221006%25A3%25AD233746%25A3%25DFChrome.jpg&type=sc960_832"
         ],
         "isThumbsUp": true

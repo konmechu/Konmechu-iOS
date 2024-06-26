@@ -15,7 +15,7 @@ class NutritionStatusManager {
         static let carbsProper = (104.0...140.0)      // 80-120% of 55-65% of daily intake
         static let proteinProper = (56.0...90.0)     // 80-120% of 10-20% of daily intake
         static let fatProper = (41.0...61.0)      // 80-120% of 20-30% of daily intake
-        static let natriumProper = (0.0...2.0) // 2000mg 이하 섭취 권장
+        static let natriumProper = (0.0...2000.0) // 2000mg 이하 섭취 권장
     }
     
     private var totalNutritionInfo: TotalNutritionResponseDto
@@ -56,7 +56,7 @@ class NutritionStatusManager {
             self.updateView(self.carbohydrateView, andLabel: self.isCarboProperLabel, withValue: self.totalNutritionInfo.totalCarbs, properRange: NutritionLimits.carbsProper)
             self.updateView(self.proteinView, andLabel: self.isProteinProperLabel, withValue: self.totalNutritionInfo.totalProtein, properRange: NutritionLimits.proteinProper)
             self.updateView(self.fatView, andLabel: self.isFatProperLabel, withValue: self.totalNutritionInfo.totalFat, properRange: NutritionLimits.fatProper)
-            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalNatrium, properRange: NutritionLimits.natriumProper)
+            self.updateView(self.sugarsView, andLabel: self.isSugarsProperLabel, withValue: self.totalNutritionInfo.totalSodium, properRange: NutritionLimits.natriumProper)
         }
     }
     

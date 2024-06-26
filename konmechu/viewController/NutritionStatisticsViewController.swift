@@ -160,50 +160,51 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func getTodayNutriInfo(for date: Date, completion: @escaping (Result<[String: Any], Error>) -> Void) {
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "YYYY-MM-dd"
-//        let dateString = dateFormatter.string(from: date)
-//        
-//        // URL 설정, 여기서는 예시 URL을 사용합니다.
-//        // 실제 요청할 서버의 URL로 교체해야 합니다.
-//        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
-//            return
-//        }
-//        
-//        let urlString = "\(endPointURL)/app/menus?startDate=\(dateString)&endDate=\(dateString)"
-//        
-//        guard let url = URL(string: urlString) else {
-//            print("Error: cannot create URL\(urlString)fuck")
-//            return
-//        }
-//
-//        // URLRequest 생성
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-//
-//        // URLSession을 사용한 HTTP 요청
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { [self] data, response, error in
-//            // 에러 체크
-//            if let error = error {
-//                print("Error: \(error)")
-//                return
-//            }
-//
-//            // 응답 체크
-//            guard let httpResponse = response as? HTTPURLResponse,
-//                  (200...299).contains(httpResponse.statusCode),
-//                  let mimeType = httpResponse.mimeType,
-//                  mimeType == "application/json",
-//                  let data = data else {
-//                print("Error: invalid HTTP response")
-//                return
-//            }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        
+        // URL 설정, 여기서는 예시 URL을 사용합니다.
+        // 실제 요청할 서버의 URL로 교체해야 합니다.
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+            return
+        }
+        
+        let urlString = "\(endPointURL)/app/meals/4?startDate=\(dateString)&endDate=\(dateString)"
+        print(urlString)
+        
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL\(urlString)fuck")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        // URLSession을 사용한 HTTP 요청
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { [self] data, response, error in
+            // 에러 체크
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            // 응답 체크
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
 
             do {
                 // JSON 데이터를 NutritionInfoResponse로 디코드
-                let responseWrapper = try JSONDecoder().decode(ResponseWrapper.self, from: dummyNutritionJsonString.data(using: .utf8)!)
+                let responseWrapper = try JSONDecoder().decode(ResponseWrapper.self, from: data)
                     let nutritionInfo = responseWrapper.result
                 
                 //menuTableView 업데이트
@@ -220,9 +221,9 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             } catch {
                 print("Error: Decoding JSON failed: \(error)")
             }
-//        }
+        }
         // 요청 시작
-//        task.resume()
+        task.resume()
     }
 
     
@@ -406,7 +407,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         let target = menuSections[indexPath.section].menus[indexPath.row]
         
         
-        let menuImgUrl = target.menuImageUrls.first ?? ""
+        let menuImgUrl = target.mealImagesUrls.first ?? ""
         if let menuImgURL = URL(string: menuImgUrl) {
             
             // URLSession을 사용하여 이미지를 다운로드합니다.
@@ -434,7 +435,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         }
         
         cell.mealTimeLabel?.text = target.food
-        cell.thumbsUpBtn.setImage((target.isThumbsUp == true ? UIImage(systemName: "hand.thumbsup.fill") : UIImage(systemName: "hand.thumbsup")), for: .normal)
+        cell.thumbsUpBtn.setImage((target.isThumbsUp == "true" ? UIImage(systemName: "hand.thumbsup.fill") : UIImage(systemName: "hand.thumbsup")), for: .normal)
         
         cell.thumbsUpBtn.tag = indexPath.row
         cell.thumbsUpBtn.addTarget(self, action: #selector(thumbsUpButtonTapped(sender:)), for: .touchUpInside)
@@ -568,10 +569,10 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             self.carbohydrateLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCarbs))g"
             self.proteinLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalProtein))g"
             self.fatLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFat))g"
-            self.natriumLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalNatrium))g"
+            self.natriumLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSodium))mg"
             
-            self.cholesterolLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCholesterol))g"
-            self.totalSaturatedFattyAcidsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSaturatedFattyAcids))g"
+            self.cholesterolLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCholesterol))mg"
+            self.totalSaturatedFattyAcidsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSaturatedFat))g"
             self.totalSugarsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSugars))g"
         }
         
