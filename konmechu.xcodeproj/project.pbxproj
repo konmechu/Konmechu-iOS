@@ -22,6 +22,7 @@
 		0A370AB72AECDC5600D6DA66 /* CaptureImgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A370AB62AECDC5600D6DA66 /* CaptureImgViewController.swift */; };
 		0A3BD7C42BDCC96100913A7B /* CaptureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BD7C32BDCC96100913A7B /* CaptureType.swift */; };
 		0A5E65202C0F07A9000FB204 /* FoodRecommendationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5E651F2C0F07A9000FB204 /* FoodRecommendationResponse.swift */; };
+		0A62A1682C2C0A5A0076F297 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A62A1672C2C0A5A0076F297 /* CustomSegmentedControl.swift */; };
 		0A77B8D72B0372E2001BCF04 /* TodayNutriInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77B8D62B0372E2001BCF04 /* TodayNutriInfoDTO.swift */; };
 		0A77B8D92B038F03001BCF04 /* NutritionStatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A77B8D82B038F03001BCF04 /* NutritionStatusManager.swift */; };
 		0A8C4F2F2AFA17B400AC5516 /* menuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 		0A3BD7C32BDCC96100913A7B /* CaptureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureType.swift; sourceTree = "<group>"; };
 		0A4BED872AFBC15A0081AF3A /* NutritionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionData.swift; sourceTree = "<group>"; };
 		0A5E651F2C0F07A9000FB204 /* FoodRecommendationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodRecommendationResponse.swift; sourceTree = "<group>"; };
+		0A62A1672C2C0A5A0076F297 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		0A77B8D62B0372E2001BCF04 /* TodayNutriInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayNutriInfoDTO.swift; sourceTree = "<group>"; };
 		0A77B8D82B038F03001BCF04 /* NutritionStatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionStatusManager.swift; sourceTree = "<group>"; };
 		0A8C4F2D2AFA17B400AC5516 /* menuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				0A37EF502BFF1DC500ACE0C5 /* type */,
 				0AAC30432BCCF11200D4B9D3 /* dto */,
 				0AAC30422BCCF0BC00D4B9D3 /* utils */,
+				0A62A1672C2C0A5A0076F297 /* CustomSegmentedControl.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */,
+				0A62A1682C2C0A5A0076F297 /* CustomSegmentedControl.swift in Sources */,
 				0A3257AA2AE8F8EE0055CE6F /* TabBar.swift in Sources */,
 				0A3BD7C42BDCC96100913A7B /* CaptureType.swift in Sources */,
 				0AB2C4092B02184800F05AF6 /* UIImageExtensioin.swift in Sources */,

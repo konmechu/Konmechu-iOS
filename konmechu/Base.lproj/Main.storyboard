@@ -1051,7 +1051,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9I-KL-Qlh">
-                                <rect key="frame" x="161.66666666666666" y="618" width="70" height="70"/>
+                                <rect key="frame" x="161.66666666666666" y="633" width="70" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="NtZ-nW-plb"/>
@@ -1104,7 +1104,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qan-nj-URV">
-                                <rect key="frame" x="41.666666666666657" y="623" width="60" height="60"/>
+                                <rect key="frame" x="41.666666666666657" y="638" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="T1y-Ox-KW0"/>
                                     <constraint firstAttribute="height" constant="60" id="pNg-vH-R1C"/>
@@ -1116,14 +1116,6 @@
                                     <action selector="selectImgFromAlbumBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="CTa-zO-cZh"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBT-lf-G14" customClass="YapSwitch" customModule="Switches">
-                                <rect key="frame" x="146.66666666666666" y="538" width="100" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9sd-F2-CW0"/>
-                                    <constraint firstAttribute="height" constant="50" id="WkI-Cg-hGc"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9W-b7-LPI">
                                 <rect key="frame" x="176" y="817" width="41" height="35"/>
                                 <constraints>
@@ -1137,6 +1129,31 @@
                                     <action selector="textBtnDidTap:" destination="fR3-eP-y82" eventType="touchUpInside" id="ada-Vf-Tr9"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ORF-R8-kBU">
+                                <rect key="frame" x="136.66666666666666" y="548" width="119.99999999999997" height="46"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-32-9F0" customClass="CustomSegmentedControl" customModule="konmechu" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="47"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="caY-5H-MIA"/>
+                                            <constraint firstAttribute="width" constant="120" id="scR-ee-u1v"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="사진"/>
+                                            <segment title="OCR"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="MPq-rU-GqP"/>
+                                    <constraint firstItem="dUK-32-9F0" firstAttribute="centerX" secondItem="ORF-R8-kBU" secondAttribute="centerX" id="W8o-HA-qXy"/>
+                                    <constraint firstAttribute="height" constant="46" id="mgU-VR-sac"/>
+                                    <constraint firstItem="dUK-32-9F0" firstAttribute="centerY" secondItem="ORF-R8-kBU" secondAttribute="centerY" id="wVd-3r-fbE"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngj-kJ-XbF">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
@@ -1199,24 +1216,24 @@
                             <constraint firstItem="aIU-6J-Kyx" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="8cz-BN-aGy"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="bottom" secondItem="B9W-b7-LPI" secondAttribute="bottom" id="E9l-BQ-MId"/>
                             <constraint firstItem="B9W-b7-LPI" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="Euq-fj-qFl"/>
+                            <constraint firstItem="ORF-R8-kBU" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="FAQ-6M-K9t"/>
                             <constraint firstItem="z9I-KL-Qlh" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="GVB-6g-5es"/>
                             <constraint firstItem="Ngj-kJ-XbF" firstAttribute="centerY" secondItem="9fM-es-9UJ" secondAttribute="centerY" id="Gsi-35-gsc"/>
                             <constraint firstItem="Ngj-kJ-XbF" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="IYE-Dj-qAi"/>
                             <constraint firstItem="kDO-zu-Twz" firstAttribute="centerX" secondItem="9fM-es-9UJ" secondAttribute="centerX" id="LeP-U9-JXO"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="3MM-Ld-UJ6" secondAttribute="trailing" constant="20" id="O4k-gc-VZO"/>
                             <constraint firstItem="z9I-KL-Qlh" firstAttribute="leading" secondItem="qan-nj-URV" secondAttribute="trailing" constant="60" id="Rp8-UC-RKC"/>
+                            <constraint firstItem="z9I-KL-Qlh" firstAttribute="top" secondItem="ORF-R8-kBU" secondAttribute="bottom" constant="39" id="Sxw-GQ-r6T"/>
                             <constraint firstItem="Ngj-kJ-XbF" firstAttribute="top" secondItem="9fM-es-9UJ" secondAttribute="top" id="bAU-1n-c67"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="aIU-6J-Kyx" secondAttribute="trailing" constant="10" id="d6V-TT-A0s"/>
                             <constraint firstItem="Ngj-kJ-XbF" firstAttribute="leading" secondItem="Goj-4I-bNg" secondAttribute="leading" id="dfc-gN-eet"/>
                             <constraint firstItem="qan-nj-URV" firstAttribute="centerY" secondItem="z9I-KL-Qlh" secondAttribute="centerY" id="j5P-zg-dtR"/>
                             <constraint firstItem="aIU-6J-Kyx" firstAttribute="leading" secondItem="Goj-4I-bNg" secondAttribute="leading" constant="10" id="jp2-9n-5ip"/>
                             <constraint firstItem="kDO-zu-Twz" firstAttribute="top" secondItem="Goj-4I-bNg" secondAttribute="top" constant="10" id="lQX-65-Kwb"/>
-                            <constraint firstItem="QBT-lf-G14" firstAttribute="top" secondItem="aIU-6J-Kyx" secondAttribute="bottom" constant="30" id="lvj-Ft-aER"/>
+                            <constraint firstItem="ORF-R8-kBU" firstAttribute="top" secondItem="aIU-6J-Kyx" secondAttribute="bottom" constant="40" id="lV4-Qw-XPh"/>
                             <constraint firstItem="aIU-6J-Kyx" firstAttribute="top" secondItem="kDO-zu-Twz" secondAttribute="bottom" constant="20" id="niC-R3-09l"/>
                             <constraint firstItem="CVu-yY-62M" firstAttribute="centerY" secondItem="kDO-zu-Twz" secondAttribute="centerY" id="qGc-Xg-RTn"/>
-                            <constraint firstItem="QBT-lf-G14" firstAttribute="centerX" secondItem="z9I-KL-Qlh" secondAttribute="centerX" id="rNQ-PD-Zz4"/>
                             <constraint firstItem="Goj-4I-bNg" firstAttribute="trailing" secondItem="Ngj-kJ-XbF" secondAttribute="trailing" id="rag-Tt-12e"/>
-                            <constraint firstItem="z9I-KL-Qlh" firstAttribute="top" secondItem="QBT-lf-G14" secondAttribute="bottom" constant="30" id="vlt-c0-KJI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1227,7 +1244,9 @@
                         <outlet property="mealNameTextField" destination="pd6-JP-c6j" id="MMc-oT-bAu"/>
                         <outlet property="previewView" destination="aIU-6J-Kyx" id="YOX-9a-9Cu"/>
                         <outlet property="selectImgFromAlbum" destination="qan-nj-URV" id="H6x-fG-FRN"/>
-                        <outlet property="switchCaptureType" destination="QBT-lf-G14" id="dqh-0z-Z6o"/>
+                        <outlet property="switchBtn" destination="dUK-32-9F0" id="SKa-fd-4Wd"/>
+                        <outlet property="switchCaptureTypeBaseView" destination="ORF-R8-kBU" id="Qcp-zD-Q6D"/>
+                        <outlet property="switchCaptureTypeBtn" destination="ORF-R8-kBU" id="p2O-Lq-OjL"/>
                         <outlet property="textButton" destination="B9W-b7-LPI" id="LBV-aG-zRZ"/>
                         <outlet property="textMainView" destination="Ngj-kJ-XbF" id="JTL-JB-8oZ"/>
                         <segue destination="ygq-m4-Vce" kind="show" identifier="CaptureImgSG" id="qa8-oG-w17"/>
@@ -1754,11 +1773,6 @@
             <point key="canvasLocation" x="-622.13740458015263" y="855.63380281690149"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="QBT-lf-G14">
-            <size key="intrinsicContentSize" width="52" height="31"/>
-        </designable>
-    </designables>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
