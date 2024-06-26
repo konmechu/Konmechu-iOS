@@ -91,6 +91,15 @@ let dummyNutritionJsonString = """
       },
       {
         "menuId": 2,
+        "food": "사과",
+        "meal": "아침",
+        "menuImageUrls": [
+          "https://img.freepik.com/free-photo/delicious-red-apples-in-studio_23-2150811013.jpg"
+        ],
+        "isThumbsUp": false
+      },
+      {
+        "menuId": 3,
         "food": "스테이크",
         "meal": "저녁",
         "menuImageUrls": [
@@ -99,7 +108,7 @@ let dummyNutritionJsonString = """
         "isThumbsUp": false
       },
       {
-        "menuId": 3,
+        "menuId": 4,
         "food": "펜케이크",
         "meal": "아침",
         "menuImageUrls": [

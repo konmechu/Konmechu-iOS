@@ -455,17 +455,39 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         headerView.backgroundColor = UIColor.clear// 배경색 설정
            
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 16) // 글꼴 크기 설정
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 13) // 글꼴 크기 설정
         headerLabel.textColor = UIColor.white // 글자색 설정
         
         let sectionTitle = menuSections[section].mealTime
         headerLabel.text = sectionTitle // 섹션 타이틀 설정
         
-           headerLabel.textAlignment = .center // 텍스트 정렬 설정
+        headerLabel.textAlignment = .natural // 텍스트 정렬 설정
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(headerLabel)
+
+        
+        // Create and configure the separator view
+            let separatorView = UIView()
+        separatorView.backgroundColor = UIColor.white.withAlphaComponent(0.3) // Adjust the color as needed
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            headerView.addSubview(separatorView)
+            
+            // Add constraints to layout the elements
+            NSLayoutConstraint.activate([
+                // Meal time label constraints
+                headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+                headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                
+                // Separator view constraints
+                separatorView.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 8),
+                separatorView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                separatorView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+                separatorView.heightAnchor.constraint(equalToConstant: 1)
+            ])
+        
            
-           headerView.addSubview(headerLabel)
            
-           return headerView
+        return headerView
        }
        
     

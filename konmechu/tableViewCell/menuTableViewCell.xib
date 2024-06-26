@@ -40,7 +40,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-5f-De8" userLabel="이">
-                        <rect key="frame" x="0.0" y="50.333333333333329" width="49.333333333333336" height="34.333333333333329"/>
+                        <rect key="frame" x="10.000000000000004" y="50.333333333333329" width="49.333333333333343" height="34.333333333333329"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup" catalog="system"/>
@@ -49,11 +49,11 @@
                 <constraints>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-31" id="2bL-Nf-Xnu"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
+                    <constraint firstItem="SiV-5f-De8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EuZ-Km-cBu"/>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-74.666666666666629" id="UA4-y4-YNc"/>
                     <constraint firstItem="R9N-0O-LjD" firstAttribute="centerX" secondItem="reu-2l-kll" secondAttribute="centerX" id="Vem-b8-XSk"/>
                     <constraint firstItem="R9N-0O-LjD" firstAttribute="centerY" secondItem="reu-2l-kll" secondAttribute="centerY" id="bl1-Ng-nQH"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
-                    <constraint firstItem="SiV-5f-De8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tHM-g2-CSI"/>
                     <constraint firstItem="SiV-5f-De8" firstAttribute="centerY" secondItem="h32-MB-4a9" secondAttribute="centerY" id="ybf-1C-aqL"/>
                 </constraints>
             </tableViewCellContentView>
