@@ -16,10 +16,13 @@ class menuTableViewCell: UITableViewCell {
     
     @IBOutlet weak var thumbsUpBtn: UIButton!
     
+    @IBOutlet weak var menuImgCoverView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         menuImgView.layer.cornerRadius = 20
+        menuImgCoverView.layer.cornerRadius = 20
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

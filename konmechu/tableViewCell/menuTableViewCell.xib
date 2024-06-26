@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,6 +25,14 @@
                             <constraint firstAttribute="width" constant="360" id="gwf-rZ-wGs"/>
                         </constraints>
                     </imageView>
+                    <view clipsSubviews="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9N-0O-LjD">
+                        <rect key="frame" x="-10.666666666666657" y="0.0" width="360.33333333333326" height="90"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="360" id="1bU-hK-5Ug"/>
+                            <constraint firstAttribute="height" constant="90" id="INU-ms-cKP"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="식사시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h32-MB-4a9">
                         <rect key="frame" x="275" y="59" width="48.666666666666686" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -41,6 +50,8 @@
                     <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-31" id="2bL-Nf-Xnu"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-74.666666666666629" id="UA4-y4-YNc"/>
+                    <constraint firstItem="R9N-0O-LjD" firstAttribute="centerX" secondItem="reu-2l-kll" secondAttribute="centerX" id="Vem-b8-XSk"/>
+                    <constraint firstItem="R9N-0O-LjD" firstAttribute="centerY" secondItem="reu-2l-kll" secondAttribute="centerY" id="bl1-Ng-nQH"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
                     <constraint firstItem="SiV-5f-De8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tHM-g2-CSI"/>
                     <constraint firstItem="SiV-5f-De8" firstAttribute="centerY" secondItem="h32-MB-4a9" secondAttribute="centerY" id="ybf-1C-aqL"/>
@@ -49,6 +60,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="mealTimeLabel" destination="h32-MB-4a9" id="4pI-WG-lYd"/>
+                <outlet property="menuImgCoverView" destination="R9N-0O-LjD" id="EPm-DY-Zpt"/>
                 <outlet property="menuImgView" destination="reu-2l-kll" id="Eek-zf-7FJ"/>
                 <outlet property="thumbsUpBtn" destination="SiV-5f-De8" id="uig-Nn-mSU"/>
             </connections>
@@ -57,5 +69,8 @@
     </objects>
     <resources>
         <image name="hand.thumbsup" catalog="system" width="123" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
