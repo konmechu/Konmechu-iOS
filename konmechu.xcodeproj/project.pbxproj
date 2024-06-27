@@ -30,6 +30,8 @@
 		0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */; };
 		0AB2C4092B02184800F05AF6 /* UIImageExtensioin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB2C4082B02184800F05AF6 /* UIImageExtensioin.swift */; };
 		0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */; };
+		0AC321672C2D11B400E6D220 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC321662C2D11B400E6D220 /* CustomButton.swift */; };
+		0AC3CE912C2CF6220074746C /* FoodIdResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC3CE902C2CF6220074746C /* FoodIdResponse.swift */; };
 		F960322BA922B33655A4AFBA /* Pods_konmechu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6321D062997223976F40C8E6 /* Pods_konmechu.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		0A8C4F312AFA1BDA00AC5516 /* MenuData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuData.swift; sourceTree = "<group>"; };
 		0AB2C4082B02184800F05AF6 /* UIImageExtensioin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensioin.swift; sourceTree = "<group>"; };
 		0ABD0B642AE9020D00E726EF /* SmartlensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartlensViewController.swift; sourceTree = "<group>"; };
+		0AC321662C2D11B400E6D220 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		0AC3CE902C2CF6220074746C /* FoodIdResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodIdResponse.swift; sourceTree = "<group>"; };
 		275EE35FBD15DDEB033E5C3C /* Pods-konmechu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-konmechu.release.xcconfig"; path = "Target Support Files/Pods-konmechu/Pods-konmechu.release.xcconfig"; sourceTree = "<group>"; };
 		6321D062997223976F40C8E6 /* Pods_konmechu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_konmechu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9052022BBC9AB9955249CC34 /* Pods-konmechu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-konmechu.debug.xcconfig"; path = "Target Support Files/Pods-konmechu/Pods-konmechu.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				0AAC30432BCCF11200D4B9D3 /* dto */,
 				0AAC30422BCCF0BC00D4B9D3 /* utils */,
 				0A62A1672C2C0A5A0076F297 /* CustomSegmentedControl.swift */,
+				0AC321662C2D11B400E6D220 /* CustomButton.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 			children = (
 				0A77B8D62B0372E2001BCF04 /* TodayNutriInfoDTO.swift */,
 				0A5E651F2C0F07A9000FB204 /* FoodRecommendationResponse.swift */,
+				0AC3CE902C2CF6220074746C /* FoodIdResponse.swift */,
 			);
 			path = dto;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				0A3257A52AE8F1CB0055CE6F /* ProfileViewController.swift in Sources */,
 				0A62A1682C2C0A5A0076F297 /* CustomSegmentedControl.swift in Sources */,
 				0A3257AA2AE8F8EE0055CE6F /* TabBar.swift in Sources */,
+				0AC3CE912C2CF6220074746C /* FoodIdResponse.swift in Sources */,
 				0A3BD7C42BDCC96100913A7B /* CaptureType.swift in Sources */,
 				0AB2C4092B02184800F05AF6 /* UIImageExtensioin.swift in Sources */,
 				0A3257A72AE8F6550055CE6F /* TabBarController.swift in Sources */,
@@ -336,6 +343,7 @@
 				0A8C4F322AFA1BDA00AC5516 /* MenuData.swift in Sources */,
 				0A77B8D72B0372E2001BCF04 /* TodayNutriInfoDTO.swift in Sources */,
 				0A0D3C632C06B96700A37818 /* UIViewExtension.swift in Sources */,
+				0AC321672C2D11B400E6D220 /* CustomButton.swift in Sources */,
 				0A12ECB72AEE2A4300F79C06 /* NutritionResultViewController.swift in Sources */,
 				0A77B8D92B038F03001BCF04 /* NutritionStatusManager.swift in Sources */,
 				0ABD0B652AE9020D00E726EF /* SmartlensViewController.swift in Sources */,

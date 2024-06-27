@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,18 +40,27 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-5f-De8" userLabel="이">
-                        <rect key="frame" x="10.000000000000004" y="50.333333333333329" width="49.333333333333343" height="34.333333333333329"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiV-5f-De8" userLabel="이" customClass="CustomButton" customModule="konmechu" customModuleProvider="target">
+                        <rect key="frame" x="10" y="42.666666666666657" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="FWf-KZ-zzR"/>
+                            <constraint firstAttribute="width" constant="50" id="sAK-ay-G9F"/>
+                        </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup" catalog="system"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal">
+                            <imageReference key="image" image="hand.thumbsup.fill" catalog="system" symbolScale="large"/>
+                        </state>
+                        <buttonConfiguration key="configuration" style="plain">
+                            <imageReference key="image" image="hand.thumbsup.fill" catalog="system" symbolScale="large"/>
+                        </buttonConfiguration>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="h32-MB-4a9" firstAttribute="top" secondItem="reu-2l-kll" secondAttribute="bottom" constant="-31" id="2bL-Nf-Xnu"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7Vm-ap-28T"/>
                     <constraint firstItem="SiV-5f-De8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EuZ-Km-cBu"/>
-                    <constraint firstItem="h32-MB-4a9" firstAttribute="leading" secondItem="reu-2l-kll" secondAttribute="trailing" constant="-74.666666666666629" id="UA4-y4-YNc"/>
+                    <constraint firstAttribute="trailing" secondItem="h32-MB-4a9" secondAttribute="trailing" constant="15.33" id="I2t-nn-NPe"/>
                     <constraint firstItem="R9N-0O-LjD" firstAttribute="centerX" secondItem="reu-2l-kll" secondAttribute="centerX" id="Vem-b8-XSk"/>
                     <constraint firstItem="R9N-0O-LjD" firstAttribute="centerY" secondItem="reu-2l-kll" secondAttribute="centerY" id="bl1-Ng-nQH"/>
                     <constraint firstItem="reu-2l-kll" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cZM-12-7el"/>
@@ -68,7 +78,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="hand.thumbsup" catalog="system" width="123" height="128"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

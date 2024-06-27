@@ -78,8 +78,12 @@ class NutritionResultViewController: UIViewController {
     
     public var mealTime : MealTime?
     
+    public var mealText : String?
+    
     private var nutritionViews: [UIView] = []
     
+    
+    var foodId: Int?
     
     var tempMenuData : MenuData?
     
@@ -121,7 +125,7 @@ class NutritionResultViewController: UIViewController {
                     print(response ?? "No response received from GPT")
             }
         } else {
-            //음식이름으로 영양성분 분석
+            getFoodIdByFoodName(userId: 4, foodName: mealText!, completion: {_ in})
         }
         
         
@@ -152,18 +156,30 @@ class NutritionResultViewController: UIViewController {
     @IBAction func saveMealBtnDidTap(_ sender: Any) {
         // 데이터와 이미지를 서버에 업로드하는 코드 작성
         guard let imageData = menuImg?.jpegData(compressionQuality: 0.9),
-              let requestDto = createRequestDto() else {
+              var requestDto = createRequestDto() else {
             print("Invalid data or image")
             return
         }
         
+        if captureType == .FOODIMG {
+            requestDto = createRequestSimpleDto(foodId: foodId!, memberId: 4)!
+        }
+        
+        print("요청 본문: " + requestDto.base64EncodedString())
+                
         guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
             print("Error: cannot find key ServerURL in info.plist")
             return
         }
         
-        let urlString = "\(String(describing: endPointURL))/app/foods/4" // 실제 엔드포인트 URL로 변경해야 합니다.
-        print(urlString)
+        var urlString = "\(String(describing: endPointURL))/app/foods/4" // 실제 엔드포인트 URL로 변경해야 합니다.
+        
+        if captureType == .FOODIMG {
+            urlString = "\(String(describing: endPointURL))/app/meals"
+        }
+        
+        print("최종 url: " + urlString)
+        
         guard let url = URL(string: urlString) else {
             print("Invalid URL.")
             return
@@ -302,9 +318,13 @@ class NutritionResultViewController: UIViewController {
             }
             
             if let foodName = self.parseContentFromFoonNameResponse(data) {
-                DispatchQueue.main.async{
+                DispatchQueue.main.async{ [self] in
                     self.updateLabels(with: foodName)
                     
+                    getFoodIdByFoodName(userId: 4, foodName: self.menuNameLabel.text!, completion: {foodName in
+                        print(foodName)
+                        
+                    })
                 }
                 
                 } else {
@@ -374,6 +394,60 @@ class NutritionResultViewController: UIViewController {
         
     }
     
+    func getFoodIdByFoodName(userId: Int, foodName: String, completion: @escaping (Int?) -> Void) {
+        
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
+            print("Error: cannot find key ServerURL in info.plist")
+            return
+        }
+        let urlString = "\(endPointURL)/get_nutrient?user_id=\(userId)&food_name=\(foodName)" // 실제 엔드포인트 URL로 변경해야 합니다.
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+            
+//            guard let httpResponse = response as? HTTPURLResponse,
+//                  (200...299).contains(httpResponse.statusCode),
+//                  let mimeType = httpResponse.mimeType,
+//                  mimeType == "application/json",
+                guard  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
+            
+            do {
+                if let nutrientInfo = self.parseContentFromAIServerResponse(data) {
+                    DispatchQueue.main.async{
+                        self.updateLabelsFromAIServerResponse(with: nutrientInfo)
+                    }
+                    
+                    } else {
+                        print("Failed to parse and update labels")
+                    }
+            } catch {
+                print("Error: Decoding JSON failed: \(error)")
+                completion(nil)
+            }
+        }
+        
+
+        // 요청 시작
+        task.resume()
+    }
+    
+
     
     func analysisOCRImage(image: UIImage, completion: @escaping (String?) -> Void) {
                 
@@ -473,6 +547,22 @@ class NutritionResultViewController: UIViewController {
         return imageData.base64EncodedString()
     }
     
+    func parseContentFromAIServerResponse(_ data: Data) -> [String: String]? {
+        do {
+            if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                var stringDictionary = [String: String]()
+                for (key, value) in jsonObject {
+                    stringDictionary[key] = "\(value)"
+                }
+                print(stringDictionary)
+                return stringDictionary
+            }
+        } catch {
+            print("Failed to parse JSON: \(error.localizedDescription)")
+        }
+        return nil
+    }
+    
     func parseContentFromOCRResponse(_ data: Data) -> [String: String]? {
         do {
             if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
@@ -549,6 +639,23 @@ class NutritionResultViewController: UIViewController {
 
     }
     
+    func updateLabelsFromAIServerResponse(with json: [String: String]) {
+        
+//        foodId = Int(json["menu_id"]!) ?? nil
+        foodId = ((json["menu_id"]) == nil) ? 0 : Int(Int(json["menu_id"]!)!)
+        menuNameLabel.text = json["matched_food_name"] ?? "알수없음"
+        kcalLabel.text = (json["calories"]?.isEmpty ?? true) ? "0kcal" : json["calories"]! + "Kcal"
+        carbohydrateLabel.text = (json["carbohydrate"]?.isEmpty ?? true) ? "0g" : json["carbohydrate"]! + "g"
+        proteinLabel.text = (json["protein"]?.isEmpty ?? true) ? "0g" : json["protein"]! + "g"
+        fatLabel.text = (json["fat"]?.isEmpty ?? true) ? "0g" : json["fat"]! + "g"
+        natritumLabel.text = (json["sodium"]?.isEmpty ?? true) ? "0mg" : json["sodium"]! + "mg"
+        
+        cholesterolLabel.text = (json["total_cholesterol"]?.isEmpty ?? true) ? "0mg" : json["total_cholesterol"]! + "mg"
+        totalSaturatedFattyAcidsLabel.text = (json["total_saturated_fat"]?.isEmpty ?? true) ? "0g" : json["total_saturated_fat"]! + "g"
+        totalSugarsLabel.text = (json["total_sugars"]?.isEmpty ?? true) ? "0g" : json["total_sugars"]! + "g"
+        servingSizeLabel.text = (json["serving_unit"]?.isEmpty ?? true) ? "0g" : json["serving_unit"]! + "g"
+    }
+    
     // app server 에 저장할 RequestDto JSON 데이터 생성
     func createRequestDto() -> Data? {
         // 라벨에서 텍스트를 추출하고 적절한 타입으로 변환합니다.
@@ -585,6 +692,27 @@ class NutritionResultViewController: UIViewController {
         // Dictionary를 JSON Data로 변환
         do {
             return try JSONSerialization.data(withJSONObject: menuDetails, options: [])
+        } catch {
+            print("Error creating JSON data: \(error)")
+            return nil
+        }
+    }
+    
+    func createRequestSimpleDto(foodId: Int, memberId: Int) -> Data? {
+        let foodId = foodId
+        let memberId = memberId
+        let mealTime = mealTime?.rawValue ?? "아침" // mealTime을 기반으로 "아침", "점심", "저녁" 중 하나를 설정해야 할 수도 있습니다.
+        
+        // Dictionary로 메뉴 세부 정보 구성
+        let menuSimple: [String: Any] = [
+            "foodId": foodId,
+            "memberId": memberId,
+            "meal_time": mealTime
+        ]
+        
+        // Dictionary를 JSON Data로 변환
+        do {
+            return try JSONSerialization.data(withJSONObject: menuSimple, options: [])
         } catch {
             print("Error creating JSON data: \(error)")
             return nil

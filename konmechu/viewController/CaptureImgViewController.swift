@@ -122,6 +122,9 @@ class CaptureImgViewController: UIViewController {
             destinationVC.menuImg = capturedImg
             destinationVC.captureType = captureType
             destinationVC.mealTime = MealTime(rawValue: mealTime!)
+            if captureType == .FOODNAME {
+                destinationVC.mealText = mealText
+            }
         }
     }
     

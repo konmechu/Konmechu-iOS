@@ -9,12 +9,15 @@ import UIKit
 
 class menuTableViewCell: UITableViewCell {
     
+    var mealId: Int = 999
+    
+    var memberId: Int = 999
     
     @IBOutlet weak var menuImgView: UIImageView!
     
     @IBOutlet weak var mealTimeLabel: UILabel!
     
-    @IBOutlet weak var thumbsUpBtn: UIButton!
+    @IBOutlet weak var thumbsUpBtn: CustomButton!
     
     @IBOutlet weak var menuImgCoverView: UIView!
     
@@ -23,6 +26,7 @@ class menuTableViewCell: UITableViewCell {
         // Initialization code
         menuImgView.layer.cornerRadius = 20
         menuImgCoverView.layer.cornerRadius = 20
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
