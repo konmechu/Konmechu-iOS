@@ -34,22 +34,15 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     
     @IBOutlet weak var captureTypeLabel: UILabel!
-    
-    @IBOutlet weak var switchCaptureType: YapSwitch! {
-        didSet {
-            switchCaptureType.onText = "사진"
-            switchCaptureType.offText = "OCR"
-            switchCaptureType.onTextColor = .white
-            switchCaptureType.offTextColor = .white
-            switchCaptureType.onTintColor = .black.withAlphaComponent(0.5)
-            switchCaptureType.offTintColor = .black.withAlphaComponent(0.5)
-            switchCaptureType.offThumbTintColor = .white
-            switchCaptureType.onThumbTintColor = .white
-        }
-    }
-    
-    
+        
     @IBOutlet weak var textButton: UIButton!
+    
+    @IBOutlet weak var switchCaptureTypeBaseView: UIView!
+    
+    @IBOutlet weak var switchCaptureTypeBtn: UIView!
+    
+    @IBOutlet weak var switchBtn: CustomSegmentedControl!
+    
     
     @IBOutlet weak var mealNameTextField: UITextField!
     
@@ -68,10 +61,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         self.view.hideKeyboardWhenTappedAround()
         
         setupView()
-        switchCaptureType.addTarget(self, action: #selector(switchToogle(_:)), for: .valueChanged)
-        switchCaptureType.isOn = true
-        
+    
         imagePickerController.delegate = self
+        
+        switchBtn.addTarget(self, action: #selector(captureTypeViewChanged), for: .valueChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(restartCaptureSession), name: NSNotification.Name("DidDismissCaptureImgViewController"), object: nil)
     }
@@ -85,6 +78,11 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     //MARK: - UI setup
     func setupView() {
         
+        switchCaptureTypeBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        switchCaptureTypeBaseView.layer.shadowOpacity = 0.8
+        switchCaptureTypeBaseView.layer.cornerRadius = switchCaptureTypeBaseView.frame.height/2
+        
+            
         textButton.setTitle("음식이름 직접 입력하기", for: .normal)
         
         captureTypeLabel.font = .boldSystemFont(ofSize: 18)
@@ -99,6 +97,7 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
         
         textButton.addTarget(self, action: #selector(activateTextField), for: .touchUpInside)
     }
+
     
     //MARK: - Camera Setup
     func setupAndStartCaptureSession() {
@@ -257,6 +256,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     
     @IBAction func textBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0.8
+        })
+
         textMainView.isHidden = false
         stopCaptureSession()
     }
@@ -277,6 +280,10 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     
     @IBAction func dismissTextMainViewBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.textMainView.alpha = 0
+        })
+        
         textMainView.isHidden = true
         restartCaptureSession()
     }
@@ -320,18 +327,14 @@ class SmartlensViewController: UIViewController, AVCaptureVideoDataOutputSampleB
     
     //MARK: - Switches function
     
-    @objc func switchToogle(_ sender: YapSwitch) {
-        
-        if sender.isOn {
-            self.captureTypeLabel.text = "음식 사진 인식"
-            captureTypeLabel.font = .boldSystemFont(ofSize: 18)
+
+    @objc func captureTypeViewChanged(_ sender: CustomSegmentedControl) {
+        if sender.selectedSegmentIndex == 0{
             captureType = .FOODIMG
-        }
-        
-        if !sender.isOn {
-            self.captureTypeLabel.text = "영양성분표 인식"
-            captureTypeLabel.font = .boldSystemFont(ofSize: 18)
+            captureTypeLabel.text = "음식 사진 인식"
+        } else {
             captureType = .OCR
+            captureTypeLabel.text = "영양성분표 인식"
         }
     }
     

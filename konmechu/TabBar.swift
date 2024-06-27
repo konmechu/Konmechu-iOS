@@ -50,6 +50,20 @@ class TabBar: UITabBar {
            path.addLine(to: CGPoint(x: 0, y: self.frame.height))
            path.close()
            return path.cgPath
+        
+        //스마트렌즈 버튼의 모양에 맞는 원형 홈
+//        let radius: CGFloat = 37.0
+//        let path = UIBezierPath()
+//        let centerWidth = self.frame.width / 2
+//        
+//        path.move(to: CGPoint(x: 0, y: 0))
+//        path.addLine(to: CGPoint(x: (centerWidth - radius * 2), y: 0))
+//        path.addArc(withCenter: CGPoint(x: centerWidth, y: 0), radius: radius, startAngle: CGFloat(180).degreesToRadians , endAngle: CGFloat(0).degreesToRadians, clockwise: false)
+//        path.addLine(to: CGPoint(x: self.frame.width, y: 0))
+//        path.addLine(to: CGPoint(x: self.frame.width, y: self.frame.height))
+//        path.addLine(to: CGPoint(x: 0, y: self.frame.height))
+//        path.close()
+//        return path.cgPath
        }
 
     
@@ -66,12 +80,7 @@ class TabBar: UITabBar {
     
 }
 
-extension UITabBar {
-    
-    //TabBar 높이 커스텀 --> 시뮬레이터 상에서 직접 앱을 터치에 실행 시키는 경우 탭바의 위치가 낮아져 tabbar item을 가리는 문제가 있음.
-//    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-//        var sizeThatFits = super.sizeThatFits(size)
-//        sizeThatFits.height = 74
-//        return sizeThatFits
-//    }
+extension CGFloat {
+    var degreesToRadians: CGFloat {return self * .pi / 180}
+    var radiansToDegrees: CGFloat {return self * 180 / .pi}
 }

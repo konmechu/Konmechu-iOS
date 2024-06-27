@@ -25,12 +25,22 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     @IBOutlet weak var FSCalendarView: FSCalendar!
     
     private var dateFormatter : DateFormatter?
+    
+    private var currentDate: Date?
         
     
     //MARK: - Nutritioin info var
-        
+    
+    
+    @IBOutlet weak var nutritionBaseStackView: UIStackView!
+    
     @IBOutlet weak var nutritionBaseView: UIView!
     
+    
+    
+    @IBOutlet weak var nutritionAppendBtn: UIButton!
+    
+    @IBOutlet weak var nutritionAppendStatusLabel: UILabel!
     
     
     @IBOutlet weak var kcalView: UIView!
@@ -41,7 +51,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var fatView: UIView!
     
-    @IBOutlet weak var sugarsView: UIView!
+    @IBOutlet weak var natriumView: UIView!
     
     
     @IBOutlet weak var isKcalProperLabel: UILabel!
@@ -52,7 +62,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var isFatProperLabel: UILabel!
     
-    @IBOutlet weak var isSugarsProperLabel: UILabel!
+    @IBOutlet weak var isNatriumProperLabel: UILabel!
     
     
     
@@ -64,7 +74,30 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBOutlet weak var fatLabel: UILabel!
     
-    @IBOutlet weak var sugarsLabel: UILabel!
+    @IBOutlet weak var natriumLabel: UILabel!
+    
+    
+    
+    
+    
+    @IBOutlet weak var nutritionDetailView: UIView!
+    
+    
+    @IBOutlet weak var cholesterolTitleLabel: UILabel!
+    
+    @IBOutlet weak var totalSaturatedFattyAcidsTitleLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsTitleLabel: UILabel!
+    
+    
+    @IBOutlet weak var cholesterolLabel: UILabel!
+    
+    @IBOutlet weak var totalSaturatedFattyAcidsLabel: UILabel!
+    
+    @IBOutlet weak var totalSugarsLabel: UILabel!
+    
+    private var nutritionDetailViews: [UILabel] = []
+    
     
     private var nutritionViews: [UIView] = []
     
@@ -110,7 +143,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getTodayNutriInfo(for: Date(), completion: {_ in })
+        getTodayNutriInfo(for: currentDate ?? Date(), completion: {_ in })
 
         
         setCalendar()
@@ -120,7 +153,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getTodayNutriInfo(for: Date(), completion: {_ in })
+        getTodayNutriInfo(for: currentDate ?? Date(), completion: {_ in })
 
         setTableViewHeight()
     }
@@ -139,7 +172,8 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             return
         }
         
-        let urlString = "\(endPointURL)/app/menus?startDate=\(dateString)&endDate=\(dateString)"
+        let urlString = "\(endPointURL)/app/meals/4?startDate=\(dateString)&endDate=\(dateString)"
+        print(urlString)
         
         guard let url = URL(string: urlString) else {
             print("Error: cannot create URL\(urlString)fuck")
@@ -193,6 +227,114 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         // 요청 시작
         task.resume()
     }
+    
+    func requestThumbsUp(mealId: Int, memberId: Int, completion: @escaping (String) -> Void) {
+        // URL 설정, 여기서는 예시 URL을 사용합니다.
+        // 실제 요청할 서버의 URL로 교체해야 합니다.
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+            completion("false")
+            return
+        }
+        
+        let urlString = "\(endPointURL)/app/meals/\(mealId)/members/\(memberId)"
+        print(urlString)
+        
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL \(urlString)")
+            completion("false")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        // URLSession을 사용한 HTTP 요청
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            // 에러 체크
+            if let error = error {
+                print("Error: \(error)")
+                completion("false")
+                return
+            }
+
+            // 응답 체크
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                completion("false")
+                return
+            }
+            
+            // JSON 응답 데이터 파싱
+            do {
+                if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let success = jsonObject["result"] as? String {
+                        completion(success)
+                    } else {
+                        completion("false")
+                    }
+                } else {
+                    completion("false")
+                }
+            } catch {
+                print("Error: Decoding JSON failed: \(error)")
+                completion("false")
+            }
+        }
+        
+        // 요청 시작
+        task.resume()
+    }
+    
+    func notifyThumbsUp(userId: Int, foodName: String, isUp: Bool) {
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
+            print("Error: cannot find key ServerURL in info.plist")
+            return
+        }
+        var urlString = "\(endPointURL)/update_user_embedding?user_id=\(userId)&food_name=\(foodName)" // 실제 엔드포인트 URL로 변경해야 합니다.
+        
+        if !isUp {
+            urlString = "\(endPointURL)/update_user_embedding2?user_id=\(userId)&food_name=\(foodName)"
+        }
+        
+        guard let url = URL(string: urlString) else {
+            print("Error: cannot create URL")
+            return
+        }
+
+        // URLRequest 생성
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode),
+                  let mimeType = httpResponse.mimeType,
+                  mimeType == "application/json",
+                  let data = data else {
+                print("Error: invalid HTTP response")
+                return
+            }
+            
+            print(httpResponse)
+        }
+
+        // 요청 시작
+        task.resume()
+    }
 
     
     
@@ -221,18 +363,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         
         recommendationStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         recommendationStackView.layer.shadowOpacity = 0.7
-        
-        // 서버에서 받을 데이터를 위한 구조체
-        struct RecommendationResponse: Codable {
-            let recommend: String
-        }
 
         // API endpoint
-        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "ServerURL") as? String else {
+        guard let endPointURL = Bundle.main.object(forInfoDictionaryKey: "AIServerURL") as? String else {
             print("Error: cannot find key ServerURL in info.plist")
             return
         }
-        let urlString = "\(endPointURL)/api/recommend" // 실제 엔드포인트 URL로 변경해야 합니다.
+        let urlString = "\(endPointURL)/food_recommendation?user_id=4" // 실제 엔드포인트 URL로 변경해야 합니다.
         guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
@@ -243,16 +380,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         request.httpMethod = "GET"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 
-        // URLSession을 사용한 HTTP 요청
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            // 에러 체크
             if let error = error {
                 print("Error: \(error)")
                 return
             }
 
-            // 응답 체크
             guard let httpResponse = response as? HTTPURLResponse,
                   (200...299).contains(httpResponse.statusCode),
                   let mimeType = httpResponse.mimeType,
@@ -263,12 +397,11 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             }
 
             do {
-                // JSON 데이터를 RecommendationResponse로 디코드
-                let responseData = try JSONDecoder().decode(RecommendationResponse.self, from: data)
-                // 디코드된 데이터를 사용하여 무언가를 수행합니다.
+                let responseData = try JSONDecoder().decode(Root.self, from: data)
                 DispatchQueue.main.async {
-                    // UI 업데이트는 메인 스레드에서 수행해야 합니다.
-                    self.recoTextView.text = responseData.recommend
+                    self.recoTextView.text = "1. " + responseData.recommendedFood.food1.name + "\n\n" + responseData.recommendedFood.food1.reason + "\n\n" +
+                    "2. " + responseData.recommendedFood.food2.name + "\n\n" + responseData.recommendedFood.food2.reason + "\n\n" +
+                    "3. " + responseData.recommendedFood.food3.name + "\n\n" + responseData.recommendedFood.food3.reason
                 }
             } catch {
                 print("Error: Decoding JSON failed: \(error)")
@@ -384,7 +517,7 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         let target = menuSections[indexPath.section].menus[indexPath.row]
         
         
-        let menuImgUrl = target.menuImageUrls.first ?? ""
+        let menuImgUrl = target.mealImagesUrls.first ?? ""
         if let menuImgURL = URL(string: menuImgUrl) {
             
             // URLSession을 사용하여 이미지를 다운로드합니다.
@@ -411,10 +544,19 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
             task.resume()
         }
         
-        cell.mealTimeLabel?.text = target.food
-        cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
+        cell.thumbsUpBtn.isClicked = (target.isThumbsUp == "true" ? true : false)
         
-                
+        cell.mealTimeLabel?.text = target.food
+        cell.thumbsUpBtn.setImage((target.isThumbsUp == "true" ? UIImage(systemName: "hand.thumbsup.fill") : UIImage(systemName: "hand.thumbsup")), for: .normal)
+        
+        cell.thumbsUpBtn.tag = indexPath.row
+        cell.thumbsUpBtn.addTarget(self, action: #selector(thumbsUpButtonTapped(_ :)), for: .touchUpInside)
+        
+        cell.thumbsUpBtn.mealId = target.menuId
+        cell.thumbsUpBtn.memberId = 4
+        cell.thumbsUpBtn.foodName = target.food
+        
+        cell.backgroundColor = UIColor.clear.withAlphaComponent(0)
         cell.selectionStyle = .none
 
                
@@ -431,22 +573,67 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         headerView.backgroundColor = UIColor.clear// 배경색 설정
            
         let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 30))
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 16) // 글꼴 크기 설정
+        headerLabel.font = UIFont.boldSystemFont(ofSize: 13) // 글꼴 크기 설정
         headerLabel.textColor = UIColor.white // 글자색 설정
         
         let sectionTitle = menuSections[section].mealTime
         headerLabel.text = sectionTitle // 섹션 타이틀 설정
         
-           headerLabel.textAlignment = .center // 텍스트 정렬 설정
+        headerLabel.textAlignment = .natural // 텍스트 정렬 설정
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerView.addSubview(headerLabel)
+
+        
+        // Create and configure the separator view
+            let separatorView = UIView()
+        separatorView.backgroundColor = UIColor.white.withAlphaComponent(0.3) // Adjust the color as needed
+            separatorView.translatesAutoresizingMaskIntoConstraints = false
+            headerView.addSubview(separatorView)
+            
+            // Add constraints to layout the elements
+            NSLayoutConstraint.activate([
+                // Meal time label constraints
+                headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+                headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                
+                // Separator view constraints
+                separatorView.leadingAnchor.constraint(equalTo: headerLabel.trailingAnchor, constant: 8),
+                separatorView.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+                separatorView.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+                separatorView.heightAnchor.constraint(equalToConstant: 1)
+            ])
+        
            
-           headerView.addSubview(headerLabel)
            
-           return headerView
+        return headerView
        }
        
     
     let cellName = "menuTableViewCell"
     let cellReuseIdentifier = "menuCell"
+    
+    @objc func thumbsUpButtonTapped(_ sender: CustomButton) {
+        
+        requestThumbsUp(mealId: sender.mealId, memberId: sender.memberId, completion: {result in
+            DispatchQueue.main.async { [self] in
+                
+                if result == "true" {
+                    print(result)
+                    sender.setImage(UIImage(named: "hand.thumbsup.fill"), for: .normal)
+                    notifyThumbsUp(userId: sender.memberId, foodName: sender.foodName, isUp: true)
+                } else {
+                    print(result)
+                    sender.setImage(UIImage(named: "hand.thumbsup"), for: .normal)
+                    notifyThumbsUp(userId: sender.memberId, foodName: sender.foodName, isUp: false)
+                }
+                
+                
+                self.getTodayNutriInfo(for: self.currentDate ?? Date(), completion: {_ in })
+                sender.setNeedsLayout()
+                sender.layoutIfNeeded()
+            }
+        })
+    }
     
     private func registerXib() {
         let nibName = UINib(nibName: cellName, bundle: nil)
@@ -457,18 +644,37 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     //MARK: - NutritionInfoView
     func setNutritionInfoViewUI() {
         
-        nutritionBaseView.layer.cornerRadius = 20
+        nutritionAppendBtn.contentHorizontalAlignment = .left
         
-        nutritionBaseView.backgroundColor = nutritionBaseView.backgroundColor?.withAlphaComponent(0.2)
+        nutritionDetailViews.append(cholesterolLabel)
+        nutritionDetailViews.append(totalSaturatedFattyAcidsLabel)
+        nutritionDetailViews.append(totalSugarsLabel)
         
-        nutritionBaseView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        nutritionBaseView.layer.shadowOpacity = 0.7
+        nutritionDetailViews.append(cholesterolTitleLabel)
+        nutritionDetailViews.append(totalSaturatedFattyAcidsTitleLabel)
+        nutritionDetailViews.append(totalSugarsTitleLabel)
+        
+        for view in nutritionDetailViews {
+            view.alpha = 0
+        }
+
+
+        
+        nutritionBaseStackView.backgroundColor = nutritionBaseStackView.backgroundColor?.withAlphaComponent(0.2)
+        
+        nutritionBaseStackView.layer.cornerRadius = 20
+        
+        nutritionBaseStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        nutritionBaseStackView.layer.shadowOpacity = 0.7
+        
+        nutritionBaseStackView.layer.cornerRadius = 20
+
         
         nutritionViews.append(kcalView)
         nutritionViews.append(carbohydrateView)
         nutritionViews.append(proteinView)
         nutritionViews.append(fatView)
-        nutritionViews.append(sugarsView)
+        nutritionViews.append(natriumView)
         
         for view in nutritionViews {
             view.layer.cornerRadius = view.layer.bounds.width / 2
@@ -482,11 +688,15 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     func updateNutritionInfo() {
         DispatchQueue.main.async {
-            self.kcalLabel.text = "\(self.totalNutritionInfo!.totalCalories * 4)kcal"
-            self.carbohydrateLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCarbs * 4))g"
-            self.proteinLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalProtein * 4))g"
-            self.fatLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFat * 4))g"
-            self.sugarsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalFiber * 4))g"
+            self.kcalLabel.text = "\(String(format: "%.0f", self.totalNutritionInfo!.totalCalories))kcal"
+            self.carbohydrateLabel.text = "\(String(format: "%.1f", self.totalNutritionInfo!.totalCarbs))g"
+            self.proteinLabel.text = "\(String(format: "%.1f", self.totalNutritionInfo!.totalProtein))g"
+            self.fatLabel.text = "\(String(format: "%.1f", self.totalNutritionInfo!.totalFat))g"
+            self.natriumLabel.text = "\(String(format: "%.0f", self.totalNutritionInfo!.totalSodium))mg"
+            
+            self.cholesterolLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalCholesterol))mg"
+            self.totalSaturatedFattyAcidsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSaturatedFat))g"
+            self.totalSugarsLabel.text = "\(String(format: "%.2f", self.totalNutritionInfo!.totalSugars))g"
         }
         
         if let totalNutritionInfo = totalNutritionInfo {
@@ -496,12 +706,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
                         carbohydrateView: carbohydrateView,
                         proteinView: proteinView,
                         fatView: fatView,
-                        sugarsView: sugarsView,
+                        sugarsView: natriumView,
                         isKcalProperLabel: isKcalProperLabel,
                         isCarboProperLabel: isCarboProperLabel,
                         isProteinProperLabel: isProteinProperLabel,
                         isFatProperLabel: isFatProperLabel,
-                        isSugarsProperLabel: isSugarsProperLabel
+                        isSugarsProperLabel: isNatriumProperLabel
                     )
         }
         
@@ -553,10 +763,12 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
         self.dayIdxBtn.setTitle(dateFormatter?.string(from: date), for: .normal)
         if date.compare(FSCalendarView.today!).rawValue == 0 {
             dayIdxBtn.setTitle("오늘", for: .normal)
+            currentDate = date
             
             getTodayNutriInfo(for: date, completion: {_ in print("get Success \n\n\n")})
         } else {
             
+            currentDate = date
             getTodayNutriInfo(for: date, completion: {_ in print("get Success \n\n\n")})
             
         }
@@ -612,6 +824,28 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     }
     
     
+    @IBAction func nutritionAppendBtnDidTap(_ sender: Any) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.nutritionDetailView.isHidden = !self.nutritionDetailView.isHidden
+        })
+        
+        if self.nutritionDetailView.isHidden {
+            self.nutritionAppendStatusLabel.text = "상세보기"
+            for view in self.nutritionDetailViews {
+                view.alpha = 0
+            }
+        } else {
+            UIView.animate(withDuration: 0.9, animations: {
+                self.nutritionAppendStatusLabel.text = "접기"
+                for view in self.nutritionDetailViews {
+                    view.alpha = 1
+                }
+            })
+        }
+        
+    }
+    
+    
     @IBAction func recoAppendDidTap(_ sender: Any) {
         
         
@@ -629,13 +863,13 @@ class NutritionStatisticsViewController: UIViewController, FSCalendarDelegate, F
     
     @IBAction func menuListBtnDidTap(_ sender: Any) {
        
-            UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: { [self] in
                     // 뷰가 현재 보이는 상태라면 페이드 아웃
                     if self.menuTableView.alpha == 1 {
                         self.menuTableView.alpha = 0
                         self.menulistAppendTextLabel.text = "펼치기"
                     } else { // 그렇지 않다면 페이드 인
-                        self.getTodayNutriInfo(for: Date(), completion: {_ in })
+                        self.getTodayNutriInfo(for: currentDate ?? Date(), completion: {_ in })
 
                         self.menuTableView.isHidden = false
                         self.menuTableView.alpha = 1
